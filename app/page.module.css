@@ -1,0 +1,14 @@
+.intro {
+    margin: 14px 32px;
+    font-size: 32px;
+    display: flex;
+}
+
+.intro-main {
+    flex-grow: 1;
+}
+
+.hi {
+    font-size: 18px;
+    margin: 12px 0 18px 0;
+}
