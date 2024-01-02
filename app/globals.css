@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --theme-color-0: #e6f2ff;
   --theme-color-1: #39ace7;
