@@ -1,14 +1,29 @@
-.intro {
+.Intro {
     margin: 14px 32px;
     font-size: 32px;
     display: flex;
 }
 
-.intro-main {
+.IntroMain {
     flex-grow: 1;
 }
 
-.hi {
+.IntroQuote {
+    font-style: italic;
+    line-height: 64px;
+    margin-top: 36px;
+    font-size: 48px;
+    text-align: center;
+}
+
+.IntroImage {
+    border-radius: 12px;
+    object-fit: cover;
+    height: 440px;
+    width: 330px;
+}
+
+.Hi {
     font-size: 18px;
-    margin: 12px 0 18px 0;
+    margin: 24px 0;
 }
