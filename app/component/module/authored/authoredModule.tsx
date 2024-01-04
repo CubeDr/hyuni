@@ -9,7 +9,7 @@ export default function AuthoredModule({ className }: DefaultModuleProps) {
             link='https://www.yes24.com/Product/Goods/117372853'>
             <div className={styles.Body}>
                 <img className={styles.Image}
-                    src='https://firebasestorage.googleapis.com/v0/b/hyuni-website.appspot.com/o/book-compressed.jpg?alt=media&token=cada1d83-57b0-4486-abdc-6098adb9323a' />
+                    src='https://firebasestorage.googleapis.com/v0/b/hyuni-website.appspot.com/o/book-compressed.jpg?alt=media&token=1642a989-701d-48a8-b2be-d1dc2f260fb9' />
                 <div className={styles.DetailBlock}>
                     <div className={styles.BookTitle}>
                         취업과 이직을 위한 프로그래머스 코딩 테스트 문제 풀이 전략 : 자바 편

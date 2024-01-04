@@ -9,8 +9,8 @@
 
 .Image {
     display: block;
-    height: 164px;
-    width: 128px;
+    height: 160px;
+    width: 124px;
 }
 
 .DetailBlock {
@@ -32,5 +32,5 @@
 
 .BookBottom {
     font-size: 12px;
-    margin-top: 14px;
+    margin-top: 12px;
 }
