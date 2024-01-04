@@ -1,12 +1,11 @@
 .Intro {
-    margin: 14px 0 64px;
+    margin: 14px 32px 84px;
     font-size: 32px;
     display: flex;
 }
 
 .IntroMain {
     flex-grow: 1;
-    margin-left: 32px;
 }
 
 .IntroQuote {
@@ -19,9 +18,10 @@
 
 .IntroImage {
     border-radius: 12px;
+    margin-top: 18px;
     object-fit: cover;
-    height: 440px;
-    width: 330px;
+    height: 360px;
+    width: 270px;
 }
 
 .Hi {
