@@ -1,0 +1,37 @@
+.InterviewItem {
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: var(--foreground-color);
+    display: flex;
+    height: 100px;
+    margin: 0 8px 20px 0;
+    text-decoration: none;
+    transition: background-color 150ms;
+    width: 300px;
+}
+
+.InterviewItem:hover {
+    background-color: var(--theme-color-3);
+}
+
+.Content {
+    flex-grow: 1;
+    margin: 8px 12px 0 12px;
+}
+
+.Title {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.Footer {
+    font-size: 12px;
+}
+
+.Image {
+    border-radius: 4px;
+    height: 84px;
+    margin: 8px 8px 8px 0;
+    object-fit: cover;
+    width: 72px;
+}

@@ -6,6 +6,10 @@ interface ModuleProps {
     children: React.ReactNode;
 }
 
+export interface DefaultModuleProps {
+    className?: string;
+}
+
 export default function Module({ title, className = '', children }: ModuleProps) {
     return (
         <div className={styles.Module + ' ' + className}>

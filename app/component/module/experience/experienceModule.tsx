@@ -1,11 +1,7 @@
-import Module from '../module';
+import Module, { DefaultModuleProps } from '../module';
 import ExperienceItem from './experienceItem';
 
-interface ExperienceModuleProps {
-    className: string;
-}
-
-export default function ExperienceModule({ className }: ExperienceModuleProps) {
+export default function ExperienceModule({ className }: DefaultModuleProps) {
     return (
         <Module title='Experience' className={className}>
             <ExperienceItem title='Google' role='Software Engineer' type='FTE' period='2020 Jun~NOW' isOngoing={true} />
