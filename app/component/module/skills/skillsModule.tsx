@@ -19,6 +19,7 @@ const expertise = [
     'Object Oriented Programming',
     'Refactoring',
     'Mentoring',
+    'Data Structure',
 ];
 
 export default function SkillsModule({ className }: DefaultModuleProps) {
