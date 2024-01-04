@@ -4,14 +4,18 @@
   --theme-color-2: #0784b5;
   --theme-color-3: #414c50;
   --theme-color-4: #2d383c;
-  --theme-color-5: #091014;
+  --theme-color-5: #1e2528;
+  --theme-color-6: #091014;
 
   --foreground-rgb: var(--theme-color-0);
-  --background-rgb: var(--theme-color-5);
+  --background-rgb: var(--theme-color-6);
+  --border-color: var(--theme-color-4);
 
   --active-color: var(--theme-color-1);
   --deactive-color: var(--theme-color-3);
 
+  --module-background-color: var(--theme-color-5);
+  --module-hover-background-color: var(--theme-color-4);
   --module-gap: 18px;
 
   --transition-duration: 150ms;

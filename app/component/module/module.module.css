@@ -1,6 +1,6 @@
 .Module, .LinkModule {
-    background-color: var(--theme-color-4);
-    border: 1px solid var(--theme-color-3);
+    background-color: var(--module-background-color);
+    border: 1px solid var(--border-color);
     border-radius: 18px;
     color: var(--foreground-color);
     display: block;
@@ -11,7 +11,7 @@
 }
 
 .LinkModule:hover {
-    background-color: var(--theme-color-3);
+    background-color: var(--module-hover-background-color);
 }
 
 .Title {
