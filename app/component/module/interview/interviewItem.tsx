@@ -10,7 +10,7 @@ interface InterviewItemProps {
 
 export default function InterviewItem({ title, attribution, linkUrl, imageUrl, date }: InterviewItemProps) {
     return (
-        <a href={linkUrl} className={styles.InterviewItem}>
+        <a href={linkUrl} className={styles.InterviewItem} target='_blank'>
             <div className={styles.Content}>
                 <div className={styles.Title}>{title}</div>
                 <div className={styles.Footer}>{attribution} · {date}</div>

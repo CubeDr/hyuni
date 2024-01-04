@@ -13,7 +13,7 @@ export interface DefaultModuleProps {
 
 export default function Module({ title, className = '', link, children }: ModuleProps) {
     if (link != null) {
-        return (<a className={styles.LinkModule + ' ' + className} href={link}>
+        return (<a className={styles.LinkModule + ' ' + className} href={link} target='_blank'>
             <div className={styles.Title}>
                 <span>{title}</span>
                 <b>〉</b>
