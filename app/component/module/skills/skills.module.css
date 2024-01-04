@@ -1,0 +1,15 @@
+.SkillRow {
+    box-sizing: border-box;
+    display: flex;
+    overflow: clip;
+    padding: 14px 0;
+    width: 425px;
+}
+
+.SkillChip {
+    background-color: var(--theme-color-3);
+    border-radius: 14px;
+    margin-right: 8px;
+    padding: 8px 12px;
+    white-space: nowrap;
+}
