@@ -16,8 +16,8 @@ export default function ExperienceItem({ title, role, type, period, isOngoing }:
                 <br />
                 <div className={styles.Line}></div>
             </div>
-            <div className={styles.Body}>
-                {title}
+            <div className={styles.Body + ' ' + (isOngoing ? styles.Ongoing : '')}>
+                <span className={styles.Title}>{title}</span>
                 <div className={styles.BodyFooter}>
                     {role} · {type}
                     <br />

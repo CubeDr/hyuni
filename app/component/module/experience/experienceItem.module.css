@@ -53,8 +53,17 @@
     flex-grow: 1;
 }
 
+.Title {
+    font-size: 14px;
+}
+
 .BodyFooter {
     font-size: 12px;
     line-height: 18px;
     margin-top: 8px;
+}
+
+.Ongoing .Title {
+    font-size: 18px;
+    font-weight: bold;
 }
