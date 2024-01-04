@@ -8,6 +8,9 @@
 
   --foreground-rgb: var(--theme-color-0);
   --background-rgb: var(--theme-color-5);
+
+  --active-color: var(--theme-color-1);
+  --deactive-color: var(--theme-color-3);
 }
 
 body {

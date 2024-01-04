@@ -1,0 +1,60 @@
+.ExperienceItem {
+    display: flex;
+    height: 90px;
+    padding: 0 12px;
+}
+
+.ExperienceItem:last-of-type {
+    display: flex;
+    height: 70px;
+}
+
+.ExperienceItem:last-of-type .Line {
+    display: none;
+}
+
+.Progress {
+    margin-right: 12px;
+    text-align: center;
+}
+
+.Indicator {
+    border-radius: 50%;
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+}
+
+.Active {
+    background-color: var(--active-color);
+}
+
+.Deactive {
+    background-color: var(--deactive-color);
+}
+
+.Line {
+    background-color: var(--deactive-color);
+    display: inline-block;
+    height: 100%;
+    margin-top: -4px;
+    width: 1px;
+}
+
+.Line {
+    background-color: var(--deactive-color);
+    display: inline-block;
+    height: 100%;
+    margin-top: -4px;
+    width: 1px;
+}
+
+.Body {
+    flex-grow: 1;
+}
+
+.BodyFooter {
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 8px;
+}
