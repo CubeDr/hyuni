@@ -1,4 +1,5 @@
 import Intro from './component/intro/intro';
+import AuthoredModule from './component/module/authored/authoredModule';
 import ExperienceModule from './component/module/experience/experienceModule';
 import InterviewModule from './component/module/interview/interviewModule';
 import SkillsModule from './component/module/skills/skillsModule';
@@ -10,8 +11,9 @@ export default function Page() {
       <Intro />
       <div className='row'>
         <ExperienceModule className={styles.ExperienceModule} />
-        <div style={{ flexGrow: 1, margin: '0 18px' }}>
+        <div className={styles.CenterModulesBlock}>
           <SkillsModule />
+          <AuthoredModule />
         </div>
         <InterviewModule className={styles.ExperienceModule} />
       </div>

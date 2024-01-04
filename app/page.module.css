@@ -1,3 +1,8 @@
 .ExperienceModule {
     display: inline-block;
 }
+
+.CenterModulesBlock {
+    margin: 0 var(--module-gap);
+    width: 451px;
+}

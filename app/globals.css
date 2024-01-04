@@ -11,6 +11,10 @@
 
   --active-color: var(--theme-color-1);
   --deactive-color: var(--theme-color-3);
+
+  --module-gap: 18px;
+
+  --transition-duration: 150ms;
 }
 
 body {

@@ -1,0 +1,36 @@
+.AuthoredModule {
+    margin-top: var(--module-gap);
+}
+
+.Body {
+    display: flex;
+    margin: 0 8px 14px;
+}
+
+.Image {
+    display: block;
+    height: 164px;
+    width: 128px;
+}
+
+.DetailBlock {
+    margin-left: 14px;
+}
+
+.BookTitle {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 22px;
+    margin-bottom: 4px;
+}
+
+.BookSubtitle {
+    font-size: 12px;
+    margin-top: 8px;
+    line-height: 18px;
+}
+
+.BookBottom {
+    font-size: 12px;
+    margin-top: 14px;
+}

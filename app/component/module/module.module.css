@@ -1,12 +1,26 @@
-.Module {
+.Module, .LinkModule {
     background-color: var(--theme-color-4);
     border: 1px solid var(--theme-color-3);
     border-radius: 18px;
+    color: var(--foreground-color);
+    display: block;
     font-size: 14px;
     padding: 12px;
+    text-decoration: none;
+    transition: background-color var(--transition-duration);
+}
+
+.LinkModule:hover {
+    background-color: var(--theme-color-3);
 }
 
 .Title {
     font-size: 18px;
     margin: 8px 0 24px 12px;
+}
+
+.LinkModule .Title {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 18px;
 }

@@ -6,7 +6,7 @@
     height: 100px;
     margin: 0 8px 20px 0;
     text-decoration: none;
-    transition: background-color 150ms;
+    transition: background-color var(--transition-duration);
     width: 300px;
 }
 
