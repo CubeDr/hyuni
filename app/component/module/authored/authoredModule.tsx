@@ -14,6 +14,7 @@ export default function AuthoredModule({ className }: DefaultModuleProps) {
                     src={bookImage}
                     alt='취업과 이직을 위한 프로그래머스 코딩 테스트 문제 풀이 전략 : 자바 편'
                     className={styles.Image}
+                    loading='eager'
                 />
                 <div className={styles.DetailBlock}>
                     <div className={styles.BookTitle}>

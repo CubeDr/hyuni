@@ -20,7 +20,8 @@ export default function InterviewItem({ title, attribution, linkUrl, imageSrc, d
             <Image
                 src={imageSrc}
                 alt={title}
-                className={styles.Image} />
+                className={styles.Image}
+                loading='eager' />
         </a>
     );
 }
