@@ -1,5 +1,7 @@
 import styles from './intro.module.css';
 import { Courgette } from 'next/font/google'
+import hyuniImage from '../../../public/images//hyuni-compressed.jpg';
+import Image from 'next/image';
 
 const courgette = Courgette({ subsets: ['latin'], weight: '400' });
 
@@ -11,9 +13,11 @@ export default function Intro() {
                 <div>I&rsquo;m <b>Hyuni</b>,<br />a software engineer believing:</div>
                 <div className={styles.IntroQuote + ' ' + courgette.className}>a Good Code<br />makes<br />a Good Product</div>
             </div>
-            <img
+            <Image
+                src={hyuniImage}
+                alt='Hyuni'
                 className={styles.IntroImage}
-                src='https://firebasestorage.googleapis.com/v0/b/hyuni-website.appspot.com/o/hyuni-compressed.jpg?alt=media&token=f62875f8-d497-47cf-a75a-986b61fe420b' />
+            />
         </div>
     );
 }

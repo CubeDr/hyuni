@@ -19,7 +19,6 @@
 .IntroImage {
     border-radius: 12px;
     margin-top: 18px;
-    object-fit: cover;
     height: 360px;
     width: 270px;
 }
