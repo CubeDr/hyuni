@@ -6,3 +6,10 @@
     margin: 0 var(--module-gap);
     width: 451px;
 }
+
+.TwoColumnGrid {
+    display: grid;
+    grid-gap: var(--module-gap);
+    grid-template-columns: 1fr 1fr;
+    margin-top: var(--module-gap);
+}
