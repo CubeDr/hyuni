@@ -3,6 +3,7 @@
     display: flex;
     overflow: clip;
     padding: 14px 0;
+    position: relative;
     width: 425px;
 }
 
@@ -13,4 +14,22 @@
     margin-right: 8px;
     padding: 8px 12px;
     white-space: nowrap;
+}
+
+.LeftWing,
+.RightWing {
+    height: 100%;
+    margin-top: -14px;
+    position: absolute;
+    width: 8px;
+}
+
+.LeftWing {
+    background: linear-gradient(90deg, var(--module-background-color), transparent);
+    left: 0;
+}
+
+.RightWing {
+    background: linear-gradient(-90deg, var(--module-background-color), transparent);
+    right: 0;
 }

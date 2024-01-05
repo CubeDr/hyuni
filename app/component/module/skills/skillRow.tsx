@@ -86,6 +86,8 @@ export default function SkillRow({ skills, direction }: SkillRowProps) {
                     ))
                 }
             </div>
+            <div className={styles.LeftWing} />
+            <div className={styles.RightWing} />
         </div>
     );
 }
