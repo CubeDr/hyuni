@@ -27,7 +27,7 @@ export default function AuthoredModule({ className }: DefaultModuleProps) {
                         합격에 한 걸음 더 가까워지는 실전형 코딩 테스트 문제 풀이 가이드
                     </div>
                     <div className={styles.BookBottom}>
-                        ★ 9.8 · Check it out in YES24!
+                        <span className={styles.Star}>★</span> 9.8 · Check it out in YES24!
                     </div>
                 </div>
             </div>
