@@ -1,4 +1,5 @@
 import styles from './module.module.css';
+import { MdChevronRight } from 'react-icons/md';
 
 interface ModuleProps {
     title: string;
@@ -16,7 +17,7 @@ export default function Module({ title, className = '', link, children }: Module
         return (<a className={styles.LinkModule + ' ' + className} href={link} target='_blank'>
             <div className={styles.Title}>
                 <span>{title}</span>
-                <b>〉</b>
+                <MdChevronRight />
             </div>
             {children}
         </a>);
