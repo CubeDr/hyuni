@@ -14,23 +14,23 @@ export default function BadmintonModule({ className }: DefaultModuleProps) {
                             Competition Records
                         </div>
                         <HistoryItem
-                            result='1st place'
+                            result='gold'
                             group='20 C'
                             date='23.12.03'
                             competition='Nationwide' />
                         <HistoryItem
-                            result='2nd place'
+                            result='silver'
                             group='20 C'
                             date='23.10.22'
                             competition='Districtwide' />
                         <HistoryItem
-                            result='2nd place'
+                            result='silver'
                             group='20 D'
                             date='23.03.12'
                             competition='Nationwide' />
                     </div>
                 </div>
-                <iframe className={styles.Video} src="https://www.youtube.com/embed/FN8oDCLz5o8?si=kPVvkGHivTF8WQHy" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                <iframe className={styles.Video} src="https://www.youtube.com/embed/FN8oDCLz5o8?si=kPVvkGHivTF8WQHy" title="YouTube video player" width={300} height={169} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             </div>
         </Module>
     );
