@@ -16,21 +16,21 @@ export default function BadmintonModule({ className }: DefaultModuleProps) {
                         <HistoryItem
                             result='1st place'
                             group='20 C'
-                            date='2023.12.03'
+                            date='23.12.03'
                             competition='Nationwide' />
                         <HistoryItem
                             result='2nd place'
                             group='20 C'
-                            date='2023.10.22'
+                            date='23.10.22'
                             competition='Districtwide' />
                         <HistoryItem
                             result='2nd place'
                             group='20 D'
-                            date='2023.03.12'
+                            date='23.03.12'
                             competition='Nationwide' />
                     </div>
                 </div>
-                <img className={styles.Video} src='https://placehold.co/160x90' />
+                <iframe className={styles.Video} src="https://www.youtube.com/embed/FN8oDCLz5o8?si=kPVvkGHivTF8WQHy" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             </div>
         </Module>
     );

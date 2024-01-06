@@ -14,10 +14,11 @@
 }
 
 .Video {
+    border: none;
     border-radius: 8px;
-    height: 120px;
-    margin: 0 8px 8px 8px;
-    width: 212px;
+    height: 130px;
+    margin: -10px 8px 8px 8px;
+    width: 232px;
 }
 
 .Current {
