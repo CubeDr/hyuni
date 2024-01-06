@@ -16,17 +16,17 @@ export default function BadmintonModule({ className }: DefaultModuleProps) {
                         <HistoryItem
                             result='gold'
                             group='20 C'
-                            date='23.12.03'
+                            date='2023.12.03'
                             competition='Nationwide' />
                         <HistoryItem
                             result='silver'
                             group='20 C'
-                            date='23.10.22'
+                            date='2023.10.22'
                             competition='Districtwide' />
                         <HistoryItem
                             result='silver'
                             group='20 D'
-                            date='23.03.12'
+                            date='2023.03.12'
                             competition='Nationwide' />
                     </div>
                 </div>

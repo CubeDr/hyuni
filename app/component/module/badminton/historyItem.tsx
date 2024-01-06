@@ -17,7 +17,7 @@ export default function HistoryItem({ result, group, date, competition }: Histor
                 <Image className={styles.MedalIcon} src={result === 'gold' ? goldMedalImage : silverMedalImage} alt={result === 'gold' ? 'gold medal' : 'silver medal'} width={16} height={16} />
                 {group} · {competition}
             </div>
-            <span className={styles.HistoryItemDate}>{date}</span>
+            <span>{date}</span>
         </div>
     );
 }
