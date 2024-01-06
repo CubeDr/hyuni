@@ -6,7 +6,7 @@ export default function BadmintonModule({ className }: DefaultModuleProps) {
     return (
         <Module title='Badminton' className={className}>
             <div className={styles.Body}>
-                <img className={styles.Video} src='https://placehold.co/160x90' />
+                <img className={styles.Image} src='https://placehold.co/90x120' />
                 <div className={styles.Content}>
                     <div className={styles.Current}>Nationwide 20 B</div>
                     <div className={styles.History}>
@@ -30,7 +30,7 @@ export default function BadmintonModule({ className }: DefaultModuleProps) {
                             competition='Nationwide' />
                     </div>
                 </div>
-                <img className={styles.Image} src='https://placehold.co/90x120' />
+                <img className={styles.Video} src='https://placehold.co/160x90' />
             </div>
         </Module>
     );
