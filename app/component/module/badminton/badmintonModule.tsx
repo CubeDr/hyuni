@@ -6,7 +6,7 @@ export default function BadmintonModule({ className }: DefaultModuleProps) {
     return (
         <Module title='Badminton' className={className}>
             <div className={styles.Body}>
-                <img className={styles.Image} src='https://placehold.co/100x120' />
+                <img className={styles.Image} src='https://placehold.co/160x90' />
                 <div className={styles.Content}>
                     <div className={styles.Current}>Nationwide 20 B</div>
                     <div className={styles.History}>
