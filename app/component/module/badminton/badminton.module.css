@@ -6,10 +6,10 @@
     flex-grow: 1;
 }
 
-.Image {
+.Video {
     border-radius: 8px;
     height: 120px;
-    margin: 0 28px 8px 12px;
+    margin: 0 18px 8px 12px;
     width: 212px;
 }
 
@@ -38,4 +38,11 @@
 
 .HistoryItemDate {
     font-size: 12px;
+}
+
+.Image {
+    border-radius: 8px;
+    height: 120px;
+    margin: 0 8px 8px 8px;
+    width: 90px;
 }
