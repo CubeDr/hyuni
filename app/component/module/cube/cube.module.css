@@ -1,0 +1,19 @@
+.Body {
+    display: flex;
+}
+
+.Image {
+    border-radius: 8px;
+    height: 120px;
+    margin: 0 28px 8px 12px;
+}
+
+.Content {
+    margin-top: 4px;
+}
+
+.Also {
+    display: block;
+    font-size: 12px;
+    margin-top: 4px;
+}
