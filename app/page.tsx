@@ -12,9 +12,9 @@ export default function Page() {
   return (
     <div className='main-column'>
       <Intro />
-      <div className='row'>
+      <div className={styles.ThreeColumnGrid}>
         <ExperienceModule className={styles.ExperienceModule} />
-        <div className={styles.CenterModulesBlock}>
+        <div>
           <SkillsModule />
           <AuthoredModule />
         </div>

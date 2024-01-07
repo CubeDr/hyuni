@@ -1,10 +1,7 @@
-.ExperienceModule {
-    display: inline-block;
-}
-
-.CenterModulesBlock {
-    margin: 0 var(--module-gap);
-    width: 451px;
+.ThreeColumnGrid {
+    display: grid;
+    grid-gap: var(--module-gap);
+    grid-template-columns: 260px 450px 334px;
 }
 
 .TwoColumnGrid {
