@@ -10,12 +10,17 @@
 
 .IntroQuote {
     background-color: var(--theme-color-1);
+    font-size: 48px;
     font-style: italic;
+    left: 0;
     line-height: 64px;
     margin: 18px 0 0 -32px;
-    padding: 8px 0;
-    font-size: 48px;
-    text-align: center;
+    min-width: 690px;
+    padding: 8px 128px 8px 0;
+    position: absolute;
+    right: calc(50% - 238px);
+    text-align: right;
+    z-index: -1;
 }
 
 .IntroImage {
