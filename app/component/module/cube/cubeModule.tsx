@@ -14,7 +14,7 @@ export default function CubeModule({ className }: DefaultModuleProps) {
                     width={90}
                     height={120} />
                 <div className={styles.Content}>
-                    3x3 Avg. 25s<br />
+                    3x3 Avg. 21.923s<br />
                     3x3 Best 14.257s<br /><br />
                     Also...
                     <span className={styles.Also}>
