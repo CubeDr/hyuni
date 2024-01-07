@@ -9,9 +9,11 @@
 }
 
 .IntroQuote {
+    background-color: var(--theme-color-1);
     font-style: italic;
     line-height: 64px;
-    margin-top: 36px;
+    margin: 18px 0 0 -32px;
+    padding: 8px 0;
     font-size: 48px;
     text-align: center;
 }

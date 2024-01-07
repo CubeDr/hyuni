@@ -25,28 +25,24 @@
     width: 8px;
 }
 
-.Active {
+.Active .Indicator {
     background-color: var(--active-color);
 }
 
-.Deactive {
+.Deactive .Indicator,
+.Deactive .Line {
     background-color: var(--deactive-color);
 }
 
 .Line {
-    background-color: var(--deactive-color);
     display: inline-block;
     height: 100%;
     margin-top: -4px;
     width: 1px;
 }
 
-.Line {
-    background-color: var(--deactive-color);
-    display: inline-block;
-    height: 100%;
-    margin-top: -4px;
-    width: 1px;
+.Active .Line {
+    background: linear-gradient(var(--active-color) 35%, var(--deactive-color));
 }
 
 .Body {

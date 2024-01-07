@@ -11,8 +11,8 @@ interface ExperienceModuleItemProps {
 export default function ExperienceItem({ title, role, type, period, isOngoing }: ExperienceModuleItemProps) {
     return (
         <div className={styles.ExperienceItem}>
-            <div className={styles.Progress}>
-                <div className={styles.Indicator + ' ' + (isOngoing ? styles.Active : styles.Deactive)}></div>
+            <div className={styles.Progress + ' ' + (isOngoing ? styles.Active : styles.Deactive)}>
+                <div className={styles.Indicator}></div>
                 <br />
                 <div className={styles.Line}></div>
             </div>
