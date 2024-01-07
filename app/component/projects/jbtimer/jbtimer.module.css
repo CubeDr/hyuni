@@ -1,0 +1,48 @@
+.JBTimer {
+    display: flex;
+    flex-direction: column;
+    height: var(--project-detail-height);
+    width: var(--project-detail-width);
+}
+
+.Header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Body {
+    display: flex;
+    flex-grow: 1;
+    margin-top: 18px;
+}
+
+.Image {
+    height: 100%;
+    margin-right: 8px;
+}
+
+.Image:last-of-type {
+    margin-right: 24px;
+}
+
+.Content {
+    display: flex;
+    flex-direction: column;
+}
+
+.Description {
+    flex-grow: 1;
+    padding-top: 18px;
+}
+
+.Link {
+    font-size: 12px;
+}
+
+.Stacks {
+    margin-top: -4px;
+}
+
+.Footer {
+    text-align: right;
+}

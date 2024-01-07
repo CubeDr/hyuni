@@ -2,6 +2,7 @@
 
 import styles from './projects.module.css';
 import Navigator from './navigator';
+import JBTimer from './jbtimer/jbtimer';
 
 const PROJECTS = [
     'JBTimer',
@@ -24,6 +25,7 @@ export default function Projects() {
                     <div className={styles.ProjectDetailFrame}>
                         <div className={styles.ProjectDetailFrameUpperLeftCorder}></div>
                         <div className={styles.ProjectDetailFrameLowerRightCorder}></div>
+                        <JBTimer />
                     </div>
                 </div>
             </div>

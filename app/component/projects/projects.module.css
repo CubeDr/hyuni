@@ -36,18 +36,21 @@
 }
 
 .ProjectDetailContainer {
+    --project-detail-container-width: 800px;
+    --project-detail-container-height: 400px;
+
     display: flex;
-    height: 400px;
+    height: var(--project-detail-container-height);
     justify-content: center;
     position: relative;
-    width: 800px;
+    width: var(--project-detail-container-width);
 }
 
 .ProjectDetail {
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-name: expand;
-    animation-timing-function: cubic-bezier(.4,0,.4,1);
+    animation-timing-function: cubic-bezier(.4, 0, .4, 1);
     left: 50%;
     overflow: clip;
     position: absolute;
@@ -68,7 +71,13 @@
 }
 
 .ProjectDetailFrame {
+    --project-detail-container-padding: 48px;
+    --project-detail-width: calc(var(--project-detail-container-width) - var(--project-detail-container-padding) * 2);
+    --project-detail-height: calc(var(--project-detail-container-height) - var(--project-detail-container-padding) * 2);
+   
+    box-sizing: border-box;
     height: 100%;
+    padding: var(--project-detail-container-padding);
     position: relative;
     width: 100%;
 }
