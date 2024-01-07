@@ -30,7 +30,7 @@ export default function BadmintonModule({ className }: DefaultModuleProps) {
                             competition='Nationwide' />
                     </div>
                 </div>
-                <iframe className={styles.Video} src="https://www.youtube.com/embed/FN8oDCLz5o8?si=kPVvkGHivTF8WQHy" title="YouTube video player" width={300} height={169} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                <iframe className={styles.Video} src="https://www.youtube.com/embed/FN8oDCLz5o8?si=kPVvkGHivTF8WQHy" title="YouTube video player" loading='lazy' width={300} height={169} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             </div>
         </Module>
     );
