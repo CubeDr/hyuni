@@ -5,11 +5,11 @@ import Navigator from './navigator';
 
 const PROJECTS = [
     'JBTimer',
-    'Hyminton',
-    'AutoMatch',
-    'DotPlace',
-    'AutoTrade',
-    'DeveloperDungeon',
+    // 'Hyminton',
+    // 'AutoMatch',
+    // 'DotPlace',
+    // 'AutoTrade',
+    // 'DeveloperDungeon',
 ];
 
 export default function Projects() {

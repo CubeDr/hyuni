@@ -4,7 +4,8 @@
 }
 
 .ProjectsControl {
-    margin: 0 64px 0 32px;
+    flex-grow: 1;
+    margin: 0 48px 0 32px;
 }
 
 .Navigator {
@@ -36,9 +37,10 @@
 
 .ProjectDetailContainer {
     display: flex;
-    flex-grow: 1;
+    height: 400px;
     justify-content: center;
     position: relative;
+    width: 800px;
 }
 
 .ProjectDetail {
