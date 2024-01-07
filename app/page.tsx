@@ -5,6 +5,7 @@ import CubeModule from './component/module/cube/cubeModule';
 import ExperienceModule from './component/module/experience/experienceModule';
 import InterviewModule from './component/module/interview/interviewModule';
 import SkillsModule from './component/module/skills/skillsModule';
+import Projects from './component/projects/projects';
 import styles from './page.module.css';
 
 export default function Page() {
@@ -23,6 +24,7 @@ export default function Page() {
         <BadmintonModule />
         <CubeModule />
       </div>
+      <Projects />
     </div>
   )
 };

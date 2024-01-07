@@ -1,0 +1,26 @@
+.Projects {
+    display: flex;
+    margin-top: 64px;
+}
+
+.Navigator {
+    margin: 0 64px 0 32px;
+}
+
+.ProjectList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.ProjectName {
+    font-size: 16px;
+    text-align: right;
+    padding: 16px 0;
+}
+
+.ProjectDetail {
+    background-color: black;
+    position: relative;
+    flex-grow: 1;
+}
+
