@@ -34,7 +34,7 @@ export default function JBTimer() {
                     <div className={styles.Description}>
                         This is a renewal version of my old JBTimer, the most valuable project that led me to the path of a software engineer.
                         <br /><br />
-                        JBTimer supports many useful features for speed-solving, such as statistics, scramble, graph, storage, etc.
+                        JBTimer supports many useful features for speedcube-solving, such as statistics, scramble, graph, storage, etc.
                     </div>
                     <div className={styles.Footer}>
                         <a
