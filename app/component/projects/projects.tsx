@@ -14,7 +14,14 @@ export default function Projects() {
                     <li className={styles.ProjectName}>DeveloperDungeon</li>
                 </ul>
             </div>
-            <div className={styles.ProjectDetail}></div>
+            <div className={styles.ProjectDetailContainer}>
+                <div className={styles.ProjectDetail}>
+                    <div className={styles.ProjectDetailFrame}>
+                        <div className={styles.ProjectDetailFrameUpperLeftCorder}></div>
+                        <div className={styles.ProjectDetailFrameLowerRightCorder}></div>
+                    </div>
+                </div>
+            </div>
         </section>
     );
 }

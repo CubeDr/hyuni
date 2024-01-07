@@ -18,9 +18,60 @@
     padding: 16px 0;
 }
 
-.ProjectDetail {
-    background-color: black;
-    position: relative;
+.ProjectDetailContainer {
+    display: flex;
     flex-grow: 1;
+    justify-content: center;
+    position: relative;
 }
 
+.ProjectDetail {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-name: expand;
+    animation-timing-function: cubic-bezier(.4,0,.4,1);
+    left: 50%;
+    overflow: clip;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+
+@keyframes expand {
+    from {
+        height: 0%;
+        width: 0%;
+    }
+
+    to {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.ProjectDetailFrame {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.ProjectDetailFrameUpperLeftCorder,
+.ProjectDetailFrameLowerRightCorder {
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    position: absolute;
+    width: 50px;
+}
+
+.ProjectDetailFrameUpperLeftCorder {
+    border-width: 2px 0 0 2px;
+    left: 0;
+    top: 0;
+}
+
+.ProjectDetailFrameLowerRightCorder {
+    border-width: 0 2px 2px 0;
+    bottom: 0;
+    right: 0;
+}
