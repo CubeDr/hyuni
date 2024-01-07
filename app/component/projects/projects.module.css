@@ -74,7 +74,7 @@
     --project-detail-container-padding: 48px;
     --project-detail-width: calc(var(--project-detail-container-width) - var(--project-detail-container-padding) * 2);
     --project-detail-height: calc(var(--project-detail-container-height) - var(--project-detail-container-padding) * 2);
-   
+
     box-sizing: border-box;
     height: 100%;
     padding: var(--project-detail-container-padding);
@@ -84,21 +84,24 @@
 
 .ProjectDetailFrameUpperLeftCorder,
 .ProjectDetailFrameLowerRightCorder {
+    --corner-border-length: 30px;
+    --corner-border-width: 8px;
+
     border-color: var(--theme-color-2);
     border-style: solid;
-    height: 50px;
+    height: var(--corner-border-length);
     position: absolute;
-    width: 50px;
+    width: var(--corner-border-length);
 }
 
 .ProjectDetailFrameUpperLeftCorder {
-    border-width: 2px 0 0 2px;
+    border-width: var(--corner-border-width) 0 0 var(--corner-border-width);
     left: 0;
     top: 0;
 }
 
 .ProjectDetailFrameLowerRightCorder {
-    border-width: 0 2px 2px 0;
+    border-width: 0 var(--corner-border-width) var(--corner-border-width) 0;
     bottom: 0;
     right: 0;
 }
