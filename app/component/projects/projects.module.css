@@ -13,7 +13,7 @@
 }
 
 .Indicator {
-    background-color: var(--theme-color-4);
+    background-color: var(--theme-color-2);
     border-radius: 25px 0 0 25px;
     height: 50px;
     left: 0;
@@ -84,7 +84,7 @@
 
 .ProjectDetailFrameUpperLeftCorder,
 .ProjectDetailFrameLowerRightCorder {
-    border-color: white;
+    border-color: var(--theme-color-2);
     border-style: solid;
     height: 50px;
     position: absolute;

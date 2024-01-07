@@ -6,11 +6,11 @@ import JBTimer from './jbtimer/jbtimer';
 
 const PROJECTS = [
     'JBTimer',
-    // 'Hyminton',
-    // 'AutoMatch',
-    // 'DotPlace',
-    // 'AutoTrade',
-    // 'DeveloperDungeon',
+    'Hyminton',
+    'AutoMatch',
+    'DotPlace',
+    'AutoTrade',
+    'DeveloperDungeon',
 ];
 
 export default function Projects() {
