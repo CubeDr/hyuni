@@ -14,7 +14,7 @@ export default function JBTimer() {
                     <Chip text='Flutter' fontSize={12} />
                 </div>
             </div>
-            <p>
+            <p className={styles.Summary}>
                 JBTimer is a <b>cube timer application</b> available on Web.
             </p>
             <div className={styles.Body}>
@@ -34,7 +34,7 @@ export default function JBTimer() {
                     <div className={styles.Description}>
                         This is a renewal version of my old JBTimer, the most valuable project that led me to the path of a software engineer.
                         <br /><br />
-                        JBTimer supports many useful features for speedcube-solving, such as statistics, scramble, graph, storage, etc.
+                        JBTimer provides many useful features for speedcube-solving, such as statistics, scramble, graph, storage, sessions, etc.
                     </div>
                     <div className={styles.Footer}>
                         <a

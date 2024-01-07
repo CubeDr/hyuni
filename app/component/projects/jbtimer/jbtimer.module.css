@@ -10,6 +10,10 @@
     justify-content: space-between;
 }
 
+.Summary {
+    font-size: 16px;
+}
+
 .Body {
     display: flex;
     flex-grow: 1;
@@ -32,7 +36,8 @@
 
 .Description {
     flex-grow: 1;
-    padding-top: 18px;
+    line-height: 22px;
+    padding-top: 8px;
 }
 
 .Link {
