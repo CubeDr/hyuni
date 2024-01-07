@@ -1,18 +1,23 @@
+'use client'
+
 import styles from './projects.module.css';
+import Navigator from './navigator';
+
+const PROJECTS = [
+    'JBTimer',
+    'Hyminton',
+    'AutoMatch',
+    'DotPlace',
+    'AutoTrade',
+    'DeveloperDungeon',
+];
 
 export default function Projects() {
     return (
         <section className={styles.Projects}>
-            <div className={styles.Navigator}>
+            <div className={styles.ProjectsControl}>
                 <h1>Projects</h1>
-                <ul className={styles.ProjectList}>
-                    <li className={styles.ProjectName}>JBTimer</li>
-                    <li className={styles.ProjectName}>Hyminton</li>
-                    <li className={styles.ProjectName}>AutoMatch</li>
-                    <li className={styles.ProjectName}>DotPlace</li>
-                    <li className={styles.ProjectName}>AutoTrade</li>
-                    <li className={styles.ProjectName}>DeveloperDungeon</li>
-                </ul>
+                <Navigator projects={PROJECTS} />
             </div>
             <div className={styles.ProjectDetailContainer}>
                 <div className={styles.ProjectDetail}>
