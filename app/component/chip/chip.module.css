@@ -1,0 +1,8 @@
+.Chip {
+    background-color: var(--theme-color-4);
+    border: 1px solid var(--theme-color-3);
+    border-radius: 14px;
+    margin-right: 8px;
+    padding: 8px 12px;
+    white-space: nowrap;
+}

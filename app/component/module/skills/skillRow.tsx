@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './skills.module.css';
+import Chip from '../../chip/chip';
 
 const FPS = 10;
 const PX_PER_SEC = 30;
@@ -65,11 +66,7 @@ export default function SkillRow({ skills, direction }: SkillRowProps) {
             }} ref={leftContainerRef}>
                 {
                     skills.map(skill => (
-                        <span
-                            className={styles.SkillChip}
-                            key={skill}>
-                            {skill}
-                        </span>
+                        <Chip key={skill} text={skill} />
                     ))
                 }
             </div>
@@ -78,11 +75,7 @@ export default function SkillRow({ skills, direction }: SkillRowProps) {
             }}>
                 {
                     skills.map(skill => (
-                        <span
-                            className={styles.SkillChip}
-                            key={skill}>
-                            {skill}
-                        </span>
+                        <Chip key={skill} text={skill} />
                     ))
                 }
             </div>
