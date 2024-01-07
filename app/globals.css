@@ -24,6 +24,7 @@
 body {
   color: var(--foreground-rgb);
   background: var(--background-rgb);
+  font-size: 14px;
   text-align: center;
 }
 
