@@ -1,12 +1,21 @@
 import Module, { DefaultModuleProps } from '../module';
 import InterviewItem from './interviewItem';
+import yozmIt from '../../../../public/images/yozmit-compressed.jpg';
 import wantedImage from '../../../../public/images/wanted-compressed.jpg';
 import yes24Image from '../../../../public/images/yes24-compressed.jpg';
 import newsHImage from '../../../../public/images/news-h-compressed.jpg';
+import styles from './interviewItem.module.css';
 
 export default function InterviewModule({ className }: DefaultModuleProps) {
     return (
-        <Module title='Interviews' className={className}>
+        <Module title='Interviews' className={className + ' ' + styles.InterviewModule}>
+            <InterviewItem
+                title='구글 4년차 엔지니어로 살아가기: 김현이 구글코리아 소프트웨어 엔지니어'
+                attribution='요즘 IT'
+                linkUrl='https://yozm.wishket.com/magazine/detail/2460/'
+                imageSrc={yozmIt}
+                date='2024-02-20'
+            />
             <InterviewItem
                 title='구글코리아ㅣ아직은 코딩이 낯선 이들을 위해'
                 attribution='Wanted Lab'

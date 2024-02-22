@@ -18,7 +18,7 @@ export default function Page() {
           <SkillsModule />
           <AuthoredModule />
         </div>
-        <InterviewModule className={styles.ExperienceModule} />
+        <InterviewModule />
       </div>
       <div className={styles.TwoColumnGrid}>
         <BadmintonModule />
