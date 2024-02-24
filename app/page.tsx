@@ -7,24 +7,26 @@ import InterviewModule from './component/module/interview/interviewModule';
 import SkillsModule from './component/module/skills/skillsModule';
 import Projects from './component/projects/projects';
 import styles from './page.module.css';
+import Articles from "@/app/component/articles/Articles";
 
 export default function Page() {
   return (
     <div className='main-column'>
-      <Intro />
+      <Intro/>
       <div className={styles.ThreeColumnGrid}>
-        <ExperienceModule className={styles.ExperienceModule} />
+        <ExperienceModule className={styles.ExperienceModule}/>
         <div>
-          <SkillsModule />
-          <AuthoredModule />
+          <SkillsModule/>
+          <AuthoredModule/>
         </div>
-        <InterviewModule />
+        <InterviewModule/>
       </div>
       <div className={styles.TwoColumnGrid}>
-        <BadmintonModule />
-        <CubeModule />
+        <BadmintonModule/>
+        <CubeModule/>
       </div>
-      <Projects />
+      <Articles/>
+      <Projects/>
     </div>
   )
 };
