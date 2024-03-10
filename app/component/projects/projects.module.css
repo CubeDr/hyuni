@@ -47,10 +47,6 @@
 }
 
 .ProjectDetail {
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-name: expand;
-    animation-timing-function: cubic-bezier(.4, 0, .4, 1);
     left: 50%;
     overflow: clip;
     position: absolute;
@@ -58,15 +54,38 @@
     top: 50%;
 }
 
+.ExpandAnimation {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-name: expand;
+    animation-timing-function: cubic-bezier(.4, 0, .4, 1);
+}
+
+.CloseAnimation {
+    animation-name: close;
+}
+
 @keyframes expand {
     from {
-        height: 0%;
-        width: 0%;
+        height: 0;
+        width: 0;
     }
 
     to {
         height: 100%;
         width: 100%;
+    }
+}
+
+@keyframes close {
+    from {
+        height: 100%;
+        width: 100%;
+    }
+
+    to {
+        height: 0;
+        width: 0;
     }
 }
 
@@ -94,14 +113,16 @@
     width: var(--corner-border-length);
 }
 
+/* 1px padding is set below to avoid CSS animation leaving trails. */
+
 .ProjectDetailFrameUpperLeftCorder {
     border-width: var(--corner-border-width) 0 0 var(--corner-border-width);
-    left: 0;
-    top: 0;
+    left: 1px;
+    top: 1px;
 }
 
 .ProjectDetailFrameLowerRightCorder {
     border-width: 0 var(--corner-border-width) var(--corner-border-width) 0;
-    bottom: 0;
-    right: 0;
+    bottom: 1px;
+    right: 1px;
 }

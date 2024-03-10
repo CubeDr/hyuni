@@ -3,7 +3,7 @@
 import styles from './projects.module.css';
 import Navigator from './navigator';
 import JBTimer from './jbtimer/jbtimer';
-import {useCallback, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 const PROJECTS = [
   'JBTimer',
@@ -17,6 +17,23 @@ const PROJECTS = [
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(PROJECTS[0]);
+  const container = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onAnimationEnd = () => {
+      if (container?.current?.classList?.contains(styles.CloseAnimation)) {
+        container.current.classList.remove(styles.CloseAnimation);
+      }
+    };
+
+    container?.current?.addEventListener('animationend', onAnimationEnd);
+
+    return () => container?.current?.removeEventListener('animationend', onAnimationEnd);
+  }, [container]);
+
+  useEffect(() => {
+    container?.current?.classList.add(styles.CloseAnimation);
+  }, [selectedProject]);
 
   return (
     <section className={styles.Projects}>
@@ -25,7 +42,7 @@ export default function Projects() {
         <Navigator projects={PROJECTS} selectedProject={selectedProject} onClick={setSelectedProject}/>
       </div>
       <div className={styles.ProjectDetailContainer}>
-        <div className={styles.ProjectDetail}>
+        <div className={styles.ProjectDetail + ' ' + styles.ExpandAnimation} ref={container}>
           <div className={styles.ProjectDetailFrame}>
             <div className={styles.ProjectDetailFrameUpperLeftCorder}></div>
             <div className={styles.ProjectDetailFrameLowerRightCorder}></div>
