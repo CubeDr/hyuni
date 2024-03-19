@@ -11,7 +11,8 @@ interface Props {
 export default function Article({title, date, imageUrl, link, source}: Props) {
   return (
     <a className={styles.Article} href={link} style={{
-      background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${imageUrl}')`
+      background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${imageUrl}')`,
+      backgroundSize: 'cover',
     }}>
       <span className={styles.ArticleTitle}>{title}</span>
       <div className={styles.ArticleFooter}>
