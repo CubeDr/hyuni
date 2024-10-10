@@ -18,7 +18,10 @@ export default function WritePage() {
         </div>
         <Preview content={value} />
       </div>
-      <button className={styles.SubmitButton}>게시</button>
+      <div className={styles.ControlRow}>
+        <input placeholder='카테고리' />
+        <button className={styles.SubmitButton}>게시</button>
+      </div>
     </div>
   );
 }
