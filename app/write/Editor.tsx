@@ -18,7 +18,6 @@ export default function Editor({ value, onChange }: Props) {
       const updateLineNumbers = () => {
         const lines = textarea.value.split('\n');
         const lineNumbersContent = lines.map((_, index) => index + 1).join('<br />');
-        console.log(lineNumbersContent);
         lineNumbers.innerHTML = lineNumbersContent;
       };
 
