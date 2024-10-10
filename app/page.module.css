@@ -1,9 +1,3 @@
-.ThreeColumnGrid {
-    display: grid;
-    grid-gap: var(--module-gap);
-    grid-template-columns: 260px 450px 334px;
-}
-
 .TwoColumnGrid {
     display: grid;
     grid-gap: var(--module-gap);

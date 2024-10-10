@@ -12,15 +12,10 @@
     display: flex;
     text-decoration: none;
     transition: background-color var(--transition-duration);
-    width: 300px;
 }
 
 .InterviewItem:hover {
     background-color: var(--module-hover-background-color);
-}
-
-.InterviewItem:not(:last-of-type) {
-    /*margin: 0 8px 29px 0;*/
 }
 
 .Content {
@@ -33,6 +28,7 @@
     -webkit-box-orient: vertical;
     font-size: 14px;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     margin: 0 4px 12px 0;
     overflow: hidden;
 }
