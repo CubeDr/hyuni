@@ -3,8 +3,12 @@
 import { getCategories } from '@/firebase/categories';
 import { useEffect, useState } from 'react';
 
-export default function CategorySelect() {
-  const [category, setCategory] = useState<string>('null');
+interface Props {
+  category: string;
+  setCategory: (category: string) => void;
+}
+
+export default function CategorySelect({ category, setCategory }: Props) {
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {

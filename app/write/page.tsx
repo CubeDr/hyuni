@@ -7,15 +7,18 @@ import Preview from './Preview';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '@/firebase/firebaseClient';
 import CategorySelect from './CategorySelect';
+import { addPostToCategory } from '@/firebase/categories';
 
 export default function WritePage() {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
+  const [category, setCategory] = useState('null');
 
   const submit = useCallback(async () => {
     try {
-      await addDoc(collection(db, 'posts'), {
+      const postDocRef = await addDoc(collection(db, 'posts'), {
         title,
+        category,
         blocks: [
           {
             type: 'markdown',
@@ -24,10 +27,12 @@ export default function WritePage() {
         ],
         timestamp: new Date().getTime(),
       });
+
+      await addPostToCategory(postDocRef, category);
     } catch (e) {
       console.error(e);
     }
-  }, [value]);
+  }, [value, category]);
 
   return (
     <div className={styles.WritePage}>
@@ -39,7 +44,7 @@ export default function WritePage() {
         <Preview content={value} />
       </div>
       <div className={styles.ControlRow}>
-        <CategorySelect />
+        <CategorySelect category={category} setCategory={setCategory} />
         <button className={styles.SubmitButton} onClick={submit}>게시</button>
       </div>
     </div>
