@@ -1,11 +1,12 @@
 .OpenGraphBlock {
   background-color: var(--theme-color-4);
   display: flex;
+  min-height: 200px;
 }
 
 .Image {
   width: 200px;
-  height: 200px;
+  object-fit: cover;
 }
 
 .Content {
