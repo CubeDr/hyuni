@@ -1,5 +1,7 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback, ClipboardEvent } from 'react';
 import styles from './Editor.module.css';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { storage } from '@/firebase/firebaseClient';
 
 interface Props {
   value: string;
@@ -11,6 +13,29 @@ interface Props {
 export default function Editor({ value, onChange, multiline = true, className }: Props) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
+
+  const onPaste = useCallback(async (e: ClipboardEvent) => {
+    let item = null;
+    const items = e.clipboardData.items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf('image') === 0) {
+        item = items[i];
+
+        break;
+      }
+    }
+    if (item == null) return;
+
+    const blob = item.getAsFile();
+    if (blob == null) return;
+
+    e.preventDefault();
+
+    const filename = new Date().getTime().toString() + '.' + blob.name;
+    const snapshot = await uploadBytes(ref(storage, 'posts/images/' + filename), blob);
+    const url = await getDownloadURL(snapshot.ref);
+    onChange(value + `\n![캡션 텍스트](${url})`);
+  }, []);
 
   useEffect(() => {
     const textarea = textareaRef.current;
@@ -51,6 +76,7 @@ export default function Editor({ value, onChange, multiline = true, className }:
         value={value}
         onChange={(e) => onChange(e.target.value)}
         rows={multiline ? undefined : 1}
+        onPaste={onPaste}
       />
     </div>
   );
