@@ -2,18 +2,8 @@ import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { addPostToCategory } from './categories';
 import { db } from './firebaseClient';
 
-interface PostData {
-  title: string;
-  category: string;
-  blocks: {
-    type: 'markdown';
-    content: string;
-  }[];
-  timestamp: number;
-}
-
 export async function addPost(
-  postData: Omit<PostData, 'timestamp'>
+  postData: Omit<Post, 'timestamp'>
 ): Promise<string> {
   const postDocRef = await addDoc(collection(db, 'posts'), {
     title: postData.title,
@@ -25,8 +15,8 @@ export async function addPost(
   return postDocRef.id;
 }
 
-export async function getPost(id: string): Promise<PostData> {
+export async function getPost(id: string): Promise<Post> {
   const snapshot = await getDoc(doc(collection(db, 'posts'), id));
-  const data = snapshot.data() as PostData;
+  const data = snapshot.data() as Post;
   return data;
 }

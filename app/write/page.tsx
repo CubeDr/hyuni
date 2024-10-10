@@ -52,7 +52,14 @@ export default function WritePage() {
             <Editor value={title} onChange={setTitle} multiline={false} className={styles.Title} />
             <Editor value={value} onChange={setValue} className={styles.Content} />
           </div>
-          <Preview content={value} />
+          <Preview post={{
+            title,
+            category,
+            blocks: [
+              { type: 'markdown', content: value },
+            ],
+            timestamp: new Date().getTime(),
+          }} />
         </div>
         <div className={styles.ControlRow}>
           <CategorySelect category={category} setCategory={setCategory} />

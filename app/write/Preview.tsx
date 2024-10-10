@@ -1,19 +1,16 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import styles from './Preview.module.css';
+import PostViewer from '../posts/[id]/PostViewer';
 
 interface Props {
-  content: string;
+  post: Post;
 }
 
-export default function Preview({ content }: Props) {
+export default function Preview({ post }: Props) {
   return (
     <div className={styles.Preview}>
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-      >
-        {content}
-      </ReactMarkdown>
+      <PostViewer post={post} />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import strip from 'strip-markdown';
 import styles from './page.module.css';
 import OpenGraphBlock from './OpenGraphBlock';
+import PostViewer from './PostViewer';
 
 interface Props {
   params: {
@@ -27,40 +28,9 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
 }
 
 export default async function PostPage({ params: { id } }: Props) {
-  const { title, category, blocks, timestamp } = await getPost(id);
+  const post = await getPost(id);
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <div className={styles.HeaderRow}>
-        <span>&gt; {category}</span>
-        <span>{timestampToString(timestamp)}</span>
-      </div>
-      <hr className={styles.Divider} />
-      <div className={styles.Content}>
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          components={{
-            a({ href, children }) {
-              if (href != null && href === children?.toString()) {
-                return <OpenGraphBlock url={href} />
-              } else {
-                return <a href={href}>{children}</a>
-              }
-            },
-            img(props) {
-              return (
-                <>
-                  <img src={props.src} alt={props.alt} className={styles.Image} />
-                  <span className={styles.Caption}>{props.alt}</span>
-                </>
-              );
-            }
-          }}
-        >
-          {blocks[0].content}
-        </ReactMarkdown>
-      </div>
-    </div>
+    <PostViewer post={post} />
   );
 }
