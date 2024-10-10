@@ -3,3 +3,13 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 14px;
 }
+
+.Title {
+  margin-bottom: 8px;
+}
+
+.Title textarea {
+  font-size: 24px;
+}
+
+.Content {}

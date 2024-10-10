@@ -4,9 +4,11 @@ import styles from './Editor.module.css';
 interface Props {
   value: string;
   onChange: (value: string) => void;
+  multiline?: boolean;
+  className?: string;
 }
 
-export default function Editor({ value, onChange }: Props) {
+export default function Editor({ value, onChange, multiline = true, className }: Props) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
 
@@ -38,13 +40,17 @@ export default function Editor({ value, onChange }: Props) {
   }, [value]);
 
   return (
-    <div className={styles.EditorContainer}>
-      <div className={styles.LineNumbers} ref={lineNumbersRef} />
+    <div className={styles.EditorContainer + ' ' + className}>
+      {multiline
+        &&
+        <div className={styles.LineNumbers} ref={lineNumbersRef} />
+      }
       <textarea
         className={styles.Textarea}
         ref={textareaRef}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        rows={multiline ? undefined : 1}
       />
     </div>
   );
