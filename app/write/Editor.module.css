@@ -1,0 +1,29 @@
+.EditorContainer {
+  display: flex;
+}
+
+.LineNumbers {
+  background-color: var(--theme-color-4);
+  color: var(--theme-color-3);
+  text-align: right;
+  padding-right: 10px;
+  user-select: none;
+  width: 30px;
+  overflow: hidden;
+}
+
+.Textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  background-color: var(--theme-color-5);
+  color: var(--foreground-rgb);
+  resize: none;
+  white-space: pre-wrap;
+}
+
+.LineNumbers,
+.Textarea {
+  line-height: 1.25rem;
+  padding: 10px;
+}
