@@ -10,7 +10,7 @@ export default function Intro() {
         <div className={styles.Intro}>
             <div className={styles.IntroMain}>
                 <div className={styles.Hi}>Greetings!</div>
-                <div>I&rsquo;m <b>Hyuni</b>,<br />a software engineer believing:</div>
+                <div>I&rsquo;m <b className={styles.Name}>Hyuni</b>,<br />a software engineer believing:</div>
                 <div className={styles.IntroQuote + ' ' + courgette.className}>a Good Code<br />makes<br />a Good Product</div>
             </div>
             <Image
