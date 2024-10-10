@@ -11,11 +11,14 @@ export default function WritePage() {
 
   return (
     <div className={styles.WritePage}>
-      <div>
-        <Editor value={title} onChange={setTitle} multiline={false} className={styles.Title} />
-        <Editor value={value} onChange={setValue} className={styles.Content} />
+      <div className={styles.WriteContainer}>
+        <div>
+          <Editor value={title} onChange={setTitle} multiline={false} className={styles.Title} />
+          <Editor value={value} onChange={setValue} className={styles.Content} />
+        </div>
+        <Preview content={value} />
       </div>
-      <Preview content={value} />
+      <button className={styles.SubmitButton}>게시</button>
     </div>
   );
 }

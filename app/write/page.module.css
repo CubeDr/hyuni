@@ -1,4 +1,6 @@
-.WritePage {
+.WriteContainer {
+  flex-grow: 1;
+  display: block;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 14px;
@@ -12,4 +14,6 @@
   font-size: 24px;
 }
 
-.Content {}
+.SubmitButton {
+  margin-top: 28px;
+}
