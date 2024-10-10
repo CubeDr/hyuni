@@ -1,6 +1,6 @@
-import { addDoc, collection, DocumentReference } from 'firebase/firestore';
-import { db } from './firebaseClient';
+import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { addPostToCategory } from './categories';
+import { db } from './firebaseClient';
 
 interface PostData {
   title: string;
@@ -23,4 +23,10 @@ export async function addPost(
   });
   await addPostToCategory(postDocRef, postData.category);
   return postDocRef.id;
+}
+
+export async function getPost(id: string): Promise<PostData> {
+  const snapshot = await getDoc(doc(collection(db, 'posts'), id));
+  const data = snapshot.data() as PostData;
+  return data;
 }

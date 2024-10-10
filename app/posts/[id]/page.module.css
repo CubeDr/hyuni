@@ -1,0 +1,8 @@
+.HeaderRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Divider {
+  margin-top: 24px;
+}

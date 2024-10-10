@@ -21,7 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={ptMono.className}>{children}</body>
+      <body className={ptMono.className}>
+        <div className='main-column'>{children}</div>
+      </body>
     </html>
   )
 };
