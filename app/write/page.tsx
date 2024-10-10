@@ -1,13 +1,11 @@
 'use client';
 
+import { addPost } from '@/firebase/posts';
 import { useCallback, useState } from 'react';
+import CategorySelect from './CategorySelect';
 import Editor from './Editor';
 import styles from './page.module.css';
 import Preview from './Preview';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '@/firebase/firebaseClient';
-import CategorySelect from './CategorySelect';
-import { addPostToCategory } from '@/firebase/categories';
 
 export default function WritePage() {
   const [title, setTitle] = useState('');
@@ -16,19 +14,13 @@ export default function WritePage() {
 
   const submit = useCallback(async () => {
     try {
-      const postDocRef = await addDoc(collection(db, 'posts'), {
+      addPost({
         title,
         category,
         blocks: [
-          {
-            type: 'markdown',
-            content: value,
-          }
+          { type: 'markdown', content: value },
         ],
-        timestamp: new Date().getTime(),
       });
-
-      await addPostToCategory(postDocRef, category);
     } catch (e) {
       console.error(e);
     }
