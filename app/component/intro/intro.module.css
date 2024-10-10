@@ -69,6 +69,7 @@
     .Intro {
         flex-direction: column-reverse;
         font-size: 18px;
+        margin: 14px 0 24px;
     }
 
     .Name {
@@ -84,7 +85,8 @@
     }
 
     .IntroQuote {
-        right: 0;
+        margin: 18px -32px 0;
+        position: inherit;
         font-size: 24px;
         text-align: center;
         padding: 8px 0;
