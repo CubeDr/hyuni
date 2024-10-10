@@ -14,11 +14,10 @@
     font-size: 42px;
     font-style: italic;
     left: 0;
-    line-height: 62px;
     margin: 18px 0 0 -32px;
-    padding: 8px 128px 8px 0;
+    padding: 8px min(128px, 10%) 8px 0;
     position: absolute;
-    right: calc(50% - 270px);
+    right: max(calc(50% - 270px), 270px);
     text-align: right;
     z-index: -1;
 }
@@ -38,4 +37,60 @@
 .Name {
     text-decoration: underline;
     text-decoration-color: var(--theme-color-1);
+}
+
+@media screen and (min-width: 920px) {
+    .IntroQuote {
+        line-height: 62px;
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 920px) {
+    .Intro {
+        font-size: 24px;
+    }
+
+    .IntroQuote {
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .IntroImage {
+        height: 320px;
+        object-fit: cover;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .Hi {
+        font-size: 14px;
+    }
+
+    .Intro {
+        flex-direction: column-reverse;
+        font-size: 18px;
+    }
+
+    .Name {
+        font-size: 24px;
+    }
+
+    .IntroImage {
+        border-radius: 0;
+        margin: -38px -24px 0 -24px;
+        object-fit: cover;
+        width: calc(100% + 48px);
+        height: 270px;
+    }
+
+    .IntroQuote {
+        right: 0;
+        font-size: 24px;
+        text-align: center;
+        padding: 8px 0;
+    }
+
+    .QuoteBreak {
+        display: none;
+    }
 }

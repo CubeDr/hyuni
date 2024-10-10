@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div className='main-column'>
       <Intro />
-      {/* <div className={styles.ThreeColumnGrid}>
+      <div className={styles.ThreeColumnGrid}>
         <ExperienceModule className={styles.ExperienceModule} />
         <div>
           <SkillsModule />
@@ -20,7 +20,7 @@ export default function Page() {
         <InterviewModule />
       </div>
       <Articles />
-      <Projects /> */}
+      <Projects />
     </div>
   )
 };
