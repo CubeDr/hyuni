@@ -12,7 +12,7 @@ export default function Preview({ content }: Props) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
       >
-        {content}
+        {content.replaceAll('\n', '\\\n')}
       </ReactMarkdown>
     </div>
   );
