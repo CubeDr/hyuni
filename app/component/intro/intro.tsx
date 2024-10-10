@@ -17,7 +17,8 @@ export default function Intro() {
                 src={hyuniImage}
                 alt='Hyuni'
                 className={styles.IntroImage}
-                loading='eager'
+                width={270}
+                priority
             />
         </div>
     );

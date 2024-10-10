@@ -38,7 +38,8 @@ a:hover {
 }
 
 .main-column {
-  display: inline-block;
+  display: block;
   text-align: initial;
-  width: 1080px;
+  margin: 0 auto;
+  max-width: 1080px;
 }
