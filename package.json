@@ -23,7 +23,8 @@
     "rehype": "^13.0.2",
     "rehype-raw": "^7.0.0",
     "remark": "^15.0.1",
-    "remark-gfm": "^4.0.0"
+    "remark-gfm": "^4.0.0",
+    "strip-markdown": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
