@@ -1,0 +1,14 @@
+.OpenGraphBlock {
+  background-color: var(--theme-color-4);
+  display: flex;
+}
+
+.Image {
+  width: 200px;
+  height: 200px;
+}
+
+.Content {
+  margin: 4px 14px;
+  padding: 8px;
+}

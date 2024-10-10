@@ -6,6 +6,7 @@ import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
 import strip from 'strip-markdown';
 import styles from './page.module.css';
+import OpenGraphBlock from './OpenGraphBlock';
 
 interface Props {
   params: {
@@ -40,6 +41,13 @@ export default async function PostPage({ params: { id } }: Props) {
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
+            a({ href, children }) {
+              if (href != null && href === children?.toString()) {
+                return <OpenGraphBlock url={href} />
+              } else {
+                return <a href={href}>{children}</a>
+              }
+            },
             img(props) {
               return (
                 <>
