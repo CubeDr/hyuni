@@ -6,6 +6,7 @@ import styles from './page.module.css';
 import Preview from './Preview';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '@/firebase/firebaseClient';
+import CategorySelect from './CategorySelect';
 
 export default function WritePage() {
   const [title, setTitle] = useState('');
@@ -38,7 +39,7 @@ export default function WritePage() {
         <Preview content={value} />
       </div>
       <div className={styles.ControlRow}>
-        <input placeholder='카테고리' />
+        <CategorySelect />
         <button className={styles.SubmitButton} onClick={submit}>게시</button>
       </div>
     </div>
