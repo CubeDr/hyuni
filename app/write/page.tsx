@@ -16,11 +16,13 @@ import Preview from './Preview';
 export default function WritePage() {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
-  const [category, setCategory] = useState('null');
+  const [category, setCategory] = useState('');
 
   const [open, setOpen] = useState(false);
 
   const submit = useCallback(async () => {
+    if (title === '' || value === '' || category === '') return;
+
     try {
       await addPost({
         title,
@@ -34,7 +36,7 @@ export default function WritePage() {
     } catch (e) {
       console.error(e);
     }
-  }, [value, category]);
+  }, [title, value, category]);
 
   return (
     <>
@@ -48,7 +50,7 @@ export default function WritePage() {
         </div>
         <div className={styles.ControlRow}>
           <CategorySelect category={category} setCategory={setCategory} />
-          <button className={styles.SubmitButton} onClick={submit}>게시</button>
+          <Button variant="contained" onClick={submit}>게시</Button>
         </div>
       </div>
       <Dialog
