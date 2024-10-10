@@ -1,0 +1,42 @@
+.Body {
+  display: flex;
+}
+
+@media screen and (min-width: 1120px) {
+  .Body {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 970px) and (max-width: 1120px) {
+  .Body {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .Body {
+    display: block;
+    overflow-x: scroll;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  .Body::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .Body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .Body::-webkit-scrollbar-thumb {
+    background: var(--theme-color-4);
+    border-radius: 4px;
+  }
+
+  .Item {
+    display: inline-block;
+  }
+}

@@ -4,11 +4,6 @@
     padding: 0 12px;
 }
 
-.ExperienceItem:last-of-type {
-    display: flex;
-    height: 70px;
-}
-
 .ExperienceItem:last-of-type .Line {
     display: none;
 }
@@ -62,4 +57,11 @@
 .Ongoing .Title {
     font-size: 18px;
     font-weight: bold;
+}
+
+@media screen and (max-width: 970px) {
+    .ExperienceItem {
+        padding: 0 12px 18px;
+        height: unset;
+    }
 }
