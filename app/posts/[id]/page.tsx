@@ -39,6 +39,16 @@ export default async function PostPage({ params: { id } }: Props) {
       <div className={styles.Content}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
+          components={{
+            img(props) {
+              return (
+                <>
+                  <img src={props.src} alt={props.alt} className={styles.Image} />
+                  <span className={styles.Caption}>{props.alt}</span>
+                </>
+              );
+            }
+          }}
         >
           {blocks[0].content}
         </ReactMarkdown>

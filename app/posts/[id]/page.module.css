@@ -12,7 +12,14 @@
   padding: 24px 14px;
 }
 
-.Content img {
+.Image {
   display: block;
   margin: 0 auto;
+}
+
+.Caption {
+  display: block;
+  font-size: 12px;
+  margin: 4px 0;
+  text-align: center;
 }
