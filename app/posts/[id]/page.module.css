@@ -4,5 +4,15 @@
 }
 
 .Divider {
-  margin-top: 24px;
+  margin: 32px 0 0;
+}
+
+.Content {
+  background-color: var(--theme-color-5);
+  padding: 24px 14px;
+}
+
+.Content img {
+  display: block;
+  margin: 0 auto;
 }
