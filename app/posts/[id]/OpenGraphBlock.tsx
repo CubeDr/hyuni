@@ -39,6 +39,9 @@ export default function OpenGraphBlock({ url }: Props) {
           </div>
         </a>
       )}
+      {!ogData && (
+        <a href={url}>{url}</a>
+      )}
     </>
   );
 }
