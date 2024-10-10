@@ -7,11 +7,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import CategorySelect from './CategorySelect';
 import Editor from './Editor';
 import styles from './page.module.css';
 import Preview from './Preview';
+import { useRouter } from 'next/navigation';
 
 export default function WritePage() {
   const [title, setTitle] = useState('');
@@ -19,18 +20,23 @@ export default function WritePage() {
   const [category, setCategory] = useState('');
 
   const [open, setOpen] = useState(false);
+  const uploadedPostId = useRef('');
+
+  const router = useRouter();
 
   const submit = useCallback(async () => {
     if (title === '' || value === '' || category === '') return;
 
     try {
-      await addPost({
+      const docid = await addPost({
         title,
         category,
         blocks: [
           { type: 'markdown', content: value },
         ],
       });
+
+      uploadedPostId.current = docid;
 
       setOpen(true);
     } catch (e) {
@@ -68,7 +74,7 @@ export default function WritePage() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)} autoFocus>
+          <Button onClick={() => router.replace('/posts/' + uploadedPostId.current)} autoFocus>
             확인
           </Button>
         </DialogActions>

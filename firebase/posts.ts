@@ -12,7 +12,9 @@ interface PostData {
   timestamp: number;
 }
 
-export async function addPost(postData: Omit<PostData, 'timestamp'>) {
+export async function addPost(
+  postData: Omit<PostData, 'timestamp'>
+): Promise<string> {
   const postDocRef = await addDoc(collection(db, 'posts'), {
     title: postData.title,
     category: postData.category,
@@ -20,4 +22,5 @@ export async function addPost(postData: Omit<PostData, 'timestamp'>) {
     timestamp: new Date().getTime(),
   });
   await addPostToCategory(postDocRef, postData.category);
+  return postDocRef.id;
 }
