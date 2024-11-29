@@ -15,8 +15,8 @@ export async function addPost(
   return postDocRef.id;
 }
 
-export async function getPost(id: string): Promise<Post> {
+export async function getPost(id: string): Promise<Post | null> {
   const snapshot = await getDoc(doc(collection(db, 'posts'), id));
-  const data = snapshot.data() as Post;
-  return data;
+  const data = snapshot.data();
+  return data as Post | null;
 }

@@ -1,12 +1,8 @@
 import { getPost } from '@/firebase/posts';
-import { timestampToString } from '@/utils/time';
 import { Metadata } from 'next';
-import ReactMarkdown from 'react-markdown';
+import { notFound } from 'next/navigation';
 import { remark } from 'remark';
-import remarkGfm from 'remark-gfm';
 import strip from 'strip-markdown';
-import styles from './page.module.css';
-import OpenGraphBlock from './OpenGraphBlock';
 import PostViewer from './PostViewer';
 
 interface Props {
@@ -16,7 +12,14 @@ interface Props {
 }
 
 export async function generateMetadata({ params: { id } }: Props): Promise<Metadata> {
-  const { title, category, blocks } = await getPost(id);
+  // TODO - Find a way to deduplicate the `getPost` call.
+  const post = await getPost(id);
+
+  if (post == null) {
+    notFound();
+  }
+
+  const { title, category, blocks } = post;
   const description = await remark().use(strip).process(blocks[0].content);
   return {
     title,
@@ -28,7 +31,12 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
 }
 
 export default async function PostPage({ params: { id } }: Props) {
+  // TODO - Find a way to deduplicate the `getPost` call.
   const post = await getPost(id);
+
+  if (post == null) {
+    notFound();
+  }
 
   return (
     <PostViewer post={post} />
