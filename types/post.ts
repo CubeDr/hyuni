@@ -6,4 +6,5 @@ interface Post {
     content: string;
   }[];
   timestamp: number;
+  id?: string;
 }
