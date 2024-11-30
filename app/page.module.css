@@ -1,6 +1,0 @@
-.TwoColumnGrid {
-    display: grid;
-    grid-gap: var(--module-gap);
-    grid-template-columns: 1fr 334px;
-    margin-top: var(--module-gap);
-}

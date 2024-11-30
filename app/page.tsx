@@ -1,15 +1,20 @@
 import Articles from "@/app/component/articles/Articles";
 import Intro from './component/intro/intro';
 import Modules from './component/module/modules';
-import Posts from './posts/page';
+import PostGrid from './posts/PostGrid';
+import Section from './Section';
 
 export default function Page() {
   return (
     <div className='main-column'>
       <Intro />
       <Modules />
-      <Articles />
-      <Posts />
+      <Section title='Articles'>
+        <Articles />
+      </Section>
+      <Section title='Posts'>
+        <PostGrid />
+      </Section>
     </div>
   )
 };
