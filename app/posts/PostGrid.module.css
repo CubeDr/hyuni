@@ -1,5 +1,28 @@
 .PostGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+}
+
+@media screen and (min-width: 1120px) {
+  .PostGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 970px) and (max-width: 1120px) {
+  .PostGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 450px) and (max-width: 970px) {
+  .PostGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .PostGrid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 }
