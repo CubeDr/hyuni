@@ -12,7 +12,7 @@ export default function Page() {
       <Section title='Articles'>
         <Articles />
       </Section>
-      <Section title='Posts'>
+      <Section title='Posts' moreLink='/posts'>
         <PostGrid />
       </Section>
     </div>

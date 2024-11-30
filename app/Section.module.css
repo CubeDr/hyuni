@@ -1,7 +1,25 @@
 .Section {
-  margin-top: 48px;
+  margin-top: 24px;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .Title {
   font-size: 22px;
+}
+
+.MoreLink {
+  background-color: var(--theme-color-5);
+  padding: 8px 14px;
+  border-radius: 18px;
+  transition: background-color 120ms;
+}
+
+.MoreLink:hover {
+  background-color: var(--theme-color-4);
+  text-decoration: none;
 }

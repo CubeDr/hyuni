@@ -3,12 +3,18 @@ import styles from './Section.module.css';
 
 interface Props {
   title: string;
+  moreLink?: string;
 }
 
-export default function Section({ title, children }: PropsWithChildren<Props>) {
+export default function Section({ title, moreLink, children }: PropsWithChildren<Props>) {
   return (
     <section className={styles.Section}>
-      <h1 className={styles.Title}>{title}</h1>
+      <div className={styles.Header}>
+        <h1 className={styles.Title}>{title}</h1>
+        {moreLink && <>
+          <a href={moreLink} className={styles.MoreLink}>더 보기 &gt;</a>
+        </>}
+      </div>
       {children}
     </section>
   );
