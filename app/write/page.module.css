@@ -17,3 +17,22 @@
 .ControlRow {
   margin-top: 28px;
 }
+
+.ImageRow {
+  display: flex;
+  margin-top: 28px;
+  gap: 4px;
+  overflow-x: scroll;
+  padding-bottom: 6px;
+}
+
+.Image {
+  width: 200px;
+  height: 150px;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.MainImage {
+  border: 4px solid var(--theme-color-2);
+}

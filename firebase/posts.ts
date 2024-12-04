@@ -17,6 +17,7 @@ export async function addPost(
     category: postData.category,
     blocks: postData.blocks,
     timestamp: new Date().getTime(),
+    thumbnailImageSrc: postData.thumbnailImageSrc,
   });
   await addPostToCategory(postDocRef, postData.category);
   return postDocRef.id;

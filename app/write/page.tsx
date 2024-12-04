@@ -7,17 +7,22 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import CategorySelect from './CategorySelect';
 import Editor from './Editor';
 import styles from './page.module.css';
 import Preview from './Preview';
 import { useRouter } from 'next/navigation';
 
+const IMAGE_REGEX = /!\[[^\]]*\]\(([^)]+)\)/g;
+
 export default function WritePage() {
   const [title, setTitle] = useState('');
-  const [value, setValue] = useState('');
+  const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
+
+  const [images, setImages] = useState<string[]>([]);
+  const [mainImage, setMainImage] = useState<string | null>(null);
 
   const [open, setOpen] = useState(false);
   const uploadedPostId = useRef('');
@@ -25,15 +30,16 @@ export default function WritePage() {
   const router = useRouter();
 
   const submit = useCallback(async () => {
-    if (title === '' || value === '' || category === '') return;
+    if (title === '' || content === '' || category === '' || mainImage == null) return;
 
     try {
       const docid = await addPost({
         title,
         category,
         blocks: [
-          { type: 'markdown', content: value },
+          { type: 'markdown', content: content },
         ],
+        thumbnailImageSrc: mainImage,
       });
 
       uploadedPostId.current = docid;
@@ -42,7 +48,18 @@ export default function WritePage() {
     } catch (e) {
       console.error(e);
     }
-  }, [title, value, category]);
+  }, [title, content, category]);
+
+  const onImageClick = useCallback((src: string) => {
+    setMainImage(src);
+  }, []);
+
+  // Parse images on the content.
+  useEffect(() => {
+    const matches = content.matchAll(IMAGE_REGEX);
+
+    setImages(Array.from(matches.map((match) => match[1])));
+  }, [content]);
 
   return (
     <>
@@ -50,13 +67,13 @@ export default function WritePage() {
         <div className={styles.WriteContainer}>
           <div>
             <Editor value={title} onChange={setTitle} multiline={false} className={styles.Title} />
-            <Editor value={value} onChange={setValue} className={styles.Content} />
+            <Editor value={content} onChange={setContent} className={styles.Content} />
           </div>
           <Preview post={{
             title,
             category,
             blocks: [
-              { type: 'markdown', content: value },
+              { type: 'markdown', content: content },
             ],
             timestamp: new Date().getTime(),
           }} />
@@ -64,6 +81,11 @@ export default function WritePage() {
         <div className={styles.ControlRow}>
           <CategorySelect category={category} setCategory={setCategory} />
           <Button variant="contained" onClick={submit}>게시</Button>
+        </div>
+        <div className={styles.ImageRow}>
+          {images.map((src) => <>
+            <img className={styles.Image + (src === mainImage ? ' ' + styles.MainImage : '')} key={src} src={src} onClick={() => onImageClick(src)} />
+          </>)}
         </div>
       </div>
       <Dialog
