@@ -7,15 +7,16 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import DropdownSelect from '../component/DropdownSelect';
 import Editor from './Editor';
 import styles from './page.module.css';
 import Preview from './Preview';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { addCategory, getCategories } from '@/firebase/categories';
 import { addSeries, getSeriesList } from '@/firebase/series';
 import { IMAGE_REGEX } from '../posts/PostItem';
+import { AuthContext } from '@/firebase/AuthContext';
 
 export default function WritePage() {
   const [title, setTitle] = useState('');
@@ -34,6 +35,7 @@ export default function WritePage() {
   const uploadedPostId = useRef('');
 
   const router = useRouter();
+  const { role } = useContext(AuthContext);
 
   const submit = useCallback(async () => {
     if (title === '' || content === '' || category === '' || mainImage == null) {
@@ -100,6 +102,13 @@ export default function WritePage() {
   }, []);
 
   useEffect(() => {
+    if (role === 'member' || role === 'visitor') {
+      window.alert('접근 권한이 없습니다.');
+      redirect('/');
+    }
+  }, [role]);
+
+  useEffect(() => {
     setSeries('');
     setSeriesList([]);
 
@@ -119,71 +128,73 @@ export default function WritePage() {
 
   return (
     <>
-      <div className={styles.WritePage}>
-        {
-          pageState === 'edit' && <>
-            <Editor value={title} onChange={setTitle} multiline={false} className={styles.Title} />
-            <DropdownSelect
-              label='카테고리'
-              item={category}
-              items={categories}
-              setItem={setCategory}
-              onAddClick={onCategoryAddClick} />
-            <DropdownSelect
-              label='시리즈'
-              item={series}
-              items={seriesList}
-              setItem={setSeries}
-              onAddClick={onSeriesAddClick}
-              disabled={category === ''} />
-            <Editor value={content} onChange={setContent} className={styles.Content} />
-            <div className={styles.ImageRow}>
-              {images.map((src) =>
-                <img className={styles.Image + (src === mainImage ? ' ' + styles.MainImage : '')} key={src} src={src} onClick={() => onImageClick(src)} />
-              )}
-            </div>
-          </>
-        }
-        {
-          pageState === 'preview' && <>
-            <Preview post={{
-              title,
-              category,
-              series,
-              blocks: [
-                { type: 'markdown', content: content },
-              ],
-              timestamp: new Date().getTime(),
-              thumbnailImageSrc: mainImage ?? '',
-            }} />
-          </>
-        }
+      {role === 'owner' && <>
+        <div className={styles.WritePage}>
+          {
+            pageState === 'edit' && <>
+              <Editor value={title} onChange={setTitle} multiline={false} className={styles.Title} />
+              <DropdownSelect
+                label='카테고리'
+                item={category}
+                items={categories}
+                setItem={setCategory}
+                onAddClick={onCategoryAddClick} />
+              <DropdownSelect
+                label='시리즈'
+                item={series}
+                items={seriesList}
+                setItem={setSeries}
+                onAddClick={onSeriesAddClick}
+                disabled={category === ''} />
+              <Editor value={content} onChange={setContent} className={styles.Content} />
+              <div className={styles.ImageRow}>
+                {images.map((src) =>
+                  <img className={styles.Image + (src === mainImage ? ' ' + styles.MainImage : '')} key={src} src={src} onClick={() => onImageClick(src)} />
+                )}
+              </div>
+            </>
+          }
+          {
+            pageState === 'preview' && <>
+              <Preview post={{
+                title,
+                category,
+                series,
+                blocks: [
+                  { type: 'markdown', content: content },
+                ],
+                timestamp: new Date().getTime(),
+                thumbnailImageSrc: mainImage ?? '',
+              }} />
+            </>
+          }
 
-        <div className={styles.ControlRow}>
-          <Button variant="outlined" onClick={togglePageState}>{pageState === 'edit' ? '미리보기' : '편집'}</Button>
-          <Button variant="contained" onClick={submit} className={styles.SubmitButton}>게시</Button>
+          <div className={styles.ControlRow}>
+            <Button variant="outlined" onClick={togglePageState}>{pageState === 'edit' ? '미리보기' : '편집'}</Button>
+            <Button variant="contained" onClick={submit} className={styles.SubmitButton}>게시</Button>
+          </div>
         </div>
-      </div>
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          게시 성공
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            게시글을 성공적으로 등록했습니다.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => router.replace('/posts/' + uploadedPostId.current)} autoFocus>
-            확인
-          </Button>
-        </DialogActions>
-      </Dialog>
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            게시 성공
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              게시글을 성공적으로 등록했습니다.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => router.replace('/posts/' + uploadedPostId.current)} autoFocus>
+              확인
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </>}
     </>
   );
 }

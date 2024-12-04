@@ -6,6 +6,7 @@ import '@fontsource/roboto/700.css';
 import type { Metadata } from 'next'
 import { PT_Mono } from 'next/font/google'
 import './globals.css'
+import AuthProvider from '@/firebase/AuthContext';
 
 const ptMono = PT_Mono({ subsets: ['latin'], weight: '400' });
 
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={ptMono.className}>
-        <div className='main-column'>{children}</div>
+        <AuthProvider>
+          <div className='main-column'>{children}</div>
+        </AuthProvider>
       </body>
     </html>
   )
