@@ -10,8 +10,9 @@ import './globals.css'
 const ptMono = PT_Mono({ subsets: ['latin'], weight: '400' });
 
 export const metadata: Metadata = {
-  title: 'Hyuni - Software Engineer',
-  description: 'Hyuni is a software engineer believing: a good code makes a good product',
+  title: 'Hyuni Kim - Software Engineer',
+  description: '"좋은 코드가 좋은 제품을 만든다"를 믿는 개발자입니다.',
+  authors: [{ name: '김현이', url: 'https://www.hyuni.dev' }],
 }
 
 export default function RootLayout({
