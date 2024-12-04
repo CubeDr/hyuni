@@ -25,9 +25,9 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
   return {
     title,
     description: description.toString().replaceAll('\n\n', '\n').trim(),
-    authors: { 'name': 'Hyuni Kim', url: 'https://hyuni.dev' },
+    authors: { 'name': '김현이 (Hyuni Kim)', url: 'https://hyuni.dev' },
     category,
-    creator: 'Hyuni Kim',
+    creator: '김현이 (Hyuni Kim)',
   };
 }
 
