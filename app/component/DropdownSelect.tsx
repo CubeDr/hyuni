@@ -26,7 +26,7 @@ export default function DropdownSelect({ label, item, items, setItem, defaultTex
 
   return (
     <FormControl variant="filled" sx={{
-      minWidth: 180,
+      minWidth: 120,
       backgroundColor: 'var(--theme-color-4)',
     }}>
       <InputLabel
