@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import OpenGraphBlock from './OpenGraphBlock';
 import styles from './PostViewer.module.css';
+import { visit } from 'unist-util-visit';
 
 interface Props {
   post: Post;
@@ -25,7 +26,7 @@ export default function PostViewer({ post: {
       <hr className={styles.Divider} />
       <div className={styles.Content}>
         <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
+          remarkPlugins={[remarkGfm, highlightedQuoteBlock]}
           components={{
             a({ href, children }) {
               if (href != null && href === children?.toString()) {
@@ -49,4 +50,33 @@ export default function PostViewer({ post: {
       </div>
     </>
   );
+}
+
+interface MarkdownNode {
+  type: string;
+  children?: MarkdownNode[];
+  value?: string;
+  data?: {
+    hProperties?: {
+      className?: string;
+    };
+  };
+}
+
+function highlightedQuoteBlock() {
+  return (tree: MarkdownNode) => {
+    visit(tree, 'paragraph', (node: MarkdownNode) => {
+      if (node.children && node.children[0]?.type === 'text' && node.children[0].value?.startsWith('" ')) {
+        node.children[0].value = node.children[0].value.slice(2);
+        Object.assign(node, {
+          type: 'quote',
+          data: {
+            hProperties: {
+              className: styles.HighlightedQuote,
+            },
+          },
+        });
+      }
+    });
+  };
 }

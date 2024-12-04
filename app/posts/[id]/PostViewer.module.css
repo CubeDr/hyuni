@@ -25,3 +25,34 @@
   margin: 4px 0;
   text-align: center;
 }
+
+.HighlightedQuote {
+  color: var(--theme-color-0);
+  display: block;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  margin: 32px auto;
+  position: relative;
+  text-align: center;
+  width: 720px;
+  word-break: keep-all;
+}
+
+.HighlightedQuote::before,
+.HighlightedQuote::after {
+  display: block;
+  color: var(--theme-color-1);
+  font-size: 4em;
+  position: absolute;
+}
+
+.HighlightedQuote::before {
+  content: open-quote;
+  left: -48px;
+  top: 14px;
+}
+
+.HighlightedQuote::after {
+  content: close-quote;
+  right: -48px;
+}
