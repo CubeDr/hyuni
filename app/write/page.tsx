@@ -46,6 +46,7 @@ export default function WritePage() {
         series: ${series},
         mainImage: ${mainImage}
         `);
+      return;
     }
 
     try {
