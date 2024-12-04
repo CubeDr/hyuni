@@ -26,7 +26,7 @@ export default function PostViewer({ post: {
       <hr className={styles.Divider} />
       <div className={styles.Content}>
         <ReactMarkdown
-          remarkPlugins={[remarkGfm, highlightedQuoteBlock]}
+          remarkPlugins={[remarkGfm, highlightedQuoteBlock, centerText]}
           components={{
             a({ href, children }) {
               if (href != null && href === children?.toString()) {
@@ -73,6 +73,25 @@ function highlightedQuoteBlock() {
           data: {
             hProperties: {
               className: styles.HighlightedQuote,
+            },
+          },
+        });
+      }
+    });
+  };
+}
+
+function centerText() {
+  return (tree: MarkdownNode) => {
+    visit(tree, 'paragraph', (node: MarkdownNode) => {
+      if (node.children && node.children[0]?.type === 'text' && node.children[0].value?.startsWith(':: ') && node.children[0].value.endsWith(' ::')) {
+        node.children[0].value = node.children[0].value.slice(3, -3);
+
+        Object.assign(node, {
+          type: 'div',
+          data: {
+            hProperties: {
+              className: styles.CenterText,
             },
           },
         });
