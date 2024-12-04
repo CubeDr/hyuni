@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import AppBar from '../component/appbar/AppBar';
+import CategoryDropdownSelect from './CategoryDropdownSelect';
 import PostGrid from './PostGrid';
+import { getCategories } from '@/firebase/categories';
 
 export const metadata: Metadata = {
   title: 'Posts :: 현이의 개발 이야기',
@@ -9,11 +11,16 @@ export const metadata: Metadata = {
   creator: '김현이 (Hyuni Kim)',
 }
 
-export default async function Posts() {
+export default async function Posts({ searchParams }: { searchParams: any }) {
+  const category = searchParams.category;
+  const categories = await getCategories();
+
   return (
     <>
-      <AppBar title="Posts" />
-      <PostGrid />
+      <AppBar title="Posts">
+        <CategoryDropdownSelect categories={categories} />
+      </AppBar>
+      <PostGrid category={category} />
     </>
   );
 }

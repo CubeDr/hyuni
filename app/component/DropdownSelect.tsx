@@ -10,14 +10,15 @@ interface Props {
   item: string;
   items: string[];
   setItem: (item: string) => void;
-  onAddClick: () => void;
+  defaultText?: string;
+  onAddClick?: () => void;
   disabled?: boolean;
 }
 
-export default function DropdownSelect({ label, item, items, setItem, onAddClick, disabled = false }: Props) {
+export default function DropdownSelect({ label, item, items, setItem, defaultText, onAddClick, disabled = false }: Props) {
   const onChange = useCallback((value: string) => {
     if (value === ADD_ITEM_VALUE) {
-      onAddClick();
+      onAddClick!();
     } else {
       setItem(value);
     }
@@ -51,15 +52,20 @@ export default function DropdownSelect({ label, item, items, setItem, onAddClick
         }}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}>
-        <MenuItem value="" key={label + ' default'}>
-          <em>{label}를 선택해 주세요</em>
-        </MenuItem>
+        {
+          !defaultText &&
+          <MenuItem value="" key={label + ' default'}>
+            <em>{label}를 선택해 주세요</em>
+          </MenuItem>
+        }
         {items.map((item) => (
           <MenuItem value={item} key={item}>{item}</MenuItem>
         ))}
-        <MenuItem value={ADD_ITEM_VALUE} key={label + ' new'}>
-          <em>새 {label} 추가</em>
-        </MenuItem>
+        {onAddClick &&
+          <MenuItem value={ADD_ITEM_VALUE} key={label + ' new'}>
+            <em>새 {label} 추가</em>
+          </MenuItem>
+        }
       </Select>
     </FormControl>
   );

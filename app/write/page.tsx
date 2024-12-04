@@ -8,7 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import DropdownSelect from './DropdownSelect';
+import DropdownSelect from '../component/DropdownSelect';
 import Editor from './Editor';
 import styles from './page.module.css';
 import Preview from './Preview';

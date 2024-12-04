@@ -5,6 +5,7 @@ import {
   getDoc,
   getDocs,
   query,
+  where,
 } from 'firebase/firestore';
 import { addPostToCategory } from './categories';
 import { db } from './firebaseClient';
@@ -36,8 +37,11 @@ export async function getPost(id: string): Promise<Post | null> {
   return data as Post | null;
 }
 
-export async function getPosts(): Promise<Post[]> {
-  const q = query(collection(db, 'posts'));
+export async function getPosts(category?: string): Promise<Post[]> {
+  const collectionRef = collection(db, 'posts');
+  const q = category
+    ? query(collectionRef, where('category', '==', category))
+    : query(collectionRef);
   const snapshot = await getDocs(q);
 
   const result: Post[] = [];
