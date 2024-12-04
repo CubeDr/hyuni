@@ -13,6 +13,7 @@ import Editor from './Editor';
 import styles from './page.module.css';
 import Preview from './Preview';
 import { useRouter } from 'next/navigation';
+import { pages } from 'next/dist/build/templates/app-page';
 
 const IMAGE_REGEX = /!\[[^\]]*\]\(([^)]+)\)/g;
 
@@ -24,6 +25,7 @@ export default function WritePage() {
   const [images, setImages] = useState<string[]>([]);
   const [mainImage, setMainImage] = useState<string | null>(null);
 
+  const [pageState, setPageState] = useState<'edit' | 'preview'>('edit');
   const [open, setOpen] = useState(false);
   const uploadedPostId = useRef('');
 
@@ -54,6 +56,10 @@ export default function WritePage() {
     setMainImage(src);
   }, []);
 
+  const togglePageState = useCallback(() => {
+    setPageState((pageState) => pageState === 'edit' ? 'preview' : 'edit');
+  }, [setPageState]);
+
   // Parse images on the content.
   useEffect(() => {
     const matches = content.matchAll(IMAGE_REGEX);
@@ -64,28 +70,35 @@ export default function WritePage() {
   return (
     <>
       <div className={styles.WritePage}>
-        <div className={styles.WriteContainer}>
-          <div>
+        {
+          pageState === 'edit' && <>
             <Editor value={title} onChange={setTitle} multiline={false} className={styles.Title} />
+            <CategorySelect category={category} setCategory={setCategory} />
             <Editor value={content} onChange={setContent} className={styles.Content} />
-          </div>
-          <Preview post={{
-            title,
-            category,
-            blocks: [
-              { type: 'markdown', content: content },
-            ],
-            timestamp: new Date().getTime(),
-          }} />
-        </div>
+            <div className={styles.ImageRow}>
+              {images.map((src) => <>
+                <img className={styles.Image + (src === mainImage ? ' ' + styles.MainImage : '')} key={src} src={src} onClick={() => onImageClick(src)} />
+              </>)}
+            </div>
+          </>
+        }
+        {
+          pageState === 'preview' && <>
+            <Preview post={{
+              title,
+              category,
+              blocks: [
+                { type: 'markdown', content: content },
+              ],
+              timestamp: new Date().getTime(),
+              thumbnailImageSrc: mainImage ?? '',
+            }} />
+          </>
+        }
+
         <div className={styles.ControlRow}>
-          <CategorySelect category={category} setCategory={setCategory} />
-          <Button variant="contained" onClick={submit}>게시</Button>
-        </div>
-        <div className={styles.ImageRow}>
-          {images.map((src) => <>
-            <img className={styles.Image + (src === mainImage ? ' ' + styles.MainImage : '')} key={src} src={src} onClick={() => onImageClick(src)} />
-          </>)}
+          <Button variant="outlined" onClick={togglePageState}>{pageState === 'edit' ? '미리보기' : '편집'}</Button>
+          <Button variant="contained" onClick={submit} className={styles.SubmitButton}>게시</Button>
         </div>
       </div>
       <Dialog

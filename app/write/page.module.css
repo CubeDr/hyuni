@@ -14,8 +14,8 @@
   font-size: 24px;
 }
 
-.ControlRow {
-  margin-top: 28px;
+.Content {
+  margin-top: 8px;
 }
 
 .ImageRow {
@@ -35,4 +35,14 @@
 
 .MainImage {
   border: 4px solid var(--theme-color-2);
+}
+
+.ControlRow {
+  display: flex;
+  margin-top: 18px;
+  justify-content: end;
+}
+
+.SubmitButton {
+  margin-left: 8px;
 }
