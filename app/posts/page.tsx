@@ -1,10 +1,10 @@
+import AppBar from '../component/appbar/AppBar';
 import PostGrid from './PostGrid';
 
 export default async function Posts() {
-
   return (
     <>
-      <h1>Posts</h1>
+      <AppBar title="Posts" />
       <PostGrid />
     </>
   );

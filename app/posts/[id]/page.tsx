@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 import PostViewer from './PostViewer';
+import AppBar from '@/app/component/appbar/AppBar';
 
 interface Props {
   params: {
@@ -39,6 +40,9 @@ export default async function PostPage({ params: { id } }: Props) {
   }
 
   return (
-    <PostViewer post={post} />
+    <>
+      <AppBar />
+      <PostViewer post={post} />
+    </>
   );
 }
