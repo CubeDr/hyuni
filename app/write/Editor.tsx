@@ -34,8 +34,8 @@ export default function Editor({ value, onChange, multiline = true, className }:
     const filename = new Date().getTime().toString() + '.' + blob.name;
     const snapshot = await uploadBytes(ref(storage, 'posts/images/' + filename), blob);
     const url = await getDownloadURL(snapshot.ref);
-    onChange(value + `\n![캡션 텍스트](${url})`);
-  }, []);
+    onChange(value + `\n![](${url})`);
+  }, [value, onChange]);
 
   useEffect(() => {
     const textarea = textareaRef.current;

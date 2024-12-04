@@ -23,7 +23,7 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
   const { title, category, series, blocks } = post;
   const description = await remark().use(strip).process(blocks[0].content);
   return {
-    title: series ? `[${series}] ${title}` : title,
+    title: series ? `[${category}] ${series} :: ${title}` : `[${category}] ${title}`,
     description: description.toString().replaceAll('\n\n', '\n').trim(),
     authors: { 'name': '김현이 (Hyuni Kim)', url: 'https://hyuni.dev' },
     category,
