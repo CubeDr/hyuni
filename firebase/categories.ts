@@ -4,6 +4,7 @@ import {
   doc,
   DocumentReference,
   getDocs,
+  setDoc,
   updateDoc,
 } from 'firebase/firestore';
 import { db } from './firebaseClient';
@@ -15,12 +16,18 @@ export async function getCategories(): Promise<string[]> {
   return categories;
 }
 
+export async function addCategory(category: string) {
+  await setDoc(doc(db, 'categories', category), {
+    posts: [],
+  });
+}
+
 export async function addPostToCategory(
   postDocRef: DocumentReference,
   category: string
 ) {
   const categoryRef = doc(collection(db, 'categories'), category);
   await updateDoc(categoryRef, {
-    blocks: arrayUnion({ postRef: postDocRef }),
+    posts: arrayUnion({ postRef: postDocRef }),
   });
 }

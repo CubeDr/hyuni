@@ -8,19 +8,23 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import CategorySelect from './CategorySelect';
+import DropdownSelect from './CategorySelect';
 import Editor from './Editor';
 import styles from './page.module.css';
 import Preview from './Preview';
 import { useRouter } from 'next/navigation';
 import { pages } from 'next/dist/build/templates/app-page';
+import { addCategory, getCategories } from '@/firebase/categories';
 
 const IMAGE_REGEX = /!\[[^\]]*\]\(([^)]+)\)/g;
 
 export default function WritePage() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  const [categories, setCategories] = useState<string[]>([]);
   const [category, setCategory] = useState('');
+  const [series, setSeries] = useState('');
 
   const [images, setImages] = useState<string[]>([]);
   const [mainImage, setMainImage] = useState<string | null>(null);
@@ -50,7 +54,7 @@ export default function WritePage() {
     } catch (e) {
       console.error(e);
     }
-  }, [title, content, category]);
+  }, [title, content, category, mainImage]);
 
   const onImageClick = useCallback((src: string) => {
     setMainImage(src);
@@ -59,6 +63,20 @@ export default function WritePage() {
   const togglePageState = useCallback(() => {
     setPageState((pageState) => pageState === 'edit' ? 'preview' : 'edit');
   }, [setPageState]);
+
+  const onCategoryAddClick = useCallback(() => {
+    const category = window.prompt('추가할 카테고리');
+    if (category == null) return;
+
+    addCategory(category).then(() => {
+      setCategories((categories) => [...categories, category]);
+      setCategory(category);
+    });
+  }, [setCategories, setCategory]);
+
+  useEffect(() => {
+    getCategories().then(setCategories);
+  }, []);
 
   // Parse images on the content.
   useEffect(() => {
@@ -73,7 +91,13 @@ export default function WritePage() {
         {
           pageState === 'edit' && <>
             <Editor value={title} onChange={setTitle} multiline={false} className={styles.Title} />
-            <CategorySelect category={category} setCategory={setCategory} />
+            <DropdownSelect
+              label='카테고리'
+              item={category}
+              items={categories}
+              setItem={setCategory}
+              onAddClick={onCategoryAddClick} />
+            {/* <DropdownSelect label='시리즈' item={series} setItem={setSeries} /> */}
             <Editor value={content} onChange={setContent} className={styles.Content} />
             <div className={styles.ImageRow}>
               {images.map((src) => <>

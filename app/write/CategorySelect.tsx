@@ -1,20 +1,26 @@
 'use client';
 
-import { getCategories } from '@/firebase/categories';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
+
+const ADD_ITEM_VALUE = '!<add>!';
 
 interface Props {
-  category: string;
-  setCategory: (category: string) => void;
+  label: string;
+  item: string;
+  items: string[];
+  setItem: (item: string) => void;
+  onAddClick: () => void;
 }
 
-export default function CategorySelect({ category, setCategory }: Props) {
-  const [categories, setCategories] = useState<string[]>([]);
-
-  useEffect(() => {
-    getCategories().then(setCategories);
-  }, []);
+export default function DropdownSelect({ label, item, items, setItem, onAddClick }: Props) {
+  const onChange = useCallback((value: string) => {
+    if (value === ADD_ITEM_VALUE) {
+      onAddClick();
+    } else {
+      setItem(value);
+    }
+  }, [setItem]);
 
   return (
     <FormControl variant="filled" sx={{
@@ -26,11 +32,11 @@ export default function CategorySelect({ category, setCategory }: Props) {
         sx={{
           color: 'var(--theme-color-0)'
         }}
-      >카테고리 선택</InputLabel>
+      >{label}</InputLabel>
       <Select
         labelId="demo-simple-select-filled-label"
         id="demo-simple-select-filled"
-        value={category}
+        value={item}
         variant="filled"
         sx={{
           color: 'var(--theme-color-0)',
@@ -42,13 +48,16 @@ export default function CategorySelect({ category, setCategory }: Props) {
             },
           },
         }}
-        onChange={(e) => setCategory(e.target.value)}>
+        onChange={(e) => onChange(e.target.value)}>
         <MenuItem value="">
-          <em>카테고리 선택</em>
+          <em>{label}를 선택해 주세요</em>
         </MenuItem>
-        {categories.map((category) => (
-          <MenuItem value={category} key={category}>{category}</MenuItem>
+        {items.map((item) => (
+          <MenuItem value={item} key={item}>{item}</MenuItem>
         ))}
+        <MenuItem value={ADD_ITEM_VALUE}>
+          <em>새 {label} 추가</em>
+        </MenuItem>
       </Select>
     </FormControl>
   );
