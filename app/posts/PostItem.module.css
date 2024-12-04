@@ -45,3 +45,16 @@
   margin-top: 8px;
   text-align: right;
 }
+
+@media screen and (max-width: 450px) {
+  .PostItem {
+    flex-direction: row;
+  }
+
+  .Thumbnail {
+    border-radius: 4px;
+    margin: 0 12px 0 0;
+    width: 100px;
+    flex-shrink: 0;
+  }
+}
