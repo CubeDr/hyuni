@@ -17,8 +17,8 @@ export default function PostItem({ post }: Props) {
   return (
     <a href={`/posts/${post.id}`} className={styles.PostItem}>
       <img className={styles.Thumbnail} src={post.thumbnailImageSrc} />
-      <div>
-        <div className={styles.Category}>{post.category}</div>
+      <div className={styles.Metadata}>
+        <div className={styles.Category}>{post.category}{post.series ? <> &gt; {post.series}</> : ''}</div>
         <h2 className={styles.Title}>{post.title}</h2>
         <div className={styles.Content}>{markdownToPlainText(post.blocks[0].content)}</div>
         <div className={styles.Timestamp}>{timestampToString(post.timestamp)}</div>
