@@ -11,6 +11,7 @@ interface Props {
 export default function PostViewer({ post: {
   title,
   category,
+  series,
   timestamp,
   blocks,
 } }: Props) {
@@ -18,7 +19,7 @@ export default function PostViewer({ post: {
     <>
       <h1>{title}</h1>
       <div className={styles.HeaderRow}>
-        <span>&gt; {category}</span>
+        <span>{category} {series && <>&gt; {series}</>}</span>
         <span>{timestampToString(timestamp)}</span>
       </div>
       <hr className={styles.Divider} />

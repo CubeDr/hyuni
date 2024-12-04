@@ -1,7 +1,5 @@
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import styles from './Preview.module.css';
 import PostViewer from '../posts/[id]/PostViewer';
+import styles from './Preview.module.css';
 
 interface Props {
   post: Post;
