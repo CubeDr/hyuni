@@ -4,6 +4,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  orderBy,
   query,
   where,
 } from 'firebase/firestore';
@@ -40,8 +41,12 @@ export async function getPost(id: string): Promise<Post | null> {
 export async function getPosts(category?: string): Promise<Post[]> {
   const collectionRef = collection(db, 'posts');
   const q = category
-    ? query(collectionRef, where('category', '==', category))
-    : query(collectionRef);
+    ? query(
+        collectionRef,
+        where('category', '==', category),
+        orderBy('timestamp', 'desc')
+      )
+    : query(collectionRef, orderBy('timestamp', 'desc'));
   const snapshot = await getDocs(q);
 
   const result: Post[] = [];
