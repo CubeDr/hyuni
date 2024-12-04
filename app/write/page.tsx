@@ -8,13 +8,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import DropdownSelect from './CategorySelect';
+import DropdownSelect from './DropdownSelect';
 import Editor from './Editor';
 import styles from './page.module.css';
 import Preview from './Preview';
 import { useRouter } from 'next/navigation';
-import { pages } from 'next/dist/build/templates/app-page';
 import { addCategory, getCategories } from '@/firebase/categories';
+import { addSeries, getSeriesList } from '@/firebase/series';
 
 const IMAGE_REGEX = /!\[[^\]]*\]\(([^)]+)\)/g;
 
@@ -24,6 +24,7 @@ export default function WritePage() {
 
   const [categories, setCategories] = useState<string[]>([]);
   const [category, setCategory] = useState('');
+  const [seriesList, setSeriesList] = useState<string[]>([]);
   const [series, setSeries] = useState('');
 
   const [images, setImages] = useState<string[]>([]);
@@ -36,16 +37,25 @@ export default function WritePage() {
   const router = useRouter();
 
   const submit = useCallback(async () => {
-    if (title === '' || content === '' || category === '' || mainImage == null) return;
+    if (title === '' || content === '' || category === '' || mainImage == null) {
+      window.alert(`
+        title: ${title},
+        content: ${content.length}자,
+        category: ${category},
+        series: ${series},
+        mainImage: ${mainImage}
+        `);
+    }
 
     try {
       const docid = await addPost({
         title,
         category,
+        series,
         blocks: [
           { type: 'markdown', content: content },
         ],
-        thumbnailImageSrc: mainImage,
+        thumbnailImageSrc: mainImage!,
       });
 
       uploadedPostId.current = docid;
@@ -74,9 +84,32 @@ export default function WritePage() {
     });
   }, [setCategories, setCategory]);
 
+  const onSeriesAddClick = useCallback(() => {
+    if (category === '') return;
+
+    const series = window.prompt('추가할 시리즈');
+    if (series == null) return;
+
+    addSeries(category, series).then(() => {
+      setSeriesList((seriesList) => [...seriesList, series]);
+      setSeries(series);
+    });
+  }, [category, setSeriesList, setSeries]);
+
   useEffect(() => {
     getCategories().then(setCategories);
   }, []);
+
+  useEffect(() => {
+    setSeries('');
+    setSeriesList([]);
+
+    if (category === '') {
+      return;
+    }
+
+    getSeriesList(category).then(setSeriesList);
+  }, [category, setSeries, setSeriesList]);
 
   // Parse images on the content.
   useEffect(() => {
@@ -97,12 +130,18 @@ export default function WritePage() {
               items={categories}
               setItem={setCategory}
               onAddClick={onCategoryAddClick} />
-            {/* <DropdownSelect label='시리즈' item={series} setItem={setSeries} /> */}
+            <DropdownSelect
+              label='시리즈'
+              item={series}
+              items={seriesList}
+              setItem={setSeries}
+              onAddClick={onSeriesAddClick}
+              disabled={category === ''} />
             <Editor value={content} onChange={setContent} className={styles.Content} />
             <div className={styles.ImageRow}>
-              {images.map((src) => <>
+              {images.map((src) =>
                 <img className={styles.Image + (src === mainImage ? ' ' + styles.MainImage : '')} key={src} src={src} onClick={() => onImageClick(src)} />
-              </>)}
+              )}
             </div>
           </>
         }
@@ -111,6 +150,7 @@ export default function WritePage() {
             <Preview post={{
               title,
               category,
+              series,
               blocks: [
                 { type: 'markdown', content: content },
               ],

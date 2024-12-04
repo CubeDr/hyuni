@@ -19,6 +19,7 @@ export async function getCategories(): Promise<string[]> {
 export async function addCategory(category: string) {
   await setDoc(doc(db, 'categories', category), {
     posts: [],
+    series: [],
   });
 }
 

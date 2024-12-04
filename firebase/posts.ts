@@ -8,6 +8,7 @@ import {
 } from 'firebase/firestore';
 import { addPostToCategory } from './categories';
 import { db } from './firebaseClient';
+import { addPostToSeries } from './series';
 
 export async function addPost(
   postData: Omit<Post, 'timestamp'>
@@ -15,11 +16,17 @@ export async function addPost(
   const postDocRef = await addDoc(collection(db, 'posts'), {
     title: postData.title,
     category: postData.category,
+    series: postData.series,
     blocks: postData.blocks,
     timestamp: new Date().getTime(),
     thumbnailImageSrc: postData.thumbnailImageSrc,
   });
-  await addPostToCategory(postDocRef, postData.category);
+
+  if (postData.series !== '') {
+    await addPostToSeries(postDocRef, postData.category, postData.series);
+  } else {
+    await addPostToCategory(postDocRef, postData.category);
+  }
   return postDocRef.id;
 }
 

@@ -11,16 +11,17 @@ interface Props {
   items: string[];
   setItem: (item: string) => void;
   onAddClick: () => void;
+  disabled?: boolean;
 }
 
-export default function DropdownSelect({ label, item, items, setItem, onAddClick }: Props) {
+export default function DropdownSelect({ label, item, items, setItem, onAddClick, disabled = false }: Props) {
   const onChange = useCallback((value: string) => {
     if (value === ADD_ITEM_VALUE) {
       onAddClick();
     } else {
       setItem(value);
     }
-  }, [setItem]);
+  }, [onAddClick, setItem]);
 
   return (
     <FormControl variant="filled" sx={{
@@ -48,14 +49,15 @@ export default function DropdownSelect({ label, item, items, setItem, onAddClick
             },
           },
         }}
-        onChange={(e) => onChange(e.target.value)}>
-        <MenuItem value="">
+        onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}>
+        <MenuItem value="" key={label + ' default'}>
           <em>{label}를 선택해 주세요</em>
         </MenuItem>
         {items.map((item) => (
           <MenuItem value={item} key={item}>{item}</MenuItem>
         ))}
-        <MenuItem value={ADD_ITEM_VALUE}>
+        <MenuItem value={ADD_ITEM_VALUE} key={label + ' new'}>
           <em>새 {label} 추가</em>
         </MenuItem>
       </Select>
