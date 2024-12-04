@@ -15,8 +15,7 @@ import Preview from './Preview';
 import { useRouter } from 'next/navigation';
 import { addCategory, getCategories } from '@/firebase/categories';
 import { addSeries, getSeriesList } from '@/firebase/series';
-
-const IMAGE_REGEX = /!\[[^\]]*\]\(([^)]+)\)/g;
+import { IMAGE_REGEX } from '../posts/PostItem';
 
 export default function WritePage() {
   const [title, setTitle] = useState('');
