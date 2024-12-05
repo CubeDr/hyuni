@@ -43,7 +43,7 @@ export default function PostViewer({ post: {
                   <span className={styles.Caption}>{props.alt}</span>
                 </>
               );
-            }
+            },
           }}
         >
           {blocks[0].content}

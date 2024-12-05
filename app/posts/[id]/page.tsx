@@ -5,6 +5,7 @@ import { remark } from 'remark';
 import strip from 'strip-markdown';
 import PostViewer from './PostViewer';
 import AppBar from '@/app/component/appbar/AppBar';
+import SyntaxHighlighter from './SyntaxHighlighter';
 
 // Legacy redirections to keep backwards compatibility from Tistory.
 const REDIRECT_IDS: { [key: string]: string } = {
@@ -76,6 +77,7 @@ export default async function PostPage({ params: { id } }: Props) {
     <>
       <AppBar />
       <PostViewer post={post} />
+      <SyntaxHighlighter />
     </>
   );
 }

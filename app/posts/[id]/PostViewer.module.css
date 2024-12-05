@@ -30,6 +30,15 @@
   color: var(--theme-color-2);
 }
 
+.Content code {
+  display: block;
+  background-color: var(--theme-color-6);
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4rem;
+}
+
 .Paragraph {
   margin: 16px 0;
 }
