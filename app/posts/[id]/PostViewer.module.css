@@ -10,7 +10,9 @@
 .Content {
   background-color: var(--theme-color-5);
   padding: 8px 14px 24px;
-  line-height: 1.4rem;
+  line-height: 1.8rem;
+  font-size: 16px;
+  font-family: "PT Mono", "Nanum Gothic";
 }
 
 .Image {
