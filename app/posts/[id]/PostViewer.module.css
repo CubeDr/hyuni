@@ -15,6 +15,21 @@
   font-family: "PT Mono", "Nanum Gothic";
 }
 
+.Content strong {
+  color: var(--theme-color-1);
+}
+
+.Content a {
+  color: var(--theme-color-1);
+  text-decoration: underline;
+
+  transition: color 120ms;
+}
+
+.Content a:hover {
+  color: var(--theme-color-2);
+}
+
 .Paragraph {
   margin: 16px 0;
 }
