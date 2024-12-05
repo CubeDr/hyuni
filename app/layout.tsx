@@ -3,10 +3,11 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import type { Metadata } from 'next'
-import { PT_Mono } from 'next/font/google'
-import './globals.css'
 import AuthProvider from '@/firebase/AuthContext';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import type { Metadata } from 'next';
+import { PT_Mono } from 'next/font/google';
+import './globals.css';
 
 const ptMono = PT_Mono({ subsets: ['latin'], weight: '400' });
 
@@ -26,9 +27,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={ptMono.className}>
         <AuthProvider>
-          <div className='main-column'>{children}</div>
+          <div className="main-column">{children}</div>
         </AuthProvider>
       </body>
+      <GoogleAnalytics gaId="G-MBKK9D6FV" />
     </html>
   )
 };
