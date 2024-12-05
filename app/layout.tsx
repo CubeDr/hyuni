@@ -30,7 +30,7 @@ export default function RootLayout({
           <div className="main-column">{children}</div>
         </AuthProvider>
       </body>
-      <GoogleAnalytics gaId="G-MBKK9D6FV" />
+      <GoogleAnalytics gaId="G-MBKK9D6FVJ" />
     </html>
   )
 };
