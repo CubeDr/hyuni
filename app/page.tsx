@@ -16,7 +16,7 @@ export default function Page() {
           <Articles />
         </Section>
         <Section title='Recent Posts' moreLink='/posts'>
-          <PostGrid />
+          <PostGrid options={{ limit: 12 }} />
         </Section>
       </div></>
   )

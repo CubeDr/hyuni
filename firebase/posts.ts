@@ -4,8 +4,10 @@ import {
   doc,
   getDoc,
   getDocs,
+  limit,
   orderBy,
   query,
+  startAt,
   where,
 } from 'firebase/firestore';
 import { addPostToCategory } from './categories';
@@ -38,15 +40,36 @@ export async function getPost(id: string): Promise<Post | null> {
   return data as Post | null;
 }
 
-export async function getPosts(category?: string): Promise<Post[]> {
+export interface GetPostsOptions {
+  limit?: number;
+  page?: number;
+}
+
+export async function getPosts(
+  category?: string,
+  options?: GetPostsOptions
+): Promise<Post[]> {
   const collectionRef = collection(db, 'posts');
-  const q = category
-    ? query(
-        collectionRef,
-        where('category', '==', category),
-        orderBy('timestamp', 'desc')
-      )
-    : query(collectionRef, orderBy('timestamp', 'desc'));
+  let q = query(collectionRef);
+
+  if (category != null) {
+    q = query(q, where('category', '==', category));
+  }
+
+  q = query(q, orderBy('timestamp', 'desc'));
+
+  if (options?.page) {
+    if (options.limit == null) {
+      throw Error('To use page, limit should be also specified.');
+    }
+
+    q = query(q, startAt(options.limit * options.page));
+  }
+
+  if (options?.limit) {
+    q = query(q, limit(options.limit));
+  }
+
   const snapshot = await getDocs(q);
 
   const result: Post[] = [];
