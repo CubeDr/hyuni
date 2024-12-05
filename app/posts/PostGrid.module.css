@@ -6,12 +6,14 @@
 @media screen and (min-width: 1120px) {
   .PostGrid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
   }
 }
 
 @media screen and (min-width: 970px) and (max-width: 1120px) {
   .PostGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
   }
 }
 
