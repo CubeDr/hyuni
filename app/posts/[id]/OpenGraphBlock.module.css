@@ -1,5 +1,5 @@
 .OpenGraphBlock {
-  background-color: var(--theme-color-4);
+  border: 1px solid var(--theme-color-0);
   display: flex;
   min-height: 200px;
 }
@@ -7,9 +7,32 @@
 .Image {
   width: 200px;
   object-fit: cover;
+  border-right: 1px solid var(--theme-color-0);
 }
 
 .Content {
   margin: 4px 14px;
-  padding: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Title {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.DescriptionContainer {
+  flex-grow: 1;
+}
+
+.Description {
+  font-size: 12px;
+  line-height: 0.9rem;
+  color: var(--theme-color-3);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
