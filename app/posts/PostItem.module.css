@@ -13,9 +13,13 @@
   background-color: var(--theme-color-4);
 }
 
-.Thumbnail {
+.ThumbnailContainer {
   margin: -16px -16px 14px -16px;
   aspect-ratio: 2 / 1;
+  position: relative;
+}
+
+.Thumbnail {
   object-fit: cover;
 }
 
@@ -57,10 +61,11 @@
     flex-direction: row;
   }
 
-  .Thumbnail {
+  .ThumbnailContainer {
     border-radius: 4px;
     margin: 0 12px 0 0;
     width: 100px;
     flex-shrink: 0;
+    overflow: hidden;
   }
 }

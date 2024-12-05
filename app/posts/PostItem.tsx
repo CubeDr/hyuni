@@ -1,6 +1,7 @@
 import { timestampToString } from '@/utils/time';
 import styles from './PostItem.module.css';
 import markdownToTxt from 'markdown-to-txt';
+import Image from 'next/image';
 
 export const IMAGE_REGEX = /!\[[^\]]*\]\(([^)]+)\)/g;
 
@@ -16,7 +17,9 @@ function markdownToPlainText(content: string) {
 export default function PostItem({ post }: Props) {
   return (
     <a href={`/posts/${post.id}`} className={styles.PostItem}>
-      <img className={styles.Thumbnail} src={post.thumbnailImageSrc} />
+      <div className={styles.ThumbnailContainer}>
+        <Image className={styles.Thumbnail} src={post.thumbnailImageSrc} alt={post.title} fill />
+      </div>
       <div className={styles.Metadata}>
         <div className={styles.Category}>{post.category}{post.series ? <> &gt; {post.series}</> : ''}</div>
         <h2 className={styles.Title}>{post.title}</h2>

@@ -5,9 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'github.com',
-        port: '',
-        pathname: '/CubeDr/**',
+        hostname: '**',
       },
     ],
   },
