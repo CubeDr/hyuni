@@ -15,7 +15,7 @@ export default function ShortLinks() {
           loading='eager'
         />
       </a>
-      <a className={styles.Button} href="https://github.com/CubeDr" title="Instagram">
+      <a className={styles.Button} href="https://www.instagram.com/hyuni.dev" title="Instagram">
         <Image
           src={instagram}
           alt='Instagram'
