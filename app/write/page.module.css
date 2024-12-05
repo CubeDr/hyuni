@@ -40,7 +40,7 @@
 .ControlRow {
   display: flex;
   margin-top: 18px;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .SubmitButton {

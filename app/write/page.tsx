@@ -124,7 +124,7 @@ export default function WritePage() {
   useEffect(() => {
     const matches = content.matchAll(IMAGE_REGEX);
 
-    setImages(Array.from(matches.map((match) => match[1])));
+    setImages(Array.from(matches).map((match) => match[1]));
   }, [content]);
 
   return (
