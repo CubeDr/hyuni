@@ -28,6 +28,7 @@ export default function PostViewer({ post: {
         <ReactMarkdown
           remarkPlugins={[remarkGfm, highlightedQuoteBlock, centerText]}
           components={{
+            p: ({ node, ...props }) => <div className={styles.Paragraph} {...props} />,
             a({ href, children }) {
               if (href != null && href === children?.toString()) {
                 return <OpenGraphBlock url={href} />
