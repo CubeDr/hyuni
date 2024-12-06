@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
+import Comment from './Comment';
 import PostViewer from './PostViewer';
 
 interface Props {
@@ -50,6 +51,7 @@ export default async function PostPage({ params: { id } }: Props) {
     <>
       <AppBar />
       <PostViewer post={post} />
+      <Comment />
     </>
   );
 }

@@ -1,0 +1,17 @@
+.Comment {
+  background-color: var(--theme-color-5);
+  padding: 14px;
+}
+
+.User {
+  display: flex;
+  align-items: center;
+}
+
+.Photo {
+  border-radius: 50%;
+}
+
+.DisplayName {
+  margin-left: 8px;
+}
