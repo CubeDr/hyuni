@@ -9,7 +9,6 @@ const nextConfig = {
       },
     ],
   },
-  transpilePackages: ['highlight.js'],
 };
 
 module.exports = nextConfig;

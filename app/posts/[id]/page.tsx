@@ -44,7 +44,6 @@ export default async function PostPage({ params: { id } }: Props) {
     <>
       <AppBar />
       <PostViewer post={post} />
-      <SyntaxHighlighter />
     </>
   );
 }
