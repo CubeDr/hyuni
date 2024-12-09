@@ -66,7 +66,7 @@ export default function SkillRow({ skills, direction }: SkillRowProps) {
             }} ref={leftContainerRef}>
                 {
                     skills.map(skill => (
-                        <Chip key={skill} text={skill} />
+                        <Chip key={skill} text={skill} fontSize={12} />
                     ))
                 }
             </div>
@@ -75,7 +75,7 @@ export default function SkillRow({ skills, direction }: SkillRowProps) {
             }}>
                 {
                     skills.map(skill => (
-                        <Chip key={skill} text={skill} />
+                        <Chip key={skill} text={skill} fontSize={12} />
                     ))
                 }
             </div>
