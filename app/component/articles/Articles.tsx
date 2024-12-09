@@ -5,6 +5,24 @@ export default function Articles() {
   return (
     <div className={styles.Row}>
       <Article
+        title="개발자를 위한 실전 '코딩 테스트' 준비 팁"
+        date='2024-09-10'
+        imageUrl='https://yozm.wishket.com/media/news/2755/21513.jpg'
+        link='https://yozm.wishket.com/magazine/detail/2755/'
+        source='요즘 IT' />
+      <Article
+        title="개발자의 논리적 사고와 문제 해결 'Set 구현 과정' 따라가기"
+        date='2024-08-20'
+        imageUrl='https://yozm.wishket.com/media/news/2723/5169.jpg'
+        link='https://yozm.wishket.com/magazine/detail/2723/'
+        source='요즘 IT' />
+      <Article
+        title='자바 가독성 높이는 5가지 팁'
+        date='2024-07-22'
+        imageUrl='https://yozm.wishket.com/media/news/2682/tracy-adams-TEemXOpR3cQ-unsplash.jpg'
+        link='https://yozm.wishket.com/magazine/detail/2682/'
+        source='요즘 IT' />
+      <Article
         title='개발자에게 "코드 스타일" 왜 중요할까?'
         date='2024-03-18'
         imageUrl='https://yozm.wishket.com/media/news/2499/code-style.jpg'
