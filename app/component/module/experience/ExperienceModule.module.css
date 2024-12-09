@@ -7,6 +7,7 @@
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
+  padding-bottom: 4px;
 }
 
 @media screen and (min-width: 1120px) {
