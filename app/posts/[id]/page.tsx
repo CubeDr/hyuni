@@ -1,11 +1,10 @@
+import AppBar from '@/app/component/appbar/AppBar';
 import { getPost } from '@/firebase/posts';
 import { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 import PostViewer from './PostViewer';
-import AppBar from '@/app/component/appbar/AppBar';
-import SyntaxHighlighter from './SyntaxHighlighter';
 
 interface Props {
   params: {
@@ -21,7 +20,7 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
     notFound();
   }
 
-  const { title, category, series, blocks } = post;
+  const { title, category, series, blocks, thumbnailImageSrc } = post;
   const description = await remark().use(strip).process(blocks[0].content);
   return {
     title: series ? `[${category}] ${series} :: ${title}` : `[${category}] ${title}`,
@@ -29,6 +28,13 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
     authors: { 'name': '김현이 (Hyuni Kim)', url: 'https://hyuni.dev' },
     category,
     creator: '김현이 (Hyuni Kim)',
+    openGraph: {
+      url: 'https://www.hyuni.dev/posts/' + id,
+      type: 'website',
+      images: {
+        url: thumbnailImageSrc,
+      },
+    },
   };
 }
 

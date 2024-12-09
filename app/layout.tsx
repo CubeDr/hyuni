@@ -16,6 +16,13 @@ export const metadata: Metadata = {
   description: '"좋은 코드가 좋은 제품을 만든다"를 믿는 개발자입니다.',
   authors: [{ name: '김현이 (Hyuni Kim)', url: 'https://hyuni.dev' }],
   creator: '김현이 (Hyuni Kim)',
+  openGraph: {
+    url: 'https://www.hyuni.dev/',
+    type: 'website',
+    images: {
+      url: 'https://www.hyuni.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhyuni-compressed.2bc011b3.jpg&w=384&q=75',
+    },
+  },
 }
 
 export default function RootLayout({
