@@ -6,7 +6,7 @@
 @media screen and (min-width: 1120px) {
   .Modules {
     grid-template-columns: 256px 465px 1fr;
-    grid-template-rows: 170px 1fr;
+    grid-template-rows: min-content 1fr;
   }
 
   .ExperienceModule {
