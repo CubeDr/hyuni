@@ -4,7 +4,7 @@ import styles from './ExperienceModule.module.css';
 
 export default function ExperienceModule({ className }: DefaultModuleProps) {
     return (
-        <Module title='Experience' className={className}>
+        <Module title='Experience' className={className + ' ' + styles.ExperienceModule}>
             <div className={styles.Body}>
                 <div className={styles.Item}>
                     <ExperienceItem title='Google' role='Software Engineer' type='FTE' period='2020 Jun~NOW' isOngoing={true} />
