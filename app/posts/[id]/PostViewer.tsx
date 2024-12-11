@@ -33,7 +33,7 @@ export default function PostViewer({ post: {
               if (href != null && href === children?.toString()) {
                 return <OpenGraphBlock url={href} />
               } else {
-                return <a href={href}>{children}</a>
+                return <a href={href} className={styles.Anchor}>{children}</a>
               }
             },
             img(props) {

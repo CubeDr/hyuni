@@ -19,14 +19,14 @@
   color: var(--theme-color-1);
 }
 
-.Content a {
+.Content .Anchor {
   color: var(--theme-color-1);
   text-decoration: underline;
 
   transition: color 120ms;
 }
 
-.Content a:hover {
+.Content .Anchor:hover {
   color: var(--theme-color-2);
 }
 
