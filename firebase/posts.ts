@@ -8,6 +8,7 @@ import {
   orderBy,
   query,
   startAt,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 import { addPostToCategory } from './categories';
@@ -32,6 +33,14 @@ export async function addPost(
     await addPostToCategory(postDocRef, postData.category);
   }
   return postDocRef.id;
+}
+
+export async function updatePost(
+  id: string,
+  postData: Omit<Post, 'timestamp'>
+): Promise<string> {
+  await updateDoc(doc(collection(db, 'posts'), id), postData);
+  return id;
 }
 
 export async function getPost(id: string): Promise<Post | null> {

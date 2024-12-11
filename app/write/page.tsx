@@ -1,6 +1,6 @@
 'use client';
 
-import { addPost } from '@/firebase/posts';
+import { addPost, getPost, updatePost } from '@/firebase/posts';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -18,7 +18,9 @@ import { addSeries, getSeriesList } from '@/firebase/series';
 import { IMAGE_REGEX } from '../posts/PostItem';
 import { AuthContext } from '@/firebase/AuthContext';
 
-export default function WritePage() {
+export default function WritePage({ searchParams }: { searchParams: any }) {
+  const id = searchParams.id as string | null;
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -49,20 +51,25 @@ export default function WritePage() {
       return;
     }
 
+    const postData: Omit<Post, 'timestamp'> = {
+      title,
+      category,
+      series,
+      blocks: [
+        { type: 'markdown', content: content },
+      ],
+      thumbnailImageSrc: mainImage!,
+    };
+
     try {
-      const docid = await addPost({
-        title,
-        category,
-        series,
-        blocks: [
-          { type: 'markdown', content: content },
-        ],
-        thumbnailImageSrc: mainImage!,
-      });
 
-      uploadedPostId.current = docid;
-
-      setOpen(true);
+      if (id == null) {
+        uploadedPostId.current = await addPost(postData);
+        setOpen(true);
+      } else {
+        uploadedPostId.current = await updatePost(id, postData);
+        setOpen(true);
+      }
     } catch (e) {
       console.error(e);
     }
@@ -101,6 +108,20 @@ export default function WritePage() {
   useEffect(() => {
     getCategories().then(setCategories);
   }, []);
+
+  useEffect(() => {
+    if (id == null) return;
+
+    getPost(id).then((post) => {
+      if (post == null) return;
+
+      setTitle(post.title);
+      setContent(post.blocks[0].content);
+      setCategory(post.category);
+      setSeries(post.series);
+      setMainImage(post.thumbnailImageSrc);
+    });
+  }, [id]);
 
   useEffect(() => {
     if (role === 'member' || role === 'visitor') {
