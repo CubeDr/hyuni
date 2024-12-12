@@ -1,13 +1,12 @@
 .ShortLinks {
   position: fixed;
-  top: 0;
+  top: 14px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 12px 24px;
+  padding: 8px 16px;
   background-color: var(--theme-color-5);
   border: 1px solid var(--theme-color-3);
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
+  border-radius: 32px;
   z-index: 1;
 
   display: grid;
@@ -27,14 +26,14 @@
 }
 
 .Image {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
 }
 
 .Divider {
-  width: 4px;
-  height: 4px;
+  width: 2px;
+  height: 2px;
   background-color: var(--theme-color-3);
   border-radius: 1.5px;
-  margin: 4px;
+  margin: 2px;
 }
