@@ -36,6 +36,8 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
   const [open, setOpen] = useState(false);
   const uploadedPostId = useRef('');
 
+  const [timestamp, setTimestamp] = useState<number | null>(null);
+
   const router = useRouter();
   const { role } = useContext(AuthContext);
 
@@ -51,7 +53,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
       return;
     }
 
-    const postData: Omit<Post, 'timestamp'> = {
+    const postData: Omit<Post, 'timestamp' | 'lastUpdated'> = {
       title,
       category,
       series,
@@ -62,12 +64,11 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
     };
 
     try {
-
       if (id == null) {
         uploadedPostId.current = await addPost(postData);
         setOpen(true);
       } else {
-        uploadedPostId.current = await updatePost(id, postData);
+        uploadedPostId.current = await updatePost(id, { timestamp: timestamp!, ...postData });
         setOpen(true);
       }
     } catch (e) {
@@ -120,6 +121,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
       setCategory(post.category);
       setSeries(post.series);
       setMainImage(post.thumbnailImageSrc);
+      setTimestamp(post.timestamp);
     });
   }, [id]);
 
@@ -185,7 +187,8 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
                 blocks: [
                   { type: 'markdown', content: content },
                 ],
-                timestamp: new Date().getTime(),
+                timestamp: timestamp ?? new Date().getTime(),
+                lastUpdated: new Date().getTime(),
                 thumbnailImageSrc: mainImage ?? '',
               }} />
             </>

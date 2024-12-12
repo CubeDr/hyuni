@@ -7,6 +7,7 @@ interface Post {
     content: string;
   }[];
   timestamp: number;
+  lastUpdated: number;
   thumbnailImageSrc: string;
   id?: string;
 }

@@ -16,7 +16,7 @@ import { db } from './firebaseClient';
 import { addPostToSeries } from './series';
 
 export async function addPost(
-  postData: Omit<Post, 'timestamp'>
+  postData: Omit<Post, 'timestamp' | 'lastUpdated'>
 ): Promise<string> {
   const postDocRef = await addDoc(collection(db, 'posts'), {
     title: postData.title,
@@ -24,6 +24,7 @@ export async function addPost(
     series: postData.series,
     blocks: postData.blocks,
     timestamp: new Date().getTime(),
+    lastUpdated: new Date().getTime(),
     thumbnailImageSrc: postData.thumbnailImageSrc,
   });
 
@@ -37,9 +38,12 @@ export async function addPost(
 
 export async function updatePost(
   id: string,
-  postData: Omit<Post, 'timestamp'>
+  postData: Omit<Post, 'lastUpdated'>
 ): Promise<string> {
-  await updateDoc(doc(collection(db, 'posts'), id), postData);
+  await updateDoc(doc(collection(db, 'posts'), id), {
+    ...postData,
+    lastUpdated: new Date().getTime(),
+  });
   return id;
 }
 
