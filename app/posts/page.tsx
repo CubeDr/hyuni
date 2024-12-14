@@ -4,6 +4,8 @@ import CategoryDropdownSelect from './CategoryDropdownSelect';
 import PostGrid from './PostGrid';
 import { getCategories } from '@/firebase/categories';
 
+export const dynamic = 'force-dynamic';
+
 export function generateMetadata({ searchParams }: { searchParams: any }): Metadata {
   return {
     title: `${searchParams.category ?? 'Posts'} :: 현이의 개발 이야기`,

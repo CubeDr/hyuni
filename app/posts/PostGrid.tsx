@@ -7,8 +7,6 @@ interface Props {
   options?: GetPostsOptions;
 }
 
-export const dynamic = 'force-dynamic';
-
 export default async function PostGrid({ category, options = {} }: Props) {
   const posts = await getPosts(category, options);
 

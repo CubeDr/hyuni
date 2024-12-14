@@ -5,6 +5,8 @@ import PostGrid from './posts/PostGrid';
 import Section from './Section';
 import ShortLinks from './ShortLinks';
 
+export const dynamic = 'force-dynamic';
+
 export default function Page() {
   return (
     <>
