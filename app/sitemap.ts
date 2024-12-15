@@ -5,6 +5,8 @@ import { MetadataRoute } from 'next';
 
 const BASE_URL = 'https://hyuni.dev';
 
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getPosts();
 
