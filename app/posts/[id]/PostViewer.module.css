@@ -8,7 +8,7 @@
 }
 
 .Content {
-  background-color: var(--theme-color-5);
+  background-color: var(--color-surface);
   padding: 32px 28px;
   line-height: 1.8rem;
   font-size: 16px;
@@ -16,23 +16,23 @@
 }
 
 .Content strong {
-  color: var(--theme-color-1);
+  color: var(--color-primary);
 }
 
 .Content .Anchor {
-  color: var(--theme-color-1);
+  color: var(--color-primary);
   text-decoration: underline;
 
   transition: color 120ms;
 }
 
 .Content .Anchor:hover {
-  color: var(--theme-color-2);
+  color: var(--color-primary-hover);
 }
 
 .Content code {
   display: block;
-  background-color: var(--theme-color-6);
+  background-color: var(--color-code-background);
   padding: 14px;
   border-radius: 8px;
   font-size: 14px;
@@ -58,7 +58,7 @@
 }
 
 .HighlightedQuote {
-  color: var(--theme-color-0);
+  color: var(--color-text);
   display: block;
   font-size: 1.5em;
   line-height: 1.5em;
@@ -72,7 +72,7 @@
 .HighlightedQuote::before,
 .HighlightedQuote::after {
   display: block;
-  color: var(--theme-color-1);
+  color: var(--color-primary);
   font-size: 4em;
   position: absolute;
 }

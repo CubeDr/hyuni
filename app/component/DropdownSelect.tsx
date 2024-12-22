@@ -27,12 +27,12 @@ export default function DropdownSelect({ label, item, items, setItem, defaultTex
   return (
     <FormControl variant="filled" sx={{
       minWidth: 120,
-      backgroundColor: 'var(--theme-color-4)',
+      backgroundColor: 'var(--color-surface)',
     }}>
       <InputLabel
         id="demo-simple-select-filled-label"
         sx={{
-          color: 'var(--theme-color-0)'
+          color: 'var(--color-text)'
         }}
       >{label}</InputLabel>
       <Select
@@ -41,12 +41,12 @@ export default function DropdownSelect({ label, item, items, setItem, defaultTex
         value={item}
         variant="filled"
         sx={{
-          color: 'var(--theme-color-0)',
+          color: 'var(--color-text)',
         }}
         MenuProps={{
           sx: {
             "&& .Mui-selected": {
-              color: "var(--theme-color-1)",
+              color: "var(--color-primary)",
             },
           },
         }}

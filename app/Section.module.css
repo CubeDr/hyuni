@@ -13,7 +13,7 @@
 }
 
 .MoreLink {
-  background-color: var(--theme-color-5);
+  background-color: var(--color-surface);
   padding: 8px 14px;
   border-radius: 18px;
   transition: background-color 120ms;
@@ -21,6 +21,6 @@
 }
 
 .MoreLink:hover {
-  background-color: var(--theme-color-4);
+  background-color: var(--color-surface-hover);
   text-decoration: none;
 }

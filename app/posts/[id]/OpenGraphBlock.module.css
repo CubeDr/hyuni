@@ -1,5 +1,5 @@
 .OpenGraphBlock {
-  border: 1px solid var(--theme-color-0);
+  border: 1px solid var(--color-outline);
   display: flex;
   min-height: 200px;
 }
@@ -7,7 +7,7 @@
 .Image {
   width: 200px;
   object-fit: cover;
-  border-right: 1px solid var(--theme-color-0);
+  border-right: 1px solid var(--color-outline);
 }
 
 .Content {
@@ -29,7 +29,7 @@
 .Description {
   font-size: 12px;
   line-height: 0.9rem;
-  color: var(--theme-color-3);
+  color: var(--color-text-variant);
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;

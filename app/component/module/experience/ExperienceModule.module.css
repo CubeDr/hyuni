@@ -40,8 +40,13 @@
   }
 
   .Body::-webkit-scrollbar-thumb {
-    background: var(--theme-color-4);
+    background: var(--color-scrollbar);
     border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .Body::-webkit-scrollbar-thumb:hover {
+    background: var(--color-scrollbar-hover);
   }
 
   .Item {

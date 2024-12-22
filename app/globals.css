@@ -1,21 +1,13 @@
 :root {
-  --theme-color-0: #e0f0f0;
-  --theme-color-1: #39ace7;
-  --theme-color-2: #0784b5;
-  --theme-color-3: #696969;
-  --theme-color-4: #4B4f4B;
-  --theme-color-5: #272927;
-  --theme-color-6: #191B19;
+  --foreground-rgb: var(--color-text);
+  --background-rgb: var(--color-background);
+  --border-color: var(--color-surface-outline);
 
-  --foreground-rgb: var(--theme-color-0);
-  --background-rgb: var(--theme-color-6);
-  --border-color: var(--theme-color-4);
+  --active-color: var(--color-primary);
+  --deactive-color: var(--color-fill-base-500);
 
-  --active-color: var(--theme-color-1);
-  --deactive-color: var(--theme-color-3);
-
-  --module-background-color: var(--theme-color-5);
-  --module-hover-background-color: var(--theme-color-4);
+  --module-background-color: var(--color-surface);
+  --module-hover-background-color: var(--color-surface-variant);
   --module-gap: 18px;
 
   --transition-duration: 150ms;
