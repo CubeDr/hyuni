@@ -10,8 +10,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { usePathname } from 'next/navigation';
 import { ChangeEvent, createContext, useCallback, useEffect, useState } from 'react';
 import { getMember, setMember as setMemberFirebase } from './members';
+
+export const AUTH_DISABLED_PATHS = [
+  '/privacy',
+];
 
 interface AuthContextType {
   user: User | null;
@@ -28,6 +33,8 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isPricayAgreed, setIsPrivacyAgreed] = useState(false);
+
+  const pathname = usePathname();
 
   const updateMember = useCallback((user: User | null) => {
     if (user == null) {
@@ -46,6 +53,10 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   }, []);
 
   useEffect(() => {
+    if (AUTH_DISABLED_PATHS.includes(pathname)) {
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       updateMember(user);
@@ -69,7 +80,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       updateMember(user);
       setIsDialogOpen(false);
     });
-  }, [user, updateMember]);
+  }, [user, updateMember, isPricayAgreed]);
 
   const onPrivacyCheckboxChange = useCallback((e: ChangeEvent) => {
     setIsPrivacyAgreed((e.target as HTMLInputElement).checked);

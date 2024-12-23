@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthContext } from '@/firebase/AuthContext';
+import { AUTH_DISABLED_PATHS, AuthContext } from '@/firebase/AuthContext';
 import { auth } from '@/firebase/firebaseClient';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -9,11 +9,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { usePathname } from 'next/navigation';
 import { useCallback, useContext, useState } from 'react';
 
 export default function Login() {
-  const { user, member } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
+
+  const pathname = usePathname();
 
   const login = useCallback(async () => {
     const provider = new GoogleAuthProvider();
@@ -46,6 +49,10 @@ export default function Login() {
       console.error('Sign-out error:', error);
     }
   }, []);
+
+  if (AUTH_DISABLED_PATHS.includes(pathname)) {
+    return <></>;
+  }
 
   return <>
     <span onClick={user ? () => setIsLogoutDialogOpen(true) : login}>{user ? '로그아웃' : '로그인'}</span>
