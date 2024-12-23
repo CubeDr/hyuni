@@ -5,10 +5,10 @@ import '@fontsource/roboto/700.css';
 
 import AuthProvider from '@/firebase/AuthContext';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import 'hyuni-style';
 import type { Metadata } from 'next';
 import { PT_Mono } from 'next/font/google';
 import './globals.css';
-import './hyuni.css';
 
 const ptMono = PT_Mono({ subsets: ['latin'], weight: '400' });
 
