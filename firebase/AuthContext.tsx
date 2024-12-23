@@ -1,45 +1,35 @@
 'use client';
 
-import { auth, db } from '@/firebase/firebaseClient';
+import { auth } from '@/firebase/firebaseClient';
+import { Member } from '@/types/member';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 import { createContext, useEffect, useState } from 'react';
-
-type Role = 'owner' | 'member' | 'visitor';
+import { getMember } from './members';
 
 interface AuthContextType {
   user: User | null;
-  role: Role | null;
+  member: Member | null;
 }
 
-export const AuthContext = createContext<AuthContextType>({ user: null, role: null });
+export const AuthContext = createContext<AuthContextType>({ user: null, member: null });
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [role, setRole] = useState<Role | null>(null);
+  const [member, setMember] = useState<Member | null>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
 
       if (user != null) {
-        const docRef = doc(db, 'owners', user.uid);
-        getDoc(docRef).then((snapshot) => {
-          if (snapshot.exists()) {
-            setRole('owner');
-          } else {
-            setRole('member');
-          }
-        });
-      } else {
-        setRole('visitor');
+        getMember(user.uid).then((member) => setMember(member));
       }
     });
     return () => unsubscribe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, role }}>
+    <AuthContext.Provider value={{ user, member }}>
       {children}
     </AuthContext.Provider>
   );

@@ -12,7 +12,7 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { useCallback, useContext, useState } from 'react';
 
 export default function Login() {
-  const { user, role } = useContext(AuthContext);
+  const { user, member } = useContext(AuthContext);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
   const login = useCallback(async () => {
@@ -47,8 +47,8 @@ export default function Login() {
     }
   }, []);
 
-  if (role == null) {
-    return <>&nsbp;</>;
+  if (member == null) {
+    return <></>;
   }
 
   return <>

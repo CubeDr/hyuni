@@ -1,22 +1,22 @@
 'use client';
 
+import { AuthContext } from '@/firebase/AuthContext';
+import { addCategory, getCategories } from '@/firebase/categories';
 import { addPost, getPost, updatePost } from '@/firebase/posts';
+import { addSeries, getSeriesList } from '@/firebase/series';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { redirect, useRouter } from 'next/navigation';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import DropdownSelect from '../component/DropdownSelect';
+import { IMAGE_REGEX } from '../posts/PostItem';
 import Editor from './Editor';
 import styles from './page.module.css';
 import Preview from './Preview';
-import { redirect, useRouter } from 'next/navigation';
-import { addCategory, getCategories } from '@/firebase/categories';
-import { addSeries, getSeriesList } from '@/firebase/series';
-import { IMAGE_REGEX } from '../posts/PostItem';
-import { AuthContext } from '@/firebase/AuthContext';
 
 export default function WritePage({ searchParams }: { searchParams: any }) {
   const id = searchParams.id as string | null;
@@ -39,7 +39,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
   const [timestamp, setTimestamp] = useState<number | null>(null);
 
   const router = useRouter();
-  const { role } = useContext(AuthContext);
+  const { member } = useContext(AuthContext);
 
   const submit = useCallback(async () => {
     if (title === '' || content === '' || category === '' || mainImage == null) {
@@ -126,11 +126,11 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
   }, [id]);
 
   useEffect(() => {
-    if (role === 'member' || role === 'visitor') {
+    if (member == null || member.role === 'member' || member.role === 'visitor') {
       window.alert('접근 권한이 없습니다.');
       redirect('/');
     }
-  }, [role]);
+  }, [member]);
 
   useEffect(() => {
     setSeries('');
@@ -152,7 +152,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
 
   return (
     <>
-      {role === 'owner' && <>
+      {member?.role === 'owner' && <>
         <div className={styles.WritePage}>
           {
             pageState === 'edit' && <>
