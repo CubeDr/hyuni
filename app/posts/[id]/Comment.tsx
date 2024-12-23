@@ -1,7 +1,8 @@
 import { Comment as CommentData } from '@/types/comment';
-import styles from './Comment.module.css';
-import Image from 'next/image';
 import { timestampToString } from '@/utils/time';
+import Image from 'next/image';
+import styles from './Comment.module.css';
+import CommentControl from './CommentControl';
 
 interface Props {
   comment: CommentData;
@@ -23,6 +24,7 @@ export default function Comment({ comment }: Props) {
             <span className={styles.Timestamp}>{timestampToString(comment.timestamp)}</span>
           </div>
           <div className={styles.Comment}>{comment.comment}</div>
+          <CommentControl userId={comment.userId} postId={comment.postId} commentId={comment.id} />
         </div>
       </div>
       <div className={styles.Divider} />
