@@ -1,0 +1,6 @@
+.Footer {
+  background-color: var(--color-surface);
+  margin: 0 -24px -24px -24px;
+  text-align: center;
+  padding: 48px;
+}

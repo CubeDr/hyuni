@@ -8,6 +8,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import 'hyuni-style';
 import type { Metadata } from 'next';
 import { PT_Mono } from 'next/font/google';
+import Footer from './Footer';
 import './globals.css';
 
 const ptMono = PT_Mono({ subsets: ['latin'], weight: '400' });
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className={ptMono.className}>
         <AuthProvider>
           <div className="main-column">{children}</div>
+          <Footer />
         </AuthProvider>
       </body>
       <GoogleAnalytics gaId="G-MBKK9D6FVJ" />
