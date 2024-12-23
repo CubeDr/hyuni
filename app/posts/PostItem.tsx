@@ -1,7 +1,7 @@
-import { timestampToString } from '@/utils/time';
-import styles from './PostItem.module.css';
 import markdownToTxt from 'markdown-to-txt';
 import Image from 'next/image';
+import Timestamp from '../component/Timestamp';
+import styles from './PostItem.module.css';
 
 export const IMAGE_REGEX = /!\[[^\]]*\]\(([^)]+)\)/g;
 
@@ -24,7 +24,7 @@ export default function PostItem({ post }: Props) {
         <div className={styles.Category}>{post.category}{post.series ? <> &gt; {post.series}</> : ''}</div>
         <h2 className={styles.Title}>{post.title}</h2>
         <div className={styles.Content}>{markdownToPlainText(post.blocks[0].content)}</div>
-        <div className={styles.Timestamp}>{timestampToString(post.timestamp)}</div>
+        <div className={styles.Timestamp}><Timestamp timestamp={post.timestamp} /></div>
       </div>
     </a>
   );

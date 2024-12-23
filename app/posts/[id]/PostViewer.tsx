@@ -1,9 +1,9 @@
-import { timestampToString } from '@/utils/time';
+import Timestamp from '@/app/component/Timestamp';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { visit } from 'unist-util-visit';
 import OpenGraphBlock from './OpenGraphBlock';
 import styles from './PostViewer.module.css';
-import { visit } from 'unist-util-visit';
 
 interface Props {
   post: Post;
@@ -21,7 +21,7 @@ export default function PostViewer({ post: {
       <h1>{title}</h1>
       <div className={styles.HeaderRow}>
         <span><a href={`/posts?category=${category}`}>{category}</a> {series && <>&gt; {series}</>}</span>
-        <span>{timestampToString(timestamp)}</span>
+        <span><Timestamp timestamp={timestamp} /></span>
       </div>
       <hr className={styles.Divider} />
       <div className={styles.Content}>
