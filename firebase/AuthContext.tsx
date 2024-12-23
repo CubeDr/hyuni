@@ -15,32 +15,41 @@ import { getMember, setMember as setMemberFirebase } from './members';
 interface AuthContextType {
   user: User | null;
   member: Member | null;
+  isLoaded: boolean;
 }
 
-export const AuthContext = createContext<AuthContextType>({ user: null, member: null });
+export const AuthContext = createContext<AuthContextType>({ user: null, member: null, isLoaded: false });
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [member, setMember] = useState<Member | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const updateMember = useCallback((user: User | null) => {
+    if (user == null) {
+      setIsLoaded(true);
+      return;
+    }
+
+    getMember(user.uid).then((member) => {
+      if (member == null) {
+        setIsDialogOpen(true);
+      } else {
+        setMember(member);
+        setIsLoaded(true);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-
-      if (user != null) {
-        getMember(user.uid).then((member) => {
-          if (member == null) {
-            setIsDialogOpen(true);
-          } else {
-            setMember(member);
-          }
-        });
-      }
+      updateMember(user);
     });
     return () => unsubscribe();
-  }, []);
+  }, [updateMember]);
 
   const logout = useCallback(() => {
     signOut(auth);
@@ -55,13 +64,14 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       profileImageUrl: user.photoURL,
       username: user.displayName,
     }).then(() => {
+      updateMember(user);
       setIsDialogOpen(false);
     });
-  }, [user]);
+  }, [user, updateMember]);
 
   return (
     <>
-      <AuthContext.Provider value={{ user, member }}>
+      <AuthContext.Provider value={{ user, member, isLoaded }}>
         {children}
       </AuthContext.Provider>
       <Dialog

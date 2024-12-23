@@ -39,7 +39,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
   const [timestamp, setTimestamp] = useState<number | null>(null);
 
   const router = useRouter();
-  const { member } = useContext(AuthContext);
+  const { member, isLoaded } = useContext(AuthContext);
 
   const submit = useCallback(async () => {
     if (title === '' || content === '' || category === '' || mainImage == null) {
@@ -126,11 +126,11 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
   }, [id]);
 
   useEffect(() => {
-    if (member == null || member.role === 'member' || member.role === 'visitor') {
+    if (isLoaded && member?.role !== 'owner') {
       window.alert('접근 권한이 없습니다.');
       redirect('/');
     }
-  }, [member]);
+  }, [member, isLoaded]);
 
   useEffect(() => {
     setSeries('');
