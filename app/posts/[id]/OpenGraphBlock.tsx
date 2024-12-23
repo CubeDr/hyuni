@@ -50,14 +50,19 @@ export default async function OpenGraphBlock({ url }: Props) {
       {ogData && (
         <a className={styles.OpenGraphBlock} href={ogData.ogUrl}>
           {ogData.ogImage &&
-            <img src={ogData.ogImage} alt={ogData.ogTitle} className={styles.Image} />
+            <img src={ogData.ogImage} alt={ogData.ogTitle} className={styles.LeadingImage} />
           }
           <div className={styles.Content}>
-            <h2 className={styles.Title}>{ogData.ogTitle}</h2>
+            <h2 className={styles.Title}>
+              {ogData.ogImage &&
+                <img src={ogData.ogImage} alt={ogData.ogTitle} className={styles.ThumbnailImage} />
+              }
+              {ogData.ogTitle}
+            </h2>
             <div className={styles.DescriptionContainer}>
               <span className={styles.Description}>{ogData.ogDescription}</span>
             </div>
-            <span className={styles.Description}>{ogData.ogUrl}</span>
+            <span className={styles.Link}>{ogData.ogUrl}</span>
           </div>
         </a>
       )

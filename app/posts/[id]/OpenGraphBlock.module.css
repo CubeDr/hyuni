@@ -4,10 +4,21 @@
   min-height: 200px;
 }
 
-.Image {
+.LeadingImage {
   width: 200px;
   object-fit: cover;
   border-right: 1px solid var(--color-outline);
+}
+
+.ThumbnailImage {
+  /* Only visible in narrow screens. */
+  display: none;
+
+  width: 60px;
+  height: 100%;
+  border-radius: 8px;
+  margin-right: 8px;
+  object-fit: cover;
 }
 
 .Content {
@@ -15,11 +26,15 @@
   padding: 14px;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  overflow: auto;
 }
 
 .Title {
   font-size: 18px;
   margin-bottom: 4px;
+  display: flex;
+  align-items: center;
 }
 
 .DescriptionContainer {
@@ -37,6 +52,46 @@
   -webkit-box-orient: vertical;
 }
 
+.Link {
+  font-size: 12px;
+  line-height: 0.9rem;
+  color: var(--color-text-variant);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .Anchor {
   color: var(--color-primary-200);
+}
+
+@media screen and (max-width: 600px) {
+  .OpenGraphBlock {
+    border: 1px solid var(--color-outline);
+    display: flex;
+    min-height: 120px;
+  }
+
+  .Content {
+    margin: 4px;
+  }
+
+  .LeadingImage {
+    display: none;
+  }
+
+  .ThumbnailImage {
+    display: block;
+  }
+
+  .Title {
+    margin-top: 0;
+  }
+
+  .Description {
+    display: none;
+  }
+
+  .Link {
+    margin-top: 8px;
+  }
 }
