@@ -1,10 +1,11 @@
 'use client';
 
 import { AuthContext } from '@/firebase/AuthContext';
-import Image from 'next/image';
-import { FormEvent, KeyboardEvent, useCallback, useContext, useState } from 'react';
-import styles from './CommentWrite.module.css';
 import { addComment } from '@/firebase/comments';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { FormEvent, KeyboardEvent, useCallback, useContext, useRef, useState } from 'react';
+import styles from './CommentWrite.module.css';
 
 interface Props {
   postId: string;
@@ -12,7 +13,10 @@ interface Props {
 
 export default function CommentWrite({ postId }: Props) {
   const { user } = useContext(AuthContext);
+  const commentRef = useRef<HTMLDivElement>(null);
   const [comment, setComment] = useState('');
+
+  const router = useRouter();
 
   const isActive = comment.trim() !== '';
 
@@ -26,7 +30,11 @@ export default function CommentWrite({ postId }: Props) {
     const trimmed = comment.trim();
     if (trimmed === '') return;
 
-    addComment(trimmed, postId, user.uid);
+    addComment(trimmed, postId, user.uid).then(() => {
+      commentRef.current!.innerText = '';
+      setComment('');
+      router.refresh();
+    });
   }, [comment, postId, user?.uid]);
 
   const onKeyDown = useCallback((e: KeyboardEvent) => {
@@ -55,6 +63,7 @@ export default function CommentWrite({ postId }: Props) {
         <div className={styles.Box}>
           <span className={styles.DisplayName}>{user?.displayName}</span>
           <div
+            ref={commentRef}
             className={styles.Input + (isActive ? '' : ' ' + styles.Empty)}
             contentEditable
             onInput={onChange}

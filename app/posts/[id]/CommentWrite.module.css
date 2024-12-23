@@ -1,6 +1,7 @@
 .Comment {
   background-color: var(--theme-color-5);
   display: flex;
+  margin-top: 32px;
 }
 
 .Box {
