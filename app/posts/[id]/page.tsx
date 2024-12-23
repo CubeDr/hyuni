@@ -51,7 +51,7 @@ export default async function PostPage({ params: { id } }: Props) {
     <>
       <AppBar />
       <PostViewer post={post} />
-      <CommentsBlock />
+      <CommentsBlock postId={id} />
     </>
   );
 }
