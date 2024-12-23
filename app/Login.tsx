@@ -47,10 +47,6 @@ export default function Login() {
     }
   }, []);
 
-  if (member == null) {
-    return <></>;
-  }
-
   return <>
     <span onClick={user ? () => setIsLogoutDialogOpen(true) : login}>{user ? '로그아웃' : '로그인'}</span>
     <Dialog
