@@ -1,71 +1,31 @@
-'use client';
-
-import { AuthContext } from '@/firebase/AuthContext';
-import Image from 'next/image';
-import { FormEvent, KeyboardEvent, useCallback, useContext, useState } from 'react';
+import { Comment as CommentData } from '@/types/comment';
 import styles from './Comment.module.css';
-import { addComment } from '@/firebase/comments';
+import Image from 'next/image';
+import { timestampToString } from '@/utils/time';
 
 interface Props {
-  postId: string;
+  comment: CommentData;
 }
 
-export default function Comment({ postId }: Props) {
-  const { user } = useContext(AuthContext);
-  const [comment, setComment] = useState('');
-
-  const isActive = comment.trim() !== '';
-
-  const onChange = useCallback((e: FormEvent<HTMLDivElement>) => {
-    setComment(e.currentTarget.innerText);
-  }, []);
-
-  const onSubmit = useCallback(() => {
-    if (user == null) return;
-
-    const trimmed = comment.trim();
-    if (trimmed === '') return;
-
-    addComment(trimmed, postId, user.uid);
-  }, [comment, postId, user?.uid]);
-
-  const onKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Enter' && e.ctrlKey) {
-      onSubmit();
-    }
-  }, [onSubmit]);
-
-  if (user == null) {
-    return (
-      <div className={styles.Comment}>
-        로그인이 필요합니다.
-      </div>
-    );
-  }
-
+export default function Comment({ comment }: Props) {
   return (
     <>
       <div className={styles.Comment}>
         <Image
-          className={styles.Photo}
-          src={user!.photoURL!}
+          src={'https://lh3.googleusercontent.com/a/ACg8ocJe_4E4asTmvPQqozMu-zbbzbihpIoFUrGtGAWE-gLwdLv3sez4jA=s288-c-no'}
           width={44}
           height={44}
-          alt={user!.displayName ?? user.email ?? '유저'} />
-        <div className={styles.Box}>
-          <span className={styles.DisplayName}>{user?.displayName}</span>
-          <div
-            className={styles.Input + (isActive ? '' : ' ' + styles.Empty)}
-            contentEditable
-            onInput={onChange}
-            onKeyDown={onKeyDown} />
+          alt={'Profile image'}
+          className={styles.Image} />
+        <div className={styles.Content}>
+          <div className={styles.Metadata}>
+            <span className={styles.UserName}>{comment.userId}</span>
+            <span className={styles.Timestamp}>{timestampToString(comment.timestamp)}</span>
+          </div>
+          <div className={styles.Comment}>{comment.comment}</div>
         </div>
       </div>
-      <div
-        className={styles.Button + (isActive ? '' : ' ' + styles.Inactive)}
-        onClick={onSubmit}>
-        등록
-      </div>
+      <div className={styles.Divider} />
     </>
   );
 }

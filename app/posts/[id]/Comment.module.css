@@ -1,57 +1,32 @@
 .Comment {
-  background-color: var(--theme-color-5);
   display: flex;
+  padding: 24px 0;
 }
 
-.Box {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  border: 1px solid var(--color-outline);
-  padding: 14px;
-}
-
-.Photo {
+.Image {
   border-radius: 50%;
-  margin-right: 14px;
+  margin-right: 18px;
 }
 
-.DisplayName {
-  font-size: 14px;
+.Content {
+  flex-grow: 1;
+}
+
+.Metadata {
+  display: flex;
+  justify-content: space-between;
+}
+
+.UserName {
   font-weight: bold;
-  letter-spacing: -0.1em;
 }
 
-.Input {
-  background: none;
-  border: none;
-  outline: none;
-  white-space: pre-wrap;
-
-  font-size: 16px;
-  color: var(--color-text);
-
-  margin-top: 8px;
-  min-height: 1.5em;
-}
-
-.Input.Empty::before {
-  content: '댓글을 입력하세요.';
+.Timestamp {
+  font-size: 12px;
   color: var(--color-text-variant);
-  display: block;
-  position: absolute;
 }
 
-.Button {
-  float: right;
-  background-color: var(--active-color);
-  padding: 8px 24px;
-  margin: 8px 0;
-  border-radius: 16px;
-  cursor: pointer;
-}
-
-.Button.Inactive {
-  background-color: var(--deactive-color);
-  cursor: default;
+.Divider {
+  height: 1px;
+  background-color: var(--color-outline);
 }
