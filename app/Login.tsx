@@ -2,11 +2,18 @@
 
 import { AuthContext } from '@/firebase/AuthContext';
 import { auth } from '@/firebase/firebaseClient';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useState } from 'react';
 
 export default function Login() {
-  const { user } = useContext(AuthContext);
+  const { user, role } = useContext(AuthContext);
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
   const login = useCallback(async () => {
     const provider = new GoogleAuthProvider();
@@ -23,9 +30,7 @@ export default function Login() {
         body: JSON.stringify({ idToken }),
       });
 
-      if (response.ok) {
-        window.alert('Signed in successfully!');
-      } else {
+      if (!response.ok) {
         console.error('Sign-in error:', response.status);
       }
     } catch (error) {
@@ -36,13 +41,40 @@ export default function Login() {
   const logout = useCallback(async () => {
     try {
       await signOut(auth);
-      window.alert('Signed out successfully!');
+      setIsLogoutDialogOpen(false);
     } catch (error) {
       console.error('Sign-out error:', error);
     }
   }, []);
 
+  if (role == null) {
+    return <>&nsbp;</>;
+  }
+
   return <>
-    <span onClick={user ? logout : login}>{user ? '로그아웃' : '로그인'}</span>
+    <span onClick={user ? () => setIsLogoutDialogOpen(true) : login}>{user ? '로그아웃' : '로그인'}</span>
+    <Dialog
+      open={isLogoutDialogOpen}
+      onClose={() => setIsLogoutDialogOpen(false)}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        로그아웃
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          로그아웃 하시겠습니까?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => setIsLogoutDialogOpen(false)} color='inherit'>
+          취소
+        </Button>
+        <Button onClick={logout}>
+          확인
+        </Button>
+      </DialogActions>
+    </Dialog>
   </>;
 }
