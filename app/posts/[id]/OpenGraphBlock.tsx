@@ -64,7 +64,7 @@ export default async function OpenGraphBlock({ url }: Props) {
       }
       {
         !ogData && (
-          <a href={url}>{url}</a>
+          <a href={url} className={styles.Anchor}>{url}</a>
         )
       }
     </>

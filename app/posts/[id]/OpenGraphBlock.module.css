@@ -36,3 +36,7 @@
   line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+.Anchor {
+  color: var(--color-primary-200);
+}
