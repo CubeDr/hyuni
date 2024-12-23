@@ -15,6 +15,14 @@
   font-family: "PT Mono", "Nanum Gothic";
 }
 
+.Content a {
+  line-break: anywhere;
+}
+
+.Content code {
+  overflow-x: auto;
+}
+
 @media screen and (max-width: 970px) {
   .Divider {
     margin: 32px -24px 0;
