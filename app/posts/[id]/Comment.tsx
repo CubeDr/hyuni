@@ -18,13 +18,13 @@ export default function Comment() {
 
   return (
     <div className={styles.Comment}>
-      <div className={styles.User}>
-        <Image
-          className={styles.Photo}
-          src={user!.photoURL!}
-          width={24}
-          height={24}
-          alt={user!.displayName ?? user.email ?? '유저'} />
+      <Image
+        className={styles.Photo}
+        src={user!.photoURL!}
+        width={50}
+        height={50}
+        alt={user!.displayName ?? user.email ?? '유저'} />
+      <div className={styles.Box}>
         <span className={styles.DisplayName}>{user?.displayName}</span>
       </div>
     </div>
