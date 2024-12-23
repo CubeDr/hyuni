@@ -2,6 +2,8 @@ import { Comment } from '@/types/comment';
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   getDocs,
   orderBy,
   query,
@@ -40,4 +42,9 @@ export async function getComments(postId: string) {
     } as Comment);
   });
   return result;
+}
+
+export async function deleteComment(postId: string, commentId: string) {
+  const docRef = doc(db, 'posts', postId, 'comment', commentId);
+  return await deleteDoc(docRef);
 }

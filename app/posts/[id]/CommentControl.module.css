@@ -1,0 +1,13 @@
+.CommentControl {
+  text-align: end;
+  font-size: 12px;
+  color: var(--color-text-variant);
+}
+
+.Delete {
+  cursor: pointer;
+}
+
+.Delete:hover {
+  text-decoration: underline;
+}
