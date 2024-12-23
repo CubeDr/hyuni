@@ -2,8 +2,14 @@
 
 import { auth } from '@/firebase/firebaseClient';
 import { Member } from '@/types/member';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { createContext, useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { createContext, useCallback, useEffect, useState } from 'react';
 import { getMember } from './members';
 
 interface AuthContextType {
@@ -17,20 +23,58 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   const [user, setUser] = useState<User | null>(null);
   const [member, setMember] = useState<Member | null>(null);
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
 
       if (user != null) {
-        getMember(user.uid).then((member) => setMember(member));
+        getMember(user.uid).then((member) => {
+          if (member == null) {
+            setIsDialogOpen(true);
+          } else {
+            setMember(member);
+          }
+        });
       }
     });
     return () => unsubscribe();
   }, []);
 
+  const logout = useCallback(() => {
+    signOut(auth);
+    setIsDialogOpen(false);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, member }}>
-      {children}
-    </AuthContext.Provider>
+    <>
+      <AuthContext.Provider value={{ user, member }}>
+        {children}
+      </AuthContext.Provider>
+      <Dialog
+        open={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          회원 가입
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            가입되어 있지 않은 계정입니다. 회원 가입 하시겠습니까?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={logout} color='inherit'>
+            취소
+          </Button>
+          <Button onClick={() => { }}>
+            확인
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 }
