@@ -2,10 +2,15 @@
 
 import { AuthContext } from '@/firebase/AuthContext';
 import Image from 'next/image';
-import { FormEvent, useCallback, useContext, useState } from 'react';
+import { FormEvent, KeyboardEvent, useCallback, useContext, useState } from 'react';
 import styles from './Comment.module.css';
+import { addComment } from '@/firebase/comments';
 
-export default function Comment() {
+interface Props {
+  postId: string;
+}
+
+export default function Comment({ postId }: Props) {
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState('');
 
@@ -14,6 +19,21 @@ export default function Comment() {
   const onChange = useCallback((e: FormEvent<HTMLDivElement>) => {
     setComment(e.currentTarget.innerText);
   }, []);
+
+  const onSubmit = useCallback(() => {
+    if (user == null) return;
+
+    const trimmed = comment.trim();
+    if (trimmed === '') return;
+
+    addComment(trimmed, postId, user.uid);
+  }, [comment, postId, user?.uid]);
+
+  const onKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Enter' && e.ctrlKey) {
+      onSubmit();
+    }
+  }, [onSubmit]);
 
   if (user == null) {
     return (
@@ -37,10 +57,15 @@ export default function Comment() {
           <div
             className={styles.Input + (isActive ? '' : ' ' + styles.Empty)}
             contentEditable
-            onInput={onChange} />
+            onInput={onChange}
+            onKeyDown={onKeyDown} />
         </div>
       </div>
-      <div className={styles.Button + (isActive ? '' : ' ' + styles.Inactive)}>등록</div>
+      <div
+        className={styles.Button + (isActive ? '' : ' ' + styles.Inactive)}
+        onClick={onSubmit}>
+        등록
+      </div>
     </>
   );
 }
