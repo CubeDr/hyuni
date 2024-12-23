@@ -10,7 +10,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { createContext, useCallback, useEffect, useState } from 'react';
-import { getMember } from './members';
+import { getMember, setMember as setMemberFirebase } from './members';
 
 interface AuthContextType {
   user: User | null;
@@ -47,6 +47,18 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     setIsDialogOpen(false);
   }, []);
 
+  const signup = useCallback(() => {
+    if (user == null) return;
+
+    setMemberFirebase({
+      id: user.uid,
+      profileImageUrl: user.photoURL,
+      username: user.displayName,
+    }).then(() => {
+      setIsDialogOpen(false);
+    });
+  }, [user]);
+
   return (
     <>
       <AuthContext.Provider value={{ user, member }}>
@@ -70,7 +82,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
           <Button onClick={logout} color='inherit'>
             취소
           </Button>
-          <Button onClick={() => { }}>
+          <Button onClick={signup}>
             확인
           </Button>
         </DialogActions>
