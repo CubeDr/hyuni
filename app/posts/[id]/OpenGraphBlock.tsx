@@ -31,6 +31,10 @@ async function fetchOgData(url: string): Promise<OgObject | null> {
       ogDescription: result['og:description'],
     }
 
+    if (ogData.ogImage == null || ogData.ogImage === '' || ogData.ogTitle == null || ogData.ogTitle === '') {
+      return null;
+    }
+
     cache.set(url, ogData);
     return ogData;
   } catch (e) {
