@@ -1,12 +1,17 @@
 'use client';
 
 import { AuthContext } from '@/firebase/AuthContext';
-import { useContext } from 'react';
-import styles from './Comment.module.css';
 import Image from 'next/image';
+import { FormEvent, useCallback, useContext, useRef, useState } from 'react';
+import styles from './Comment.module.css';
 
 export default function Comment() {
   const { user } = useContext(AuthContext);
+  const [comment, setComment] = useState('');
+
+  const onChange = useCallback((e: FormEvent<HTMLDivElement>) => {
+    setComment(e.currentTarget.innerText);
+  }, []);
 
   if (user == null) {
     return (
@@ -26,6 +31,10 @@ export default function Comment() {
         alt={user!.displayName ?? user.email ?? '유저'} />
       <div className={styles.Box}>
         <span className={styles.DisplayName}>{user?.displayName}</span>
+        <div
+          className={styles.Input + (comment.trim() === '' ? ' ' + styles.Empty : '')}
+          contentEditable
+          onInput={onChange} />
       </div>
     </div>
   );
