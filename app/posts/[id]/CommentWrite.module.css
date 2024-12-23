@@ -43,9 +43,13 @@
   position: absolute;
 }
 
+.Control {
+  text-align: end;
+}
+
 .Button {
-  float: right;
   background-color: var(--active-color);
+  display: inline-block;
   padding: 8px 24px;
   margin: 8px 0;
   border-radius: 16px;

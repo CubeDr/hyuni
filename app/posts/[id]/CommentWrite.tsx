@@ -70,10 +70,12 @@ export default function CommentWrite({ postId }: Props) {
             onKeyDown={onKeyDown} />
         </div>
       </div>
-      <div
-        className={styles.Button + (isActive ? '' : ' ' + styles.Inactive)}
-        onClick={onSubmit}>
-        등록
+      <div className={styles.Control}>
+        <span
+          className={styles.Button + (isActive ? '' : ' ' + styles.Inactive)}
+          onClick={onSubmit}>
+          등록
+        </span>
       </div>
     </>
   );
