@@ -1,11 +1,12 @@
 .Comment {
   background-color: var(--theme-color-5);
   padding: 14px;
+  display: flex;
 }
 
-.User {
+.Box {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .Photo {
