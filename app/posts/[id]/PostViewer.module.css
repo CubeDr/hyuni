@@ -15,6 +15,17 @@
   font-family: "PT Mono", "Nanum Gothic";
 }
 
+@media screen and (max-width: 970px) {
+  .Divider {
+    margin: 32px -24px 0;
+  }
+
+  .Content {
+    margin: 0 -24px;
+    padding: 24px;
+  }
+}
+
 .Content strong {
   color: var(--color-primary);
 }
