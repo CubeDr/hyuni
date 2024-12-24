@@ -16,7 +16,7 @@ import { db } from './firebaseClient';
 import { addPostToSeries } from './series';
 
 export async function addPost(
-  postData: Omit<Post, 'timestamp' | 'lastUpdated'>
+  postData: Omit<Post, 'timestamp' | 'lastUpdated' | 'commentsCount'>
 ): Promise<string> {
   const postDocRef = await addDoc(collection(db, 'posts'), {
     title: postData.title,
@@ -26,6 +26,7 @@ export async function addPost(
     timestamp: new Date().getTime(),
     lastUpdated: new Date().getTime(),
     thumbnailImageSrc: postData.thumbnailImageSrc,
+    commentsCount: 0,
   });
 
   if (postData.series !== '') {
@@ -38,7 +39,7 @@ export async function addPost(
 
 export async function updatePost(
   id: string,
-  postData: Omit<Post, 'lastUpdated'>
+  postData: Omit<Post, 'lastUpdated' | 'commentsCount'>
 ): Promise<string> {
   await updateDoc(doc(collection(db, 'posts'), id), {
     ...postData,
@@ -49,8 +50,8 @@ export async function updatePost(
 
 export async function getPost(id: string): Promise<Post | null> {
   const snapshot = await getDoc(doc(collection(db, 'posts'), id));
-  const data = snapshot.data();
-  return data as Post | null;
+  const post = snapshot.data();
+  return post as Post | null;
 }
 
 export interface GetPostsOptions {

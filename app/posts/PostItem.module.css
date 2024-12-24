@@ -50,10 +50,18 @@
   font-size: 12px;
 }
 
-.Timestamp {
+.Bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 12px;
   margin-top: 8px;
-  text-align: right;
+}
+
+.CommentIcon {
+  font-size: 14px;
+  margin-right: 8px;
+  transform: translateY(3px);
 }
 
 @media screen and (max-width: 450px) {

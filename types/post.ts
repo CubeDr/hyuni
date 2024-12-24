@@ -9,5 +9,6 @@ interface Post {
   timestamp: number;
   lastUpdated: number;
   thumbnailImageSrc: string;
+  commentsCount: number;
   id?: string;
 }
