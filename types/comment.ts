@@ -1,9 +1,11 @@
+import { Member } from './member';
+
 export interface Comment {
   comment: string;
   postId: string;
   timestamp: number;
 
-  userId: string;
+  member: Member;
 
   id: string;
 }

@@ -9,7 +9,16 @@ import {
   query,
 } from 'firebase/firestore';
 import { db } from './firebaseClient';
+import { getMembers } from './members';
 import { updatePostCommentsCount } from './posts';
+
+interface FirebaseComment {
+  id: string;
+  comment: string;
+  postId: string;
+  timestamp: number;
+  userId: string;
+}
 
 export async function addComment(
   comment: string,
@@ -29,11 +38,16 @@ export async function addComment(
   return commentDocRef.id;
 }
 
-export async function getComments(postId: string) {
+export async function getComments(postId: string): Promise<Comment[]> {
   const collectionRef = collection(db, 'posts', postId, 'comment');
   const q = query(collectionRef, orderBy('timestamp', 'desc'));
 
   const snapshot = await getDocs(q);
+
+  const userIds = new Set<string>(
+    snapshot.docs.map((doc) => doc.data().userId)
+  );
+  const members = await getMembers(Array.from(userIds));
 
   const result: Comment[] = [];
   snapshot.forEach((doc) => {
@@ -41,6 +55,7 @@ export async function getComments(postId: string) {
       ...doc.data(),
       postId,
       id: doc.id,
+      member: members.get(doc.data().userId),
     } as Comment);
   });
   return result;
