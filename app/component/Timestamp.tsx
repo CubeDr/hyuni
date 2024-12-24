@@ -4,8 +4,9 @@ import { timestampToString } from '@/utils/time';
 
 interface Props {
   timestamp: number;
+  showTime?: boolean;
 }
 
-export default function Timestamp({ timestamp }: Props) {
-  return <>{timestampToString(timestamp)}</>;
+export default function Timestamp({ timestamp, showTime = true }: Props) {
+  return <>{timestampToString(timestamp, showTime)}</>;
 }

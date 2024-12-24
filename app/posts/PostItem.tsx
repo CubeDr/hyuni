@@ -27,7 +27,7 @@ export default function PostItem({ post }: Props) {
         <div className={styles.Content}>{markdownToPlainText(post.blocks[0].content)}</div>
         <div className={styles.Bottom}>
           <span><MdOutlineModeComment className={styles.CommentIcon} />{post.commentsCount ?? 0}</span>
-          <span><Timestamp timestamp={post.timestamp} /></span>
+          <span><Timestamp timestamp={post.timestamp} showTime={false} /></span>
         </div>
       </div>
     </a>
