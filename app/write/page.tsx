@@ -53,7 +53,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
       return;
     }
 
-    const postData: Omit<Post, 'timestamp' | 'lastUpdated'> = {
+    const postData: Omit<Post, 'timestamp' | 'lastUpdated' | 'commentsCount'> = {
       title,
       category,
       series,
