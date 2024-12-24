@@ -20,6 +20,10 @@ export async function getMember(userId: string) {
 export async function getMembers(
   userIds: string[]
 ): Promise<Map<string, Member>> {
+  if (userIds.length === 0) {
+    return new Map();
+  }
+
   const collectionRef = collection(db, 'members');
   const q = query(collectionRef, where(documentId(), 'in', userIds));
   const snapshot = await getDocs(q);
