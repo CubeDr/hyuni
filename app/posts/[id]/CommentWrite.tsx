@@ -1,12 +1,12 @@
 'use client';
 
+import Login from '@/app/Login';
 import { AuthContext } from '@/firebase/AuthContext';
 import { addComment } from '@/firebase/comments';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FormEvent, KeyboardEvent, useCallback, useContext, useRef, useState } from 'react';
-import styles from './CommentWrite.module.css';
 import ProfileImage from './CommentProfileImage';
+import styles from './CommentWrite.module.css';
 
 interface Props {
   postId: string;
@@ -19,7 +19,8 @@ export default function CommentWrite({ postId }: Props) {
 
   const router = useRouter();
 
-  const isActive = comment.trim() !== '';
+  const isNotEmpty = comment.trim() !== '';
+  const isActive = user == null || isNotEmpty;
 
   const onChange = useCallback((e: FormEvent<HTMLDivElement>) => {
     setComment(e.currentTarget.innerText);
@@ -52,7 +53,7 @@ export default function CommentWrite({ postId }: Props) {
           <span className={styles.DisplayName}>{user ? (user.displayName ?? '익명 유저') : '로그인이 필요합니다.'}</span>
           <div
             ref={commentRef}
-            className={styles.Input + (isActive ? '' : ' ' + styles.Empty)}
+            className={styles.Input + (isNotEmpty ? '' : ' ' + styles.Empty)}
             contentEditable={!!user}
             onInput={user ? onChange : undefined}
             onKeyDown={user ? onKeyDown : undefined} />
@@ -62,7 +63,7 @@ export default function CommentWrite({ postId }: Props) {
         <span
           className={styles.Button + (isActive ? '' : ' ' + styles.Inactive)}
           onClick={user ? onSubmit : undefined}>
-          등록
+          {user ? '등록' : <Login />}
         </span>
       </div>
     </>
