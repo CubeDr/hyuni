@@ -190,6 +190,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
                 timestamp: timestamp ?? new Date().getTime(),
                 lastUpdated: new Date().getTime(),
                 thumbnailImageSrc: mainImage ?? '',
+                commentsCount: 0,
               }} />
             </>
           }
