@@ -2,6 +2,7 @@ import {
   addDoc,
   collection,
   doc,
+  getCountFromServer,
   getDoc,
   getDocs,
   limit,
@@ -94,4 +95,15 @@ export async function getPosts(
     } as Post);
   });
   return result;
+}
+
+export async function updatePostCommentsCount(postId: string) {
+  const postRef = doc(db, 'posts', postId);
+  const collectionRef = collection(postRef, 'comment');
+  const snapshot = await getCountFromServer(collectionRef);
+  const count = snapshot.data().count;
+
+  await updateDoc(postRef, {
+    commentsCount: count,
+  });
 }

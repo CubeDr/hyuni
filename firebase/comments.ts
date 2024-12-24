@@ -9,6 +9,7 @@ import {
   query,
 } from 'firebase/firestore';
 import { db } from './firebaseClient';
+import { updatePostCommentsCount } from './posts';
 
 export async function addComment(
   comment: string,
@@ -23,6 +24,7 @@ export async function addComment(
       timestamp: new Date().getTime(),
     }
   );
+  await updatePostCommentsCount(postId);
 
   return commentDocRef.id;
 }
@@ -46,5 +48,6 @@ export async function getComments(postId: string) {
 
 export async function deleteComment(postId: string, commentId: string) {
   const docRef = doc(db, 'posts', postId, 'comment', commentId);
-  return await deleteDoc(docRef);
+  await deleteDoc(docRef);
+  await updatePostCommentsCount(postId);
 }
