@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FormEvent, KeyboardEvent, useCallback, useContext, useRef, useState } from 'react';
 import styles from './CommentWrite.module.css';
+import ProfileImage from './CommentProfileImage';
 
 interface Props {
   postId: string;
@@ -43,37 +44,24 @@ export default function CommentWrite({ postId }: Props) {
     }
   }, [onSubmit]);
 
-  if (user == null) {
-    return (
-      <div className={styles.Comment}>
-        로그인이 필요합니다.
-      </div>
-    );
-  }
-
   return (
     <>
       <div className={styles.Comment}>
-        <Image
-          className={styles.Photo}
-          src={user!.photoURL!}
-          width={44}
-          height={44}
-          alt={user!.displayName ?? user.email ?? '유저'} />
+        <ProfileImage src={user?.photoURL} className={styles.Photo} />
         <div className={styles.Box}>
-          <span className={styles.DisplayName}>{user?.displayName}</span>
+          <span className={styles.DisplayName}>{user ? (user.displayName ?? '익명 유저') : '로그인이 필요합니다.'}</span>
           <div
             ref={commentRef}
             className={styles.Input + (isActive ? '' : ' ' + styles.Empty)}
-            contentEditable
-            onInput={onChange}
-            onKeyDown={onKeyDown} />
+            contentEditable={!!user}
+            onInput={user ? onChange : undefined}
+            onKeyDown={user ? onKeyDown : undefined} />
         </div>
       </div>
       <div className={styles.Control}>
         <span
           className={styles.Button + (isActive ? '' : ' ' + styles.Inactive)}
-          onClick={onSubmit}>
+          onClick={user ? onSubmit : undefined}>
           등록
         </span>
       </div>
