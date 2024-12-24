@@ -20,25 +20,7 @@ export default function Login() {
 
   const login = useCallback(async () => {
     const provider = new GoogleAuthProvider();
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      const idToken = await user.getIdToken();
-
-      const response = await fetch('/api/auth', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ idToken }),
-      });
-
-      if (!response.ok) {
-        console.error('Sign-in error:', response.status);
-      }
-    } catch (error) {
-      console.error('Sign-in error:', error);
-    }
+    await signInWithPopup(auth, provider);
   }, []);
 
   const logout = useCallback(async () => {
