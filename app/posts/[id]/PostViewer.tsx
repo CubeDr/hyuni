@@ -2,8 +2,9 @@ import Timestamp from '@/app/component/Timestamp';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { visit } from 'unist-util-visit';
-import OpenGraphBlock from './OpenGraphBlock';
+import OpenGraphBlockServer from './OpenGraphBlockServer';
 import styles from './PostViewer.module.css';
+import OpenGraphBlockClient from './OpenGraphBlockClient';
 
 interface Props {
   post: Post;
@@ -31,7 +32,11 @@ export default function PostViewer({ post: {
             p: ({ node, ...props }) => <div className={styles.Paragraph} {...props} />,
             a({ href, children }) {
               if (href != null && href === children?.toString()) {
-                return <OpenGraphBlock url={href} />
+                if (typeof window == 'undefined') {
+                  return <OpenGraphBlockServer url={href} />
+                } else {
+                  return <OpenGraphBlockClient url={href} />
+                }
               } else {
                 return <a href={href} className={styles.Anchor}>{children}</a>
               }
