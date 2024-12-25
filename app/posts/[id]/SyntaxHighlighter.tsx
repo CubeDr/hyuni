@@ -15,22 +15,22 @@ import xml from "highlight.js/lib/languages/xml";
 import yaml from "highlight.js/lib/languages/yaml";
 import { useEffect } from 'react';
 
-hljs.registerLanguage("javascript", javascript);
-hljs.registerLanguage("typescript", typescript);
-hljs.registerLanguage("js", javascript);
-hljs.registerLanguage("ts", typescript);
-hljs.registerLanguage("java", java);
-hljs.registerLanguage("kotlin", kotlin);
-hljs.registerLanguage("json", json);
-hljs.registerLanguage("html", xml);
-hljs.registerLanguage("xml", xml);
-hljs.registerLanguage("python", python);
-hljs.registerLanguage("css", css);
-hljs.registerLanguage("sql", sql);
-hljs.registerLanguage("yaml", yaml);
-
 export default function SyntaxHighlighter() {
   useEffect(() => {
+    hljs.registerLanguage("javascript", javascript);
+    hljs.registerLanguage("typescript", typescript);
+    hljs.registerLanguage("js", javascript);
+    hljs.registerLanguage("ts", typescript);
+    hljs.registerLanguage("java", java);
+    hljs.registerLanguage("kotlin", kotlin);
+    hljs.registerLanguage("json", json);
+    hljs.registerLanguage("html", xml);
+    hljs.registerLanguage("xml", xml);
+    hljs.registerLanguage("python", python);
+    hljs.registerLanguage("css", css);
+    hljs.registerLanguage("sql", sql);
+    hljs.registerLanguage("yaml", yaml);
+
     hljs.highlightAll();
   }, []);
 
