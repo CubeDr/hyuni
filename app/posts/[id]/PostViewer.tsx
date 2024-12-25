@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm';
 import { visit } from 'unist-util-visit';
 import OpenGraphBlock from './OpenGraphBlock';
 import styles from './PostViewer.module.css';
+import SyntaxHighlighter from './SyntaxHighlighter';
 
 interface Props {
   post: Post;
@@ -49,6 +50,7 @@ export default function PostViewer({ post: {
           {blocks[0].content}
         </ReactMarkdown>
       </div>
+      <SyntaxHighlighter />
     </>
   );
 }
