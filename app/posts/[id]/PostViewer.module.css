@@ -49,8 +49,11 @@
   color: var(--color-primary-hover);
 }
 
-.Content code {
+.Content pre code {
   display: block;
+}
+
+.Content code {
   background-color: var(--color-code-background);
   padding: 14px;
   border-radius: 8px;
