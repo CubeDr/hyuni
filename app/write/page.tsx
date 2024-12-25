@@ -106,6 +106,28 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
     });
   }, [category, setSeriesList, setSeries]);
 
+  const convertGoogleDriveImageLink = useCallback(() => {
+    const originalLink = window.prompt('구글 드라이브 이미지 링크 입력. 변환된 링크가 복사됩니다.');
+    if (originalLink == null) return;
+
+    const url = new URL(originalLink);
+    const path = url.pathname;
+
+    if (!path.startsWith('/file/d/')) {
+      window.alert('링크 형식이 올바르지 않습니다. /file/d/ 로 경로가 시작되어야 합니다.');
+      return;
+    }
+
+    const idPart = path.slice(8);
+    console.log(idPart);
+
+    const slashIndex = idPart.indexOf('/');
+    const id = slashIndex !== -1 ? idPart.slice(0, slashIndex) : idPart;
+    const imageSrc = `![](https://lh3.googleusercontent.com/d/${id})`;
+    navigator.clipboard.writeText(imageSrc);
+    window.alert('복사 완료');
+  }, []);
+
   useEffect(() => {
     getCategories().then(setCategories);
   }, []);
@@ -196,8 +218,11 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
           }
 
           <div className={styles.ControlRow}>
-            <Button variant="outlined" onClick={togglePageState}>{pageState === 'edit' ? '미리보기' : '편집'}</Button>
-            <Button variant="contained" onClick={submit} className={styles.SubmitButton}>게시</Button>
+            <Button variant="outlined" onClick={convertGoogleDriveImageLink}>구귿 드라이브 이미지 변환</Button>
+            <div>
+              <Button variant="outlined" onClick={togglePageState}>{pageState === 'edit' ? '미리보기' : '편집'}</Button>
+              <Button variant="contained" onClick={submit} className={styles.SubmitButton}>게시</Button>
+            </div>
           </div>
         </div>
         <Dialog
