@@ -15,7 +15,12 @@ const ptMono = PT_Mono({ subsets: ['latin'], weight: '400' });
 
 export const metadata: Metadata = {
   title: '현이의 개발 이야기',
-  description: '"좋은 코드가 좋은 제품을 만든다"를 믿는 개발자입니다.',
+  description: `
+  "좋은 코드가 좋은 제품을 만든다"를 믿는 개발자입니다.
+  블로그, 요즘 IT, 책 집필 등의 글 쓰기 활동을 하고 있으며, 주로 개발 관련 내용이나 인사이트를 공유하는 포스트를 작성합니다.
+  * 구글코리아 소프트웨어 엔지니어
+  * [취업과 이직을 위한 프로그래머스 문제 풀이 전략: 자바편] 집필
+  `,
   authors: [{ name: '김현이 (Hyuni Kim)', url: 'https://hyuni.dev' }],
   creator: '김현이 (Hyuni Kim)',
   openGraph: {
