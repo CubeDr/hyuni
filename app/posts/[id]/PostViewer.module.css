@@ -19,7 +19,17 @@
   line-break: anywhere;
 }
 
+.Content pre code {
+  display: block;
+  padding: 14px;
+}
+
 .Content code {
+  background-color: var(--color-code-background);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4rem;
   overflow-x: auto;
 }
 
@@ -47,18 +57,6 @@
 
 .Content .Anchor:hover {
   color: var(--color-primary-hover);
-}
-
-.Content pre code {
-  display: block;
-}
-
-.Content code {
-  background-color: var(--color-code-background);
-  padding: 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  line-height: 1.4rem;
 }
 
 .Paragraph {
