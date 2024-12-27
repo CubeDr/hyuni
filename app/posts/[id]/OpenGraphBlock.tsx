@@ -23,7 +23,9 @@ export default function OpenGraphBlock({ url, ogObject }: Props) {
           <div className={styles.Content}>
             <h2 className={styles.Title}>
               {ogObject.ogImage &&
-                <img src={ogObject.ogImage} alt={ogObject.ogTitle} className={styles.ThumbnailImage} />
+                <div className={styles.ThumbnailImageContainer}>
+                  <img src={ogObject.ogImage} alt={ogObject.ogTitle} className={styles.ThumbnailImage} />
+                </div>
               }
               {ogObject.ogTitle}
             </h2>
