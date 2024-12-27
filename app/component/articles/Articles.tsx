@@ -5,6 +5,12 @@ export default function Articles() {
   return (
     <div className={styles.Row}>
       <Article
+        title="2024년 개발자 회고: 무엇을 배우고 성장했을까?"
+        date='2024-12-27'
+        imageUrl='https://yozm.wishket.com/media/news/2907/twtw.jpg'
+        link='https://yozm.wishket.com/magazine/detail/2907/'
+        source='요즘 IT' />
+      <Article
         title="개발자를 위한 실전 '코딩 테스트' 준비 팁"
         date='2024-09-10'
         imageUrl='https://yozm.wishket.com/media/news/2755/21513.jpg'
