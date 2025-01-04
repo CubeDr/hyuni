@@ -2,9 +2,9 @@ import Timestamp from '@/app/component/Timestamp';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { visit } from 'unist-util-visit';
+import OpenGraphBlockClient from './OpenGraphBlockClient';
 import OpenGraphBlockServer from './OpenGraphBlockServer';
 import styles from './PostViewer.module.css';
-import OpenGraphBlockClient from './OpenGraphBlockClient';
 
 interface Props {
   post: Post;

@@ -1,10 +1,11 @@
 import AppBar from '@/app/component/appbar/AppBar';
-import { getPost } from '@/firebase/posts';
+import { getPost, getPosts } from '@/firebase/posts';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 import CommentsBlock from './CommentsBlock';
+import PostNavigator from './PostNavigator';
 import PostViewer from './PostViewer';
 
 interface Props {
@@ -47,10 +48,18 @@ export default async function PostPage({ params: { id } }: Props) {
     notFound();
   }
 
+  const seriesPosts = post.series != null ? await getPosts(post.category, post.series) : [];
+  const index = seriesPosts.findIndex((post) => post.id === id);
+  const prevPost = seriesPosts[index + 1];
+  const nextPost = seriesPosts[index - 1];
+
   return (
     <>
       <AppBar />
       <PostViewer post={post} />
+      {(prevPost != null || nextPost != null) &&
+        <PostNavigator prevPost={prevPost} nextPost={nextPost} />
+      }
       <CommentsBlock postId={id} />
     </>
   );
