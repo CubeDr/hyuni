@@ -11,6 +11,7 @@ import {
 import { db } from './firebaseClient';
 
 export async function getSeriesList(category: string): Promise<string[]> {
+  console.log(category);
   const collectionRef = collection(db, 'categories', category, 'series');
   const snapshot = await getDocs(collectionRef);
   const series: string[] = [];

@@ -62,6 +62,7 @@ export interface GetPostsOptions {
 
 export async function getPosts(
   category?: string,
+  series?: string,
   options?: GetPostsOptions
 ): Promise<Post[]> {
   const collectionRef = collection(db, 'posts');
@@ -69,6 +70,9 @@ export async function getPosts(
 
   if (category != null) {
     q = query(q, where('category', '==', category));
+  }
+  if (series != null) {
+    q = query(q, where('series', '==', series));
   }
 
   q = query(q, orderBy('timestamp', 'desc'));
@@ -97,12 +101,19 @@ export async function getPosts(
   return result;
 }
 
-export async function getPostsCount(category?: string): Promise<number> {
+export async function getPostsCount(
+  category?: string,
+  series?: string
+): Promise<number> {
   const collectionRef = collection(db, 'posts');
   let q = query(collectionRef);
 
   if (category != null) {
     q = query(q, where('category', '==', category));
+  }
+
+  if (series != null) {
+    q = query(q, where('series', '==', series));
   }
 
   const snapshot = await getCountFromServer(q);
