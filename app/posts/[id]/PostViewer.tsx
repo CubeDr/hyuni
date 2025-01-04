@@ -1,10 +1,10 @@
 import Timestamp from '@/app/component/Timestamp';
+import 'highlight.js/styles/atom-one-dark.css';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import { visit } from 'unist-util-visit';
-import './androidstudio.css';
 import OpenGraphBlockClient from './OpenGraphBlockClient';
 import OpenGraphBlockServer from './OpenGraphBlockServer';
 import styles from './PostViewer.module.css';
