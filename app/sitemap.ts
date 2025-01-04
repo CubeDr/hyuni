@@ -1,5 +1,6 @@
 import { getCategories } from '@/firebase/categories';
 import { getPosts } from '@/firebase/posts';
+import { getSeriesList } from '@/firebase/series';
 import { MetadataRoute } from 'next';
 
 const BASE_URL = 'https://hyuni.dev';
@@ -30,6 +31,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const categories = await getCategories();
 
+  const series = await Promise.all(
+    categories.map((category) => getSeriesList(category))
+  );
+
   return [
     {
       url: BASE_URL,
@@ -53,6 +58,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         )
       ),
     })),
+    ...series.flatMap((seriesList, i) =>
+      seriesList.map((series) => ({
+        url:
+          BASE_URL +
+          '/posts?category=' +
+          categories[i] +
+          '&amp;series=' +
+          series,
+        lastModified: formatDate(
+          Math.max(
+            ...posts
+              .filter((post) => post.series === series)
+              .map((post) => post.lastUpdated ?? post.timestamp)
+          )
+        ),
+      }))
+    ),
     ...posts.map(({ id, timestamp, lastUpdated }) => ({
       url: BASE_URL + '/posts/' + id,
       lastModified: formatDate(lastUpdated ?? timestamp),
