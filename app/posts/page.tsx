@@ -9,29 +9,30 @@ import SeriesDropdownSelect from './SeriesDropdownSelect';
 
 export const dynamic = 'force-dynamic';
 
-function getMetadataTitle(category: string | null) {
+function getMetadataTitle(category: string | null, series: string | null) {
   if (category == null) {
     return '전체 게시글 목록 :: 현이의 개발 이야기';
   }
 
-  return `${category} 카테고리의 게시글 목록 :: 현이의 개발 이야기`;
-}
-
-function getMetadataDescription(category: string | null, postsCount: number) {
-  if (category == null) {
-    return `게시글 총 ${postsCount}개. 김현이 - "좋은 코드가 좋은 제품을 만든다"를 믿는 개발자입니다.`;
+  if (series == null) {
+    return `${category} 카테고리의 게시글 목록 :: 현이의 개발 이야기`;
   }
 
-  return `${category} 카테고리의 게시글 총 ${postsCount}개. 김현이 - "좋은 코드가 좋은 제품을 만든다"를 믿는 개발자입니다.`;
+  return `${series} 시리즈 :: 현이의 개발 이야기`;
+}
+
+function getMetadataDescription(postsCount: number) {
+  return `게시글 총 ${postsCount}개. 김현이 - "좋은 코드가 좋은 제품을 만든다"를 믿는 개발자입니다.`;
 }
 
 export async function generateMetadata({ searchParams }: { searchParams: any }): Promise<Metadata> {
   const category = searchParams.category;
-  const postsCount = await getPostsCount(category);
+  const series = category != null ? searchParams.series : null;
+  const postsCount = await getPostsCount(category, series);
 
   return {
-    title: getMetadataTitle(category),
-    description: getMetadataDescription(category, postsCount),
+    title: getMetadataTitle(category, series),
+    description: getMetadataDescription(postsCount),
     authors: [{ name: '김현이 (Hyuni Kim)', url: 'https://hyuni.dev' }],
     creator: '김현이 (Hyuni Kim)',
     openGraph: {
