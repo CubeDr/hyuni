@@ -1,7 +1,10 @@
 import Timestamp from '@/app/component/Timestamp';
 import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
 import { visit } from 'unist-util-visit';
+import './androidstudio.css';
 import OpenGraphBlockClient from './OpenGraphBlockClient';
 import OpenGraphBlockServer from './OpenGraphBlockServer';
 import styles from './PostViewer.module.css';
@@ -30,7 +33,8 @@ export default function PostViewer({ post: {
       <hr className={styles.Divider} />
       <div className={styles.Content}>
         <ReactMarkdown
-          remarkPlugins={[remarkGfm, highlightedQuoteBlock, centerText]}
+          remarkPlugins={[remarkGfm, highlightedQuoteBlock, centerText, remarkRehype]}
+          rehypePlugins={[rehypeHighlight]}
           components={{
             p: ({ node, ...props }) => <div className={styles.Paragraph} {...props} />,
             a({ href, children }) {
