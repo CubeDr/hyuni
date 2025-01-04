@@ -21,7 +21,10 @@ export default function PostViewer({ post: {
     <>
       <h1>{title}</h1>
       <div className={styles.HeaderRow}>
-        <span><a href={`/posts?category=${category}`}>{category}</a> {series && <>&gt; {series}</>}</span>
+        <span>
+          <a href={`/posts?category=${category}`}>{category}</a>
+          {series && <>&gt; <a href={`/posts?category=${category}&series=${series}`}>{series}</a></>}
+        </span>
         <span><Timestamp timestamp={timestamp} /></span>
       </div>
       <hr className={styles.Divider} />
