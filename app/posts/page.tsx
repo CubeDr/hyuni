@@ -56,11 +56,12 @@ export default async function Posts({ searchParams }: { searchParams: any }) {
 
   return (
     <>
-      <AppBar title={`게시글 - ${postsCount}개`}>
+      <AppBar>
         <CategoryDropdownSelect categories={categories} />
         <div style={{ width: 14 }} />
         <SeriesDropdownSelect category={category} seriesList={seriesList} />
       </AppBar>
+      <div style={{ marginBottom: 14, textAlign: 'end' }}>{postsCount}개 게시글</div>
       <PostGrid category={category} series={series} />
     </>
   );

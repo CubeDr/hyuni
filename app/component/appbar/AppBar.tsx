@@ -10,16 +10,20 @@ interface Props {
 export default function AppBar({ title = '현이의 개발 이야기', children }: PropsWithChildren<Props>) {
   return (
     <div className={styles.AppBar}>
-      <a className={styles.Home} href="/" title="홈">
-        <Image
-          src={home}
-          alt="홈"
-          loading='eager'
-          className={styles.HomeIcon}
-        />
-      </a>
-      <h1 className={styles.Title}>{title}</h1>
-      {children}
+      <div className={styles.Main}>
+        <a className={styles.Home} href="/" title="홈">
+          <Image
+            src={home}
+            alt="홈"
+            loading='eager'
+            className={styles.HomeIcon}
+          />
+        </a>
+        <h1 className={styles.Title}>{title}</h1>
+      </div>
+      <div className={styles.Children}>
+        {children}
+      </div>
     </div>
   );
 }
