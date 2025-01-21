@@ -21,14 +21,14 @@ export default function OpenGraphBlock({ url, ogObject }: Props) {
             <img src={ogObject.ogImage} alt={ogObject.ogTitle} className={styles.LeadingImage} />
           }
           <div className={styles.Content}>
-            <h2 className={styles.Title}>
+            <div className={styles.Title}>
               {ogObject.ogImage &&
                 <div className={styles.ThumbnailImageContainer}>
                   <img src={ogObject.ogImage} alt={ogObject.ogTitle} className={styles.ThumbnailImage} />
                 </div>
               }
               {ogObject.ogTitle}
-            </h2>
+            </div>
             <div className={styles.DescriptionContainer}>
               <span className={styles.Description}>{ogObject.ogDescription}</span>
             </div>
