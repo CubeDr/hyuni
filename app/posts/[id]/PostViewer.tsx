@@ -2,6 +2,7 @@ import Timestamp from '@/app/component/Timestamp';
 import 'highlight.js/styles/atom-one-dark.css';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import { visit } from 'unist-util-visit';
@@ -34,7 +35,7 @@ export default function PostViewer({ post: {
       <div className={styles.Content}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm, highlightedQuoteBlock, centerText, remarkRehype]}
-          rehypePlugins={[rehypeHighlight]}
+          rehypePlugins={[rehypeHighlight, rehypeRaw]}
           components={{
             p: ({ node, ...props }) => <div className={styles.Paragraph} {...props} />,
             a({ href, children }) {
