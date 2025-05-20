@@ -1,7 +1,5 @@
-import React, { useRef, useEffect, useCallback, ClipboardEvent } from 'react';
+import { ClipboardEvent, useCallback, useEffect, useRef } from 'react';
 import styles from './Editor.module.css';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { storage } from '@/firebase/firebaseClient';
 
 interface Props {
   value: string;
@@ -26,15 +24,20 @@ export default function Editor({ value, onChange, multiline = true, className }:
     }
     if (item == null) return;
 
-    const blob = item.getAsFile();
-    if (blob == null) return;
+    const file = item.getAsFile();
+    if (file == null) return;
 
     e.preventDefault();
 
-    const filename = new Date().getTime().toString() + '.' + blob.name;
-    const snapshot = await uploadBytes(ref(storage, 'posts/images/' + filename), blob);
-    const url = await getDownloadURL(snapshot.ref);
-    onChange(value + `\n![](${url})`);
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+
+    const response = await fetch('/api/image', {
+      method: 'POST',
+      body: formData,
+    });
+    const data = await response.json();
+    onChange(value + `\n![](https://lh3.googleusercontent.com/d/${data.id})`);
   }, [value, onChange]);
 
   useEffect(() => {
