@@ -52,7 +52,10 @@ export default function PostViewer({ post: {
             img(props) {
               return (
                 <>
-                  <img src={props.src} alt={props.alt} className={styles.Image} />
+                  <img
+                    {...props}
+                    className={styles.Image + (props.className ? ' ' + props.className : '')}
+                  />
                   <span className={styles.Caption}>{props.alt}</span>
                 </>
               );
