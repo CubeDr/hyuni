@@ -8,6 +8,23 @@ interface Props {
   className?: string;
 }
 
+function getClipboardImageFileName(file: File) {
+  const extension = file.name.substring(file.name.lastIndexOf('.') + 1);
+
+  const now = new Date();
+
+  const padToTwoDigits = (num: number) => num.toString().padStart(2, '0');
+
+  const year = now.getFullYear();
+  const month = padToTwoDigits(now.getMonth() + 1);
+  const day = padToTwoDigits(now.getDate());
+  const hours = padToTwoDigits(now.getHours());
+  const minutes = padToTwoDigits(now.getMinutes());
+  const seconds = padToTwoDigits(now.getSeconds());
+
+  return `${year}${month}${day}_${hours}${minutes}${seconds}_c.${extension}`;
+}
+
 export default function Editor({ value, onChange, multiline = true, className }: Props) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
@@ -30,7 +47,7 @@ export default function Editor({ value, onChange, multiline = true, className }:
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('file', file, file.name);
+    formData.append('file', file, getClipboardImageFileName(file));
 
     const response = await fetch('/api/image', {
       method: 'POST',
