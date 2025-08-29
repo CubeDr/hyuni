@@ -38,7 +38,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={ptMono.className}>
         <AuthProvider>
-          <div className="main-column">{children}</div>
+          <div className="body">
+            <div className="main-column">{children}</div>
+          </div>
           <Footer />
         </AuthProvider>
       </body>
