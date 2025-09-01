@@ -5,11 +5,12 @@ import PostItem from './PostItem';
 interface Props {
   category?: string;
   series?: string;
+  tag?: string;
   options?: GetPostsOptions;
 }
 
-export default async function PostGrid({ category, series, options = {} }: Props) {
-  const posts = await getPosts(category, series, options);
+export default async function PostGrid({ category, series, tag, options = {} }: Props) {
+  const posts = await getPosts(category, series, tag, options);
 
   return (
     <div className={styles.PostGrid}>

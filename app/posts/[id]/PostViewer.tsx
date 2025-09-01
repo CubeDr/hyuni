@@ -29,8 +29,10 @@ export default function PostViewer({ post: {
         <span>
           <a href={`/posts?category=${category}`}>{category}</a>
           {series && <>&gt; <a href={`/posts?category=${category}&series=${series}`}>{series}</a></>}
-           {tags && tags.map((tag) => (
-            <span key={tag}> {"#" + tag}</span>
+          {tags && tags.map((tag) => (
+            <a key={tag} href={`/posts?tag=${tag}`}>
+              &nbsp; { "#" + tag}
+            </a>
           ))}
         </span>
         <span><Timestamp timestamp={timestamp} /></span>
