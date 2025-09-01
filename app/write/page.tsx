@@ -28,6 +28,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
   const [category, setCategory] = useState('');
   const [seriesList, setSeriesList] = useState<string[]>([]);
   const [series, setSeries] = useState('');
+  const [tags, setTags] = useState<string[]>([]);
 
   const [images, setImages] = useState<string[]>([]);
   const [mainImage, setMainImage] = useState<string | null>(null);
@@ -48,6 +49,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
         content: ${content.length}자,
         category: ${category},
         series: ${series},
+        tags: ${tags},
         mainImage: ${mainImage}
         `);
       return;
@@ -57,6 +59,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
       title,
       category,
       series,
+      tags,
       blocks: [
         { type: 'markdown', content: content },
       ],
@@ -106,6 +109,13 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
     });
   }, [category, setSeriesList, setSeries]);
 
+  const onAddTag = useCallback(() => {
+    const tag = window.prompt('추가할 태그');
+    if (tag && !tags.includes(tag)) {
+      setTags((prev) => [...prev, tag]);
+    }
+  }, [tags]);
+
   const convertGoogleDriveImageLink = useCallback(() => {
     const originalLink = window.prompt('구글 드라이브 이미지 링크 입력. 변환된 링크가 복사됩니다.');
     if (originalLink == null) return;
@@ -144,6 +154,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
       setSeries(post.series);
       setMainImage(post.thumbnailImageSrc);
       setTimestamp(post.timestamp);
+      setTags(post.tags ?? []);
     });
   }, [id]);
 
@@ -192,6 +203,18 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
                 setItem={setSeries}
                 onAddClick={onSeriesAddClick}
                 disabled={category === ''} />
+              <DropdownSelect
+                label="태그"
+                item=""
+                items={tags}
+                setItem={() => { }}
+                onAddClick={onAddTag}
+              />
+              <div>
+                {tags.map((tag) => (
+                  <span key={tag}>{"#" + tag}</span>
+                ))}
+              </div>
               <Editor value={content} onChange={setContent} className={styles.Content} />
               <div className={styles.ImageRow}>
                 {images.map((src) =>
@@ -206,6 +229,7 @@ export default function WritePage({ searchParams }: { searchParams: any }) {
                 title,
                 category,
                 series,
+                tags,
                 blocks: [
                   { type: 'markdown', content: content },
                 ],

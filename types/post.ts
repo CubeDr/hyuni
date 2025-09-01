@@ -11,4 +11,5 @@ interface Post {
   thumbnailImageSrc: string;
   commentsCount: number;
   id?: string;
+  tags?: string[];
 }

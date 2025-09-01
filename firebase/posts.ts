@@ -24,6 +24,7 @@ export async function addPost(
     category: postData.category,
     series: postData.series,
     blocks: postData.blocks,
+    tags: postData.tags ?? [],
     timestamp: new Date().getTime(),
     lastUpdated: new Date().getTime(),
     thumbnailImageSrc: postData.thumbnailImageSrc,
