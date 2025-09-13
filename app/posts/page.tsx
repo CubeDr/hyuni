@@ -6,6 +6,8 @@ import AppBar from '../component/appbar/AppBar';
 import CategoryDropdownSelect from './CategoryDropdownSelect';
 import PostGrid from './PostGrid';
 import SeriesDropdownSelect from './SeriesDropdownSelect';
+import { getTags } from '@/firebase/tags';
+import TagDropdownSelect from './TagDropdownSelect';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,6 +54,9 @@ export default async function Posts({ searchParams }: { searchParams: any }) {
   const series = category != null ? searchParams.series : null;
   const seriesList = category != null ? await getSeriesList(category) : [];
 
+  const tag = searchParams.tag ?? null;
+  const tags = await getTags();
+
   const postsCount = await getPostsCount(category, series);
 
   return (
@@ -60,9 +65,11 @@ export default async function Posts({ searchParams }: { searchParams: any }) {
         <CategoryDropdownSelect categories={categories} />
         <div style={{ width: 14 }} />
         <SeriesDropdownSelect category={category} seriesList={seriesList} />
+        <div style={{ width: 14 }} />
+        <TagDropdownSelect tags={tags} />
       </AppBar>
       <div style={{ marginBottom: 14, textAlign: 'end' }}>{postsCount}개 게시글</div>
-      <PostGrid category={category} series={series} />
+      <PostGrid category={category} series={series} tag={tag} />
     </>
   );
 }

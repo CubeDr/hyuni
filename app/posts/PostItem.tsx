@@ -22,7 +22,7 @@ export default function PostItem({ post }: Props) {
         <Image className={styles.Thumbnail} src={post.thumbnailImageSrc} alt={post.title} fill />
       </div>
       <div className={styles.Metadata}>
-        <div className={styles.Category}>{post.category}{post.series ? <> &gt; {post.series}</> : ''}</div>
+        <div className={styles.Category}>{post.category}{post.series ? <> &gt; {post.series}</> : ''}{post.tags?.map((tag) => ` #${tag}`)}</div>
         <h2 className={styles.Title}>{post.title}</h2>
         <div className={styles.Content}>{markdownToPlainText(post.blocks[0].content)}</div>
         <div className={styles.Bottom}>
