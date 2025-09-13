@@ -34,10 +34,14 @@ a:hover {
   text-decoration: underline;
 }
 
+.body {
+  margin-bottom: 64px;
+}
+
 .main-column {
   display: block;
   text-align: initial;
-  margin: 0 auto 64px auto;
+  margin: 0 auto;
   max-width: 1080px;
   flex-grow: 1;
 }
